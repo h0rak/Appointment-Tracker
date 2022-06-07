@@ -9,12 +9,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
+
+    // somewhere in initialize or maybe override i have to check the user's local time zone
 
     public TextField usernameInput;
     public PasswordField passwordInput;

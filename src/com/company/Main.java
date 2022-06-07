@@ -6,12 +6,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.util.Objects;
+
+// have to be able to translate to french/english
 
 public class Main extends Application {
 
     public static void main(String[] args) {
+
+
 	// write your code here
         JDBC.openConnection();
         JDBC.closeConnection();
