@@ -40,9 +40,13 @@
             </VBox>
             <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="150.0" spacing="10.0">
                <children>
-                  <RadioButton mnemonicParsing="false" text="All Appointments" />
-                  <RadioButton mnemonicParsing="false" text="Month's appointments" />
-                  <RadioButton mnemonicParsing="false" text="Week's Appointments" />
+                  <RadioButton mnemonicParsing="false" selected="true" text="All Appointments">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="tg2" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton mnemonicParsing="false" text="Month's appointments" toggleGroup="$tg2" />
+                  <RadioButton mnemonicParsing="false" text="Week's Appointments" toggleGroup="$tg2" />
                </children>
             </VBox>
          </children>
