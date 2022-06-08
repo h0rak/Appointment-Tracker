@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -13,41 +14,55 @@
 
 <AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view_controller.AppointmentController">
    <children>
-      <TableView layoutX="41.0" layoutY="90.0" prefHeight="550.0" prefWidth="735.0">
+      <TableView layoutX="48.0" layoutY="132.0" prefHeight="525.0" prefWidth="735.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
+          <TableColumn prefWidth="50.0" text="ApptID" />
+          <TableColumn prefWidth="75.0" text="Title" />
+            <TableColumn prefWidth="75.0" text="Description" />
+            <TableColumn prefWidth="75.0" text="Location" />
+            <TableColumn prefWidth="50.0" text="Type" />
+            <TableColumn prefWidth="65.0" text="Date" />
+            <TableColumn prefWidth="50.0" text="Start" />
+            <TableColumn prefWidth="50.0" text="End" />
+            <TableColumn prefWidth="83.3" text="CustomerID" />
+            <TableColumn prefWidth="83.3" text="UserID" />
+            <TableColumn prefWidth="83.3" text="ContactID" />
         </columns>
       </TableView>
       <HBox alignment="CENTER_LEFT" prefHeight="90.0" prefWidth="900.0" spacing="10.0">
          <children>
             <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="150.0" spacing="10.0">
                <children>
-                  <RadioButton mnemonicParsing="false" selected="true" text="Appointments">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
+                  <Label text="Choose a screen:" />
+                  <RadioButton fx:id="apptScreenRadioButton" mnemonicParsing="false" selected="true" text="Appointments">
                      <toggleGroup>
                         <ToggleGroup fx:id="tg1" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton mnemonicParsing="false" text="Customers" toggleGroup="$tg1">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </RadioButton>
+                  <RadioButton fx:id="custScreenRadioButton" mnemonicParsing="false" onAction="#onActionCustomerScreen" text="Customers" toggleGroup="$tg1" />
+                  <RadioButton fx:id="contactScreenRadioButton" mnemonicParsing="false" onAction="#onActoinContactScreen" text="Contact Schedule" />
                </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <HBox.margin>
+                  <Insets top="15.0" />
+               </HBox.margin>
             </VBox>
             <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="150.0" spacing="10.0">
                <children>
-                  <RadioButton mnemonicParsing="false" selected="true" text="All Appointments">
+                  <Label text="Choose a filter:" />
+                  <RadioButton fx:id="filterAllRadioButton" mnemonicParsing="false" onAction="#onActionFilterAll" selected="true" text="All">
                      <toggleGroup>
                         <ToggleGroup fx:id="tg2" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton mnemonicParsing="false" text="Month's appointments" toggleGroup="$tg2" />
-                  <RadioButton mnemonicParsing="false" text="Week's Appointments" toggleGroup="$tg2" />
+                  <RadioButton fx:id="filterMonthRadioButton" mnemonicParsing="false" onAction="#onActionFilterMonth" text="Current Month" toggleGroup="$tg2" />
+                  <RadioButton fx:id="filterWeekRadioButton" mnemonicParsing="false" onAction="#onActionFilterWeek" text="Current Week" toggleGroup="$tg2" />
                </children>
+               <padding>
+                  <Insets top="15.0" />
+               </padding>
             </VBox>
          </children>
          <opaqueInsets>
@@ -57,7 +72,7 @@
             <Insets left="45.0" right="45.0" />
          </padding>
       </HBox>
-      <VBox alignment="CENTER" layoutX="776.0" layoutY="265.0" prefHeight="200.0" prefWidth="125.0" spacing="10.0">
+      <VBox alignment="CENTER" layoutX="780.0" layoutY="265.0" prefHeight="200.0" prefWidth="119.0" spacing="10.0">
          <children>
             <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="85.0" text="Add">
                <font>
