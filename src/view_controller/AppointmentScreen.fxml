@@ -82,7 +82,7 @@
                               <Insets />
                            </HBox.margin>
                         </Label>
-                        <Label fx:id="monthTypeTotalReport" text="X">
+                        <Label fx:id="monthTypeTotalLabel">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
@@ -109,7 +109,7 @@
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
                         <Label text="Total:" />
-                        <Label layoutX="10.0" layoutY="10.0" text="X">
+                        <Label fx:id="totalAppointmentHoursLabel" layoutX="10.0" layoutY="10.0">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
