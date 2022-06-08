@@ -40,7 +40,7 @@
                      </toggleGroup>
                   </RadioButton>
                   <RadioButton fx:id="custScreenRadioButton" mnemonicParsing="false" onAction="#onActionCustomerScreen" text="Customers" toggleGroup="$tg1" />
-                  <RadioButton fx:id="contactScreenRadioButton" mnemonicParsing="false" onAction="#onActoinContactScreen" text="Contact Schedule" />
+                  <RadioButton fx:id="contactScreenRadioButton" mnemonicParsing="false" onAction="#onActionContactScreen" text="Contact Schedule" toggleGroup="$tg1" />
                </children>
                <opaqueInsets>
                   <Insets />
@@ -74,17 +74,17 @@
       </HBox>
       <VBox alignment="CENTER" layoutX="780.0" layoutY="265.0" prefHeight="200.0" prefWidth="119.0" spacing="10.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="85.0" text="Add">
+            <Button fx:id="addApptButton" mnemonicParsing="false" onAction="#onActionAddApptScreen" prefHeight="35.0" prefWidth="85.0" text="Add">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="85.0" text="Update">
+            <Button fx:id="updateApptButton" mnemonicParsing="false" onAction="#onActionUpdateApptScreen" prefHeight="35.0" prefWidth="85.0" text="Update">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="85.0" text="Delete">
+            <Button fx:id="deleteApptButton" mnemonicParsing="false" onAction="#onActionDeleteAppt" prefHeight="35.0" prefWidth="85.0" text="Delete">
                <font>
                   <Font size="18.0" />
                </font>
