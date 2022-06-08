@@ -3,6 +3,7 @@ package view_controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 
@@ -31,6 +32,18 @@ public class AppointmentController {
 
     @FXML
     private RadioButton filterWeekRadioButton;
+
+    @FXML
+    private Label monthTypeTotalLabel;
+
+    @FXML
+    private ToggleGroup tg1;
+
+    @FXML
+    private ToggleGroup tg2;
+
+    @FXML
+    private Label totalAppointmentHoursLabel;
 
     @FXML
     private Button updateApptButton;
@@ -74,4 +87,5 @@ public class AppointmentController {
     void onActionUpdateApptScreen(ActionEvent event) {
 
     }
+
 }
