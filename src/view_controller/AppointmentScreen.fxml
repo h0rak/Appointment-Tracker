@@ -35,7 +35,7 @@
             <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="150.0" spacing="10.0">
                <children>
                   <Label text="Choose a screen:" />
-                  <RadioButton fx:id="apptScreenRadioButton" mnemonicParsing="false" selected="true" text="Appointments">
+                  <RadioButton fx:id="apptScreenRadioButton" mnemonicParsing="false" onAction="#onActionAppointmentScreen" selected="true" text="Appointments">
                      <toggleGroup>
                         <ToggleGroup fx:id="tg1" />
                      </toggleGroup>
@@ -77,15 +77,11 @@
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label text="Total:">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </Label>
-                        <Label fx:id="monthTypeTotalLabel">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
+                        <Button mnemonicParsing="false" onAction="#onActionTotalMonthType" prefWidth="80.0" text="Total" />
+                        <Label>
+                           <padding>
+                              <Insets left="10.0" top="5.0" />
+                           </padding>
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
@@ -108,15 +104,14 @@
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label text="Total:" />
-                        <Label fx:id="totalAppointmentHoursLabel" layoutX="10.0" layoutY="10.0">
+                        <Button mnemonicParsing="false" onAction="#onActionTotalAppointmentHours" prefWidth="80.0" text="Total" />
+                        <Label>
+                           <HBox.margin>
+                              <Insets left="10.0" top="5.0" />
+                           </HBox.margin>
                            <font>
                               <Font name="System Bold" size="12.0" />
-                           </font>
-                           <padding>
-                              <Insets left="10.0" />
-                           </padding>
-                        </Label>
+                           </font></Label>
                      </children>
                   </HBox>
                </children>
@@ -134,17 +129,17 @@
       </HBox>
       <VBox alignment="CENTER" layoutX="780.0" layoutY="265.0" prefHeight="200.0" prefWidth="119.0" spacing="10.0">
          <children>
-            <Button fx:id="addApptButton" mnemonicParsing="false" onAction="#onActionAddApptScreen" prefHeight="35.0" prefWidth="85.0" text="Add">
+            <Button fx:id="addApptButton" mnemonicParsing="false" onAction="#onActionAddAppointment" prefHeight="35.0" prefWidth="85.0" text="Add">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="updateApptButton" mnemonicParsing="false" onAction="#onActionUpdateApptScreen" prefHeight="35.0" prefWidth="85.0" text="Update">
+            <Button fx:id="updateApptButton" mnemonicParsing="false" onAction="#onActionUpdateAppointment" prefHeight="35.0" prefWidth="85.0" text="Update">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="deleteApptButton" mnemonicParsing="false" onAction="#onActionDeleteAppt" prefHeight="35.0" prefWidth="85.0" text="Delete">
+            <Button fx:id="deleteApptButton" mnemonicParsing="false" onAction="#onActionDeleteAppointment" prefHeight="35.0" prefWidth="85.0" text="Delete">
                <font>
                   <Font size="18.0" />
                </font>

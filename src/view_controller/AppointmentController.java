@@ -7,10 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -22,6 +19,9 @@ public class AppointmentController {
 
     @FXML
     private RadioButton apptScreenRadioButton;
+
+    @FXML
+    private TableView<?> apptTableView;
 
     @FXML
     private RadioButton contactScreenRadioButton;
@@ -42,7 +42,10 @@ public class AppointmentController {
     private RadioButton filterWeekRadioButton;
 
     @FXML
-    private Label monthTypeTotalLabel;
+    private ComboBox<?> monthComboBox;
+
+    @FXML
+    private ComboBox<?> periodComboBox;
 
     @FXML
     private ToggleGroup tg1;
@@ -51,18 +54,24 @@ public class AppointmentController {
     private ToggleGroup tg2;
 
     @FXML
-    private Label totalAppointmentHoursLabel;
+    private ComboBox<?> typeComboBox;
 
     @FXML
     private Button updateApptButton;
 
     @FXML
-    void onActionAddApptScreen(ActionEvent event) {
+    void onActionAddAppointment(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onActionAppointmentScreen(ActionEvent event) {
 
     }
 
     @FXML
     void onActionContactScreen(ActionEvent actionEvent) throws IOException {
+
         Parent root = FXMLLoader.load(getClass().getResource("/view_controller/ContactScheduleScreen.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 900, 700);
@@ -70,6 +79,7 @@ public class AppointmentController {
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
+
     }
 
     @FXML
@@ -78,7 +88,7 @@ public class AppointmentController {
     }
 
     @FXML
-    void onActionDeleteAppt(ActionEvent event) {
+    void onActionDeleteAppointment(ActionEvent event) {
 
     }
 
@@ -98,8 +108,17 @@ public class AppointmentController {
     }
 
     @FXML
-    void onActionUpdateApptScreen(ActionEvent event) {
+    void onActionTotalAppointmentHours(ActionEvent event) {
 
     }
 
+    @FXML
+    void onActionTotalMonthType(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onActionUpdateAppointment(ActionEvent event) {
+
+    }
 }
