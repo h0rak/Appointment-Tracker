@@ -15,7 +15,7 @@
 
 <AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view_controller.AppointmentController">
    <children>
-      <TableView layoutX="48.0" layoutY="132.0" prefHeight="525.0" prefWidth="735.0">
+      <TableView fx:id="apptTableView" layoutX="48.0" layoutY="132.0" prefHeight="525.0" prefWidth="735.0">
         <columns>
           <TableColumn prefWidth="50.0" text="ApptID" />
           <TableColumn prefWidth="75.0" text="Title" />
@@ -71,8 +71,8 @@
                   <Label layoutX="10.0" layoutY="39.0" text="Month / Type / Total" />
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <ComboBox prefWidth="80.0" promptText="Month" />
-                        <ComboBox prefWidth="80.0" promptText="Type" />
+                        <ComboBox fx:id="monthComboBox" prefWidth="80.0" promptText="Month" />
+                        <ComboBox fx:id="typeComboBox" prefWidth="80.0" promptText="Type" />
                      </children>
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
@@ -103,7 +103,7 @@
                   <Label layoutX="10.0" layoutY="39.0" text="Total Appointment Hours:" />
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <ComboBox prefWidth="80.0" promptText="Period" />
+                        <ComboBox fx:id="periodComboBox" prefWidth="80.0" promptText="Period" />
                      </children>
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
