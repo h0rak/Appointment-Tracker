@@ -36,6 +36,7 @@ public class ContactScheduleController {
 
     @FXML
     void onActionAppointmentScreen(ActionEvent actionEvent) throws IOException {
+
         Parent root = FXMLLoader.load(getClass().getResource("/view_controller/AppointmentScreen.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 900, 700);
@@ -60,5 +61,6 @@ public class ContactScheduleController {
     void onActionViewSchedule(ActionEvent event) {
 
     }
+
 
 }
