@@ -1,11 +1,19 @@
 package view_controller;
 
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class AppointmentController {
 
@@ -54,8 +62,12 @@ public class AppointmentController {
     }
 
     @FXML
-    void onActionContactScreen(ActionEvent event) {
-
+    void onActionContactScreen(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/view_controller/ContactScheduleScreen.fxml"));
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root, 900, 700);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
