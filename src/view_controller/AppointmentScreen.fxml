@@ -32,7 +32,7 @@
       </TableView>
       <HBox alignment="CENTER_LEFT" prefHeight="90.0" prefWidth="900.0" spacing="10.0">
          <children>
-            <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="150.0" spacing="10.0">
+            <VBox prefHeight="200.0" prefWidth="150.0" spacing="10.0">
                <children>
                   <Label text="Choose a screen:" />
                   <RadioButton fx:id="apptScreenRadioButton" mnemonicParsing="false" onAction="#onActionAppointmentScreen" selected="true" text="Appointments">
@@ -47,10 +47,13 @@
                   <Insets />
                </opaqueInsets>
                <HBox.margin>
-                  <Insets top="15.0" />
+                  <Insets />
                </HBox.margin>
+               <padding>
+                  <Insets top="15.0" />
+               </padding>
             </VBox>
-            <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="150.0" spacing="10.0">
+            <VBox prefHeight="200.0" prefWidth="150.0" spacing="10.0">
                <children>
                   <Label text="Choose a filter:" />
                   <RadioButton fx:id="filterAllRadioButton" mnemonicParsing="false" onAction="#onActionFilterAll" selected="true" text="All">
@@ -65,17 +68,17 @@
                   <Insets top="15.0" />
                </padding>
             </VBox>
-            <VBox alignment="CENTER_LEFT" layoutX="215.0" layoutY="10.0" prefHeight="200.0" prefWidth="175.0" spacing="10.0">
+            <VBox layoutX="215.0" layoutY="10.0" prefHeight="200.0" prefWidth="175.0" spacing="5.0">
                <children>
                   <Label text="Reports:" />
-                  <Label layoutX="10.0" layoutY="39.0" text="Month / Type / Total" />
-                  <HBox prefHeight="100.0" prefWidth="200.0">
+                  <Label layoutX="10.0" layoutY="39.0" text="Choose Month &amp; Type" />
+                  <HBox prefHeight="20.0" prefWidth="200.0" spacing="10.0">
                      <children>
                         <ComboBox fx:id="monthComboBox" prefWidth="80.0" promptText="Month" />
                         <ComboBox fx:id="typeComboBox" prefWidth="80.0" promptText="Type" />
                      </children>
                   </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
+                  <HBox prefHeight="20.0" prefWidth="200.0" spacing="10.0">
                      <children>
                         <Button mnemonicParsing="false" onAction="#onActionTotalMonthType" prefWidth="80.0" text="Total" />
                         <Label>
@@ -89,20 +92,19 @@
                      </children>
                   </HBox>
                </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
                <padding>
                   <Insets top="15.0" />
                </padding>
             </VBox>
-            <VBox alignment="CENTER_LEFT" layoutX="375.0" layoutY="10.0" prefHeight="200.0" prefWidth="150.0" spacing="10.0">
+            <VBox layoutX="375.0" layoutY="10.0" prefHeight="200.0" prefWidth="150.0" spacing="5.0">
                <children>
-                  <Label />
                   <Label layoutX="10.0" layoutY="39.0" text="Total Appointment Hours:" />
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <ComboBox fx:id="periodComboBox" prefWidth="80.0" promptText="Period" />
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
+                  <Label text="Choose Period of Week / Month / Year" />
+                  <ComboBox fx:id="periodComboBox" prefWidth="80.0" promptText="Period" />
+                  <HBox prefHeight="20.0" prefWidth="200.0">
                      <children>
                         <Button mnemonicParsing="false" onAction="#onActionTotalAppointmentHours" prefWidth="80.0" text="Total" />
                         <Label>
