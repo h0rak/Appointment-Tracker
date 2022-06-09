@@ -66,6 +66,8 @@ public class AppointmentController {
         Parent root = FXMLLoader.load(getClass().getResource("/view_controller/ContactScheduleScreen.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 900, 700);
+        stage.setTitle("Contact Schedule");
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }
