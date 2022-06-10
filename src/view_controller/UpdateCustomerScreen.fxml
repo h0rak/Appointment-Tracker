@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="350.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view_controller.UpdateCustomerController">
+   <children>
+      <VBox alignment="TOP_RIGHT" layoutX="50.0" layoutY="43.0" prefHeight="300.0" prefWidth="125.0" spacing="14.0">
+         <children>
+            <Label text="ID:">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="10.0" text="Name:">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="27.0" text="Address:">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="44.0" text="Postal Code:">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="61.0" text="Phone Number:">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="92.0" layoutY="142.0" text="Country:">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="92.0" layoutY="175.0" text="Division:">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+         <padding>
+            <Insets right="5.0" />
+         </padding>
+      </VBox>
+      <VBox layoutX="175.0" layoutY="43.0" prefHeight="300.0" prefWidth="125.0" spacing="6.5">
+         <children>
+            <TextField fx:id="customerIdField" alignment="TOP_RIGHT" disable="true" />
+            <TextField fx:id="customerNameField" alignment="TOP_RIGHT" layoutX="10.0" layoutY="10.0" promptText="First Last">
+               <font>
+                  <Font name="System Italic" size="13.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="customerAddressField" alignment="TOP_RIGHT" layoutX="10.0" layoutY="36.0" promptText="123 Name St,  City" />
+            <TextField fx:id="customerPostalCodeField" alignment="TOP_RIGHT" layoutX="10.0" layoutY="36.0" promptText="12345" />
+            <TextField fx:id="customerPhoneNumberField" alignment="TOP_RIGHT" layoutX="10.0" layoutY="10.0" promptText="555-555-5555" />
+            <ComboBox fx:id="countryComboBox" nodeOrientation="LEFT_TO_RIGHT" prefWidth="150.0" promptText="Country" />
+            <ComboBox fx:id="divisionComboBox" prefWidth="150.0" promptText="First-level Division" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#onActionCancel" prefWidth="60.0" text="Cancel" />
+                  <Button mnemonicParsing="false" onAction="#onActionSave" prefWidth="60.0" text="Update" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <Label layoutX="100.0" layoutY="14.0" text="Update Customer">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

@@ -80,8 +80,14 @@ public class CustomerController {
     }
 
     @FXML
-    void onActionUpdateCustomer(ActionEvent event) {
-
+    void onActionUpdateCustomer(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/view_controller/UpdateCustomerScreen.fxml"));
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root, 400, 400);
+        stage.setTitle("Update Customer");
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.show();
     }
 
 }
