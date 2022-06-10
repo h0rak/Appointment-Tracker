@@ -78,7 +78,7 @@ public class AppointmentController {
         Parent root = FXMLLoader.load(getClass().getResource("/view_controller/CustomerScreen.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 900, 700);
-        stage.setTitle("Customer");
+        stage.setTitle("Customers");
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
