@@ -36,7 +36,6 @@ public class ContactScheduleController {
 
     @FXML
     void onActionAppointmentScreen(ActionEvent actionEvent) throws IOException {
-
         Parent root = FXMLLoader.load(getClass().getResource("/view_controller/AppointmentScreen.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 900, 700);
@@ -44,7 +43,6 @@ public class ContactScheduleController {
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
-
     }
 
     @FXML
@@ -53,8 +51,14 @@ public class ContactScheduleController {
     }
 
     @FXML
-    void onActionCustomerScreen(ActionEvent event) {
-
+    void onActionCustomerScreen(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/view_controller/CustomerScreen.fxml"));
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root, 900, 700);
+        stage.setTitle("Customer");
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML

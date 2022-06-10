@@ -1,7 +1,6 @@
 package view_controller;
 
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -48,12 +47,6 @@ public class AppointmentController {
     private ComboBox<?> periodComboBox;
 
     @FXML
-    private ToggleGroup tg1;
-
-    @FXML
-    private ToggleGroup tg2;
-
-    @FXML
     private ComboBox<?> typeComboBox;
 
     @FXML
@@ -71,7 +64,6 @@ public class AppointmentController {
 
     @FXML
     void onActionContactScreen(ActionEvent actionEvent) throws IOException {
-
         Parent root = FXMLLoader.load(getClass().getResource("/view_controller/ContactScheduleScreen.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 900, 700);
@@ -79,12 +71,17 @@ public class AppointmentController {
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
-
     }
 
     @FXML
-    void onActionCustomerScreen(ActionEvent event) {
-
+    void onActionCustomerScreen(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/view_controller/CustomerScreen.fxml"));
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root, 900, 700);
+        stage.setTitle("Customer");
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
