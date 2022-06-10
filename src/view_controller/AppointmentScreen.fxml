@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view_controller.AppointmentController">
+<AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view_controller.AppointmentController">
    <children>
       <TableView fx:id="apptTableView" layoutX="48.0" layoutY="132.0" prefHeight="525.0" prefWidth="735.0">
         <columns>
@@ -68,25 +68,22 @@
                   <Insets top="15.0" />
                </padding>
             </VBox>
-            <VBox layoutX="215.0" layoutY="10.0" prefHeight="200.0" prefWidth="175.0" spacing="5.0">
+            <VBox layoutX="215.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" spacing="5.0">
                <children>
                   <Label text="Reports:" />
                   <Label layoutX="10.0" layoutY="39.0" text="Choose Month &amp; Type" />
                   <HBox prefHeight="20.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <ComboBox fx:id="monthComboBox" prefWidth="80.0" promptText="Month" />
-                        <ComboBox fx:id="typeComboBox" prefWidth="80.0" promptText="Type" />
+                        <ComboBox fx:id="monthComboBox" prefWidth="95.0" promptText="Month" />
+                        <ComboBox fx:id="typeComboBox" prefWidth="95.0" promptText="Type" />
                      </children>
                   </HBox>
                   <HBox prefHeight="20.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#onActionTotalMonthType" prefWidth="80.0" text="Total" />
-                        <Label>
-                           <padding>
-                              <Insets left="10.0" top="5.0" />
-                           </padding>
+                        <Button mnemonicParsing="false" onAction="#onActionTotalMonthType" prefWidth="95.0" text="Total" />
+                        <Label prefHeight="26.0" prefWidth="95.0">
                            <font>
-                              <Font name="System Bold" size="12.0" />
+                              <Font name="System Bold" size="13.0" />
                            </font>
                         </Label>
                      </children>
@@ -99,23 +96,15 @@
                   <Insets top="15.0" />
                </padding>
             </VBox>
-            <VBox layoutX="375.0" layoutY="10.0" prefHeight="200.0" prefWidth="150.0" spacing="5.0">
+            <VBox layoutX="375.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" spacing="5.0">
                <children>
                   <Label layoutX="10.0" layoutY="39.0" text="Total Appointment Hours:" />
-                  <Label text="Choose Period of Week / Month / Year" />
-                  <ComboBox fx:id="periodComboBox" prefWidth="80.0" promptText="Period" />
-                  <HBox prefHeight="20.0" prefWidth="200.0">
-                     <children>
-                        <Button mnemonicParsing="false" onAction="#onActionTotalAppointmentHours" prefWidth="80.0" text="Total" />
-                        <Label>
-                           <HBox.margin>
-                              <Insets left="10.0" top="5.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font></Label>
-                     </children>
-                  </HBox>
+                  <Label text="(using current filter)" />
+                  <Label prefHeight="26.0" prefWidth="95.0">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Label>
                </children>
                <padding>
                   <Insets top="15.0" />
