@@ -1,4 +1,4 @@
-package view_controller;
+package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -38,7 +38,7 @@ public class CustomerController {
 
     @FXML
     void onActionAddCustomer(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/view_controller/AddCustomerScreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/AddCustomerScreen.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 400, 400);
         stage.setTitle("Add Customer");
@@ -49,7 +49,7 @@ public class CustomerController {
 
     @FXML
     void onActionAppointmentScreen(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/view_controller/AppointmentScreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentScreen.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 900, 700);
         stage.setTitle("Appointments");
@@ -60,7 +60,7 @@ public class CustomerController {
 
     @FXML
     void onActionContactScreen(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/view_controller/ContactScheduleScreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/ContactScheduleScreen.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 900, 700);
         stage.setTitle("Contact Schedule");
@@ -81,7 +81,7 @@ public class CustomerController {
 
     @FXML
     void onActionUpdateCustomer(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/view_controller/UpdateCustomerScreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/UpdateCustomerScreen.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 400, 400);
         stage.setTitle("Update Customer");

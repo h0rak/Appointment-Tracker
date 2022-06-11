@@ -1,4 +1,4 @@
-package view_controller;
+package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class AddCustomerController {
+public class UpdateCustomerController {
 
     @FXML
     private ComboBox<?> countryComboBox;
@@ -37,7 +37,7 @@ public class AddCustomerController {
 
     @FXML
     void onActionCancel(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/view_controller/CustomerScreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/CustomerScreen.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 900, 700);
         stage.setTitle("Customers");

@@ -1,4 +1,4 @@
-package view_controller;
+package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -64,7 +64,7 @@ public class AppointmentController {
 
     @FXML
     void onActionContactScreen(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/view_controller/ContactScheduleScreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/ContactScheduleScreen.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 900, 700);
         stage.setTitle("Contact Schedule");
@@ -75,7 +75,7 @@ public class AppointmentController {
 
     @FXML
     void onActionCustomerScreen(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/view_controller/CustomerScreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/CustomerScreen.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 900, 700);
         stage.setTitle("Customers");

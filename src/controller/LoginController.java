@@ -1,4 +1,4 @@
-package view_controller;
+package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -26,7 +26,7 @@ public class LoginController implements Initializable {
     }
 
     public void onActionLogin(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/view_controller/AppointmentScreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentScreen.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 900, 700);
         stage.setTitle("Appointments");

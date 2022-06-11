@@ -7,9 +7,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.util.Locale;
-import java.util.Objects;
-
 // have to be able to translate to french/english main or login controller?
 
 
@@ -27,7 +24,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/view_controller/LoginScreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/LoginScreen.fxml"));
         stage.setTitle("Login");
         stage.setScene(new Scene(root, 450, 250));
         stage.setResizable(false);
