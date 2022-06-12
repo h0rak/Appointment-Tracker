@@ -28,9 +28,8 @@ public class LoginController implements Initializable {
     public void onActionLogin(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentScreen.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root, 900, 700);
+        Scene scene = new Scene(root);
         stage.setTitle("Appointments");
-        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }

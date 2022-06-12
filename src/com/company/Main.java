@@ -8,16 +8,12 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 // have to be able to translate to french/english main or login controller?
-
+// Locale.setDefault(new Locale("fr"));
 
 public class Main extends Application {
 
     public static void main(String[] args) {
-
-
-	// write your code here
         JDBC.openConnection();
-        // Locale.setDefault(new Locale("fr"));
         launch(args);
         JDBC.closeConnection();
     }
@@ -26,8 +22,7 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/view/LoginScreen.fxml"));
         stage.setTitle("Login");
-        stage.setScene(new Scene(root, 450, 250));
-        stage.setResizable(false);
+        stage.setScene(new Scene(root));
         stage.show();
     }
 }

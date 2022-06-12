@@ -40,9 +40,8 @@ public class CustomerController {
     void onActionAddCustomer(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/AddCustomerScreen.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root, 400, 400);
+        Scene scene = new Scene(root);
         stage.setTitle("Add Customer");
-        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }
@@ -51,9 +50,8 @@ public class CustomerController {
     void onActionAppointmentScreen(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentScreen.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root, 900, 700);
+        Scene scene = new Scene(root);
         stage.setTitle("Appointments");
-        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }
@@ -62,9 +60,8 @@ public class CustomerController {
     void onActionContactScreen(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/ContactScheduleScreen.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root, 900, 700);
+        Scene scene = new Scene(root);
         stage.setTitle("Contact Schedule");
-        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }
@@ -83,9 +80,8 @@ public class CustomerController {
     void onActionUpdateCustomer(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/UpdateCustomerScreen.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root, 400, 400);
+        Scene scene = new Scene(root);
         stage.setTitle("Update Customer");
-        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }
