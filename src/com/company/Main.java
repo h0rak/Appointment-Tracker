@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import java.util.Locale;
 
 // have to be able to translate to french/english main or login controller?
 // Locale.setDefault(new Locale("fr"));
