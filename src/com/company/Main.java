@@ -17,9 +17,9 @@ public class Main extends Application {
 
 	// write your code here
         JDBC.openConnection();
-        JDBC.closeConnection();
         // Locale.setDefault(new Locale("fr"));
         launch(args);
+        JDBC.closeConnection();
     }
 
     @Override
