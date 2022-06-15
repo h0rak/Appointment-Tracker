@@ -1,12 +1,12 @@
 package com.company;
 
-import DAO.JDBC;
+import utilities.JDBC;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import java.util.Locale;
+
 import java.util.Objects;
 
 // have to be able to translate to french/english main or login controller?
