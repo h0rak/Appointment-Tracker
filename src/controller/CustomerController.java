@@ -119,7 +119,6 @@ public class CustomerController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         customerTableView.setItems(DBCustomers.getAllCustomers());
-        /*
         customerIdCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         customerNameCol.setCellValueFactory(new PropertyValueFactory<>("customerName"));
         customerAddressCol.setCellValueFactory(new PropertyValueFactory<>("customerAddress"));
@@ -127,9 +126,6 @@ public class CustomerController implements Initializable {
         customerPhoneCol.setCellValueFactory(new PropertyValueFactory<>("customerPhone"));
         customerCountryCol.setCellValueFactory(new PropertyValueFactory<>("customerCountry"));
         customerDivisionCol.setCellValueFactory(new PropertyValueFactory<>("customerDivision"));
-
-         */
-
 
 
     }
