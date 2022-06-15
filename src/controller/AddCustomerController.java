@@ -10,7 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
+import model.Countries;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
 public class AddCustomerController implements Initializable {
 
     @FXML
-    private ComboBox<?> countryComboBox;
+    private ComboBox<Countries> countryComboBox;
 
     @FXML
     private TextField customerAddressField;
@@ -37,7 +37,7 @@ public class AddCustomerController implements Initializable {
     private TextField customerPostalCodeField;
 
     @FXML
-    private ComboBox<?> divisionComboBox;
+    private ComboBox<?> divisionComboBox; // THIS WILL NEED TO BE DIVISION??? first level type of course hehe
 
     @FXML
     void onActionCancel(ActionEvent actionEvent) throws IOException {

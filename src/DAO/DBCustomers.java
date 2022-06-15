@@ -37,20 +37,17 @@ public class DBCustomers {
 
     // in addition to getAllCustomers
     // create customer
-    public static void AddCustomer() {
+    public static void AddCustomer(String customerName, String customerAddress, String customerPostalCode, String customerPhone, String customerCountry, String customerDivision) {
         try {
             String sqlci = "INSERT INTO customers VALUES(NULL, ?, ?, ?)"; // will need to be adjusted
             PreparedStatement psci = JDBC.getConnection().prepareStatement(sqlci, Statement.RETURN_GENERATED_KEYS);
             // psci.setData( 1, desc1);
             // psci.setData( 2, desc2);
             // psci.setData( 3, exampleID);
-
             // psci.execute();
-
             ResultSet rs = psci.getGeneratedKeys();
             rs.next();
             // int toyinfoID = rs.getInt( columnindex: 1);
-
             // mysql statement
             String sqlc = "INSERT INTO customers  VALUES(NULL, ?, ?, ?)";
             PreparedStatement psc = JDBC.getConnection().prepareStatement(sqlc);
@@ -59,7 +56,6 @@ public class DBCustomers {
             psc.setString(2);
             psc.setString(3);
              */
-
             psc.execute();
         }
         catch(SQLException e){
