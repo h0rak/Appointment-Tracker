@@ -1,5 +1,6 @@
 package controller;
 
+import DAO.DBCustomers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,7 +10,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Customers;
 
@@ -40,6 +43,28 @@ public class CustomerController implements Initializable {
 
     @FXML
     private Button updateCustomerButton;
+
+    @FXML
+    private TableColumn<Customers, String> customerAddressCol;
+
+    @FXML
+    private TableColumn<Customers, String> customerCountryCol;
+
+    @FXML
+    private TableColumn<Customers, String> customerDivisionCol;
+
+    @FXML
+    private TableColumn<Customers, Integer> customerIdCol;
+
+    @FXML
+    private TableColumn<Customers, String> customerNameCol;
+
+    @FXML
+    private TableColumn<Customers, String> customerPhoneCol;
+
+    @FXML
+    private TableColumn<Customers, Integer> customerPostalCodeCol;
+
 
     @FXML
     void onActionAddCustomer(ActionEvent actionEvent) throws IOException {
@@ -93,6 +118,19 @@ public class CustomerController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        customerTableView.setItems(DBCustomers.getAllCustomers());
+        /*
+        customerIdCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
+        customerNameCol.setCellValueFactory(new PropertyValueFactory<>("customerName"));
+        customerAddressCol.setCellValueFactory(new PropertyValueFactory<>("customerAddress"));
+        customerPostalCodeCol.setCellValueFactory(new PropertyValueFactory<>("customerPostalCode"));
+        customerPhoneCol.setCellValueFactory(new PropertyValueFactory<>("customerPhone"));
+        customerCountryCol.setCellValueFactory(new PropertyValueFactory<>("customerCountry"));
+        customerDivisionCol.setCellValueFactory(new PropertyValueFactory<>("customerDivision"));
+
+         */
+
+
 
     }
 }

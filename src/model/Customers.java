@@ -5,20 +5,20 @@ public class Customers {
     private int customerId;
     private String customerName;
     private String customerAddress;
-    private int postalCode;
+    private int customerPostalCode;
     private String customerPhone;
-    private String country;
-    private String division;
+    private String customerCountry;
+    private String customerDivision;
     // Customers have a divisionID and the division has a countryID. The country has a name.
 
     public Customers(int customerId, String customerName, String customerAddress, int postalCode, String customerPhone, String country, String division) {
         this.customerId = customerId;
         this.customerName = customerName;
         this.customerAddress = customerAddress;
-        this.postalCode = postalCode;
+        this.customerPostalCode = postalCode;
         this.customerPhone = customerPhone;
-        this.country = country;
-        this.division = division;
+        this.customerCountry = country;
+        this.customerDivision = division;
     }
 
     public int getCustomerId() {
@@ -45,12 +45,12 @@ public class Customers {
         this.customerAddress = customerAddress;
     }
 
-    public int getPostalCode() {
-        return postalCode;
+    public int getCustomerPostalCode() {
+        return customerPostalCode;
     }
 
-    public void setPostalCode(int postalCode) {
-        this.postalCode = postalCode;
+    public void setCustomerPostalCode(int postalCode) {
+        this.customerPostalCode = postalCode;
     }
 
     public String getCustomerPhone() {
@@ -61,19 +61,19 @@ public class Customers {
         this.customerPhone = customerPhone;
     }
 
-    public String getCountry() {
-        return country;
+    public String getCustomerCountry() {
+        return customerCountry;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setCustomerCountry(String country) {
+        this.customerCountry = country;
     }
 
-    public String getDivision() {
-        return division;
+    public String getCustomerDivision() {
+        return customerDivision;
     }
 
-    public void setDivision(String division) {
-        this.division = division;
+    public void setCustomerDivision(String division) {
+        this.customerDivision = division;
     }
 }

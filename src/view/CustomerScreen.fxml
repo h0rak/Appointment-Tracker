@@ -12,17 +12,17 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CustomerController">
+<AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CustomerController">
    <children>
       <TableView fx:id="customerTableView" layoutX="48.0" layoutY="132.0" prefHeight="525.0" prefWidth="735.0">
         <columns>
-          <TableColumn prefWidth="105.0" text="CustomerID" />
-          <TableColumn prefWidth="105.0" text="Name" />
-            <TableColumn prefWidth="105.0" text="Address" />
-            <TableColumn prefWidth="105.0" text="Postal Code" />
-            <TableColumn prefWidth="105.0" text="Phone Number" />
-            <TableColumn prefWidth="105.0" text="Country" />
-            <TableColumn prefWidth="105.0" text="DIvision" />
+          <TableColumn fx:id="customerIdCol" prefWidth="105.0" text="CustomerID" />
+          <TableColumn fx:id="customerNameCol" prefWidth="105.0" text="Name" />
+            <TableColumn fx:id="customerAddressCol" prefWidth="105.0" text="Address" />
+            <TableColumn fx:id="customerPostalCodeCol" prefWidth="105.0" text="Postal Code" />
+            <TableColumn fx:id="customerPhoneCol" prefWidth="105.0" text="Phone Number" />
+            <TableColumn fx:id="customerCountryCol" prefWidth="105.0" text="Country" />
+            <TableColumn fx:id="customerDivisionCol" prefWidth="105.0" text="Division" />
         </columns>
       </TableView>
       <HBox alignment="CENTER_LEFT" prefHeight="90.0" prefWidth="900.0" spacing="10.0">
