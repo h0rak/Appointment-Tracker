@@ -1,5 +1,7 @@
 package com.company;
 
+import DAO.DBCountries;
+import DAO.DBDivisions;
 import utilities.JDBC;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +18,8 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         JDBC.openConnection();
+        DBDivisions.getAllDivisions(); // SHOULD I DO THIS HERE?
+        // DBCountries.getAllCountries(); // SHOULD I DO THIS HERE?
         launch(args);
         JDBC.closeConnection();
     }
