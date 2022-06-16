@@ -1,5 +1,6 @@
 package controller;
 
+import DAO.DBDivisions;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -56,6 +57,8 @@ public class AddCustomerController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        DBDivisions.getAllDivisions(); // SHOULD I DO THIS HERE?
+        // DBCountries.getAllCountries(); // SHOULD I DO THIS HERE?
 
     }
 }

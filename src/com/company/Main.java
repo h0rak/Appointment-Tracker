@@ -18,8 +18,6 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         JDBC.openConnection();
-        DBDivisions.getAllDivisions(); // SHOULD I DO THIS HERE?
-        // DBCountries.getAllCountries(); // SHOULD I DO THIS HERE?
         launch(args);
         JDBC.closeConnection();
     }
