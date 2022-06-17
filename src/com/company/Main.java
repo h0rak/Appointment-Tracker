@@ -1,7 +1,5 @@
 package com.company;
 
-import DAO.DBCountries;
-import DAO.DBDivisions;
 import utilities.JDBC;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

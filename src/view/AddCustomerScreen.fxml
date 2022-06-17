@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="350.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddCustomerController">
+<AnchorPane prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddCustomerController">
    <children>
-      <VBox alignment="TOP_RIGHT" layoutX="50.0" layoutY="43.0" prefHeight="300.0" prefWidth="125.0" spacing="14.0">
+      <VBox alignment="TOP_RIGHT" layoutX="127.0" layoutY="100.0" prefHeight="300.0" prefWidth="125.0" spacing="14.0">
          <children>
             <Label text="ID:">
                <font>
@@ -54,7 +54,7 @@
             <Insets right="5.0" />
          </padding>
       </VBox>
-      <VBox layoutX="175.0" layoutY="43.0" prefHeight="300.0" prefWidth="125.0" spacing="6.5">
+      <VBox layoutX="249.0" layoutY="100.0" prefHeight="300.0" prefWidth="125.0" spacing="6.5">
          <children>
             <TextField fx:id="customerIdField" alignment="TOP_RIGHT" disable="true" />
             <TextField fx:id="customerNameField" alignment="TOP_RIGHT" layoutX="10.0" layoutY="10.0" promptText="First Last">
@@ -75,7 +75,7 @@
             </HBox>
          </children>
       </VBox>
-      <Label layoutX="114.0" layoutY="14.0" text="Add Customer">
+      <Label layoutX="188.0" layoutY="45.0" text="Add Customer">
          <font>
             <Font size="20.0" />
          </font>
