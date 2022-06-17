@@ -1,5 +1,6 @@
 package controller;
 
+import DAO.DBCountries;
 import DAO.DBDivisions;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,6 +13,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Countries;
+import model.Divisions;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
@@ -38,7 +40,7 @@ public class AddCustomerController implements Initializable {
     private TextField customerPostalCodeField;
 
     @FXML
-    private ComboBox<?> divisionComboBox; // THIS WILL NEED TO BE DIVISION??? first level type of course hehe
+    private ComboBox<Divisions> divisionComboBox; // THIS WILL NEED TO BE DIVISION??? first level type of course hehe
 
     @FXML
     void onActionCancel(ActionEvent actionEvent) throws IOException {
@@ -55,10 +57,15 @@ public class AddCustomerController implements Initializable {
 
     }
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        DBDivisions.getAllDivisions(); // SHOULD I DO THIS HERE?
-        // DBCountries.getAllCountries(); // SHOULD I DO THIS HERE?
-
+        countryComboBox.setItems(DBCountries.getAllCountries()); // SHOULD I DO THIS HERE?
+        countryComboBox.setVisibleRowCount(3);
+        divisionComboBox.setItems(DBDivisions.getAllDivisions()); // SHOULD I DO THIS HERE?
+        divisionComboBox.setVisibleRowCount(3);
+        // divisionComboBox.setPromptText("Choose a division..");
+        // divisionComboBox.getSelectionModel().selectFirst();  THESE TWO WILL BE USED WITH MODIFY???
+        // divisionComboBox.setValue("a variable not a string?");
     }
 }

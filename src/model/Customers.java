@@ -21,6 +21,7 @@ public class Customers {
         this.customerDivision = division;
     }
 
+
     public int getCustomerId() {
         return customerId;
     }

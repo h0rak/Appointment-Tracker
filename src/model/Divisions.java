@@ -11,6 +11,11 @@ public class Divisions {
         this.countryId = countryId;
     }
 
+    @Override
+    public String toString() {
+        return (divisionName);
+    }
+
     public int getDivisionId() {
         return divisionId;
     }

@@ -11,7 +11,7 @@ import java.sql.SQLException;
 public class DBDivisions {
 
     public static ObservableList<Divisions> getAllDivisions() {
-        ObservableList<Divisions> allDivisionsLists = FXCollections.observableArrayList();
+        ObservableList<Divisions> allDivisionsList = FXCollections.observableArrayList();
         try{
             // String sql
             String sql = "SELECT DIVISION_ID, DIVISION, COUNTRY_ID FROM first_level_divisions;";
@@ -26,13 +26,13 @@ public class DBDivisions {
                 int countryId = rs.getInt("COUNTRY_ID");
 
                 Divisions d = new Divisions(divisionId, divisionName, countryId);
-                allDivisionsLists.add(d);
+                allDivisionsList.add(d);
             }
         }
         catch (SQLException e){
             e.printStackTrace();
         }
-        return allDivisionsLists;
+        return allDivisionsList;
     }
 
     public static ObservableList<Divisions> getUSDivisions() {
