@@ -22,16 +22,13 @@ import java.util.ResourceBundle;
 public class AddCustomerController implements Initializable {
 
     @FXML
-    private ComboBox<Countries> countryComboBox;
-
-    @FXML
-    private TextField customerAddressField;
-
-    @FXML
     private TextField customerIdField;
 
     @FXML
     private TextField customerNameField;
+
+    @FXML
+    private TextField customerAddressField;
 
     @FXML
     private TextField customerPhoneNumberField;
@@ -40,7 +37,38 @@ public class AddCustomerController implements Initializable {
     private TextField customerPostalCodeField;
 
     @FXML
+    private ComboBox<Countries> countryComboBox;
+
+    @FXML
     private ComboBox<Divisions> divisionComboBox; // THIS WILL NEED TO BE DIVISION??? first level type of course hehe
+
+    @FXML
+    void onActionCountryComboBox(ActionEvent event) {
+        divisionComboBox.getSelectionModel().clearSelection();
+        Countries selectedCountry = countryComboBox.getSelectionModel().getSelectedItem();
+        if(selectedCountry.getCountryId() == 1){
+            divisionComboBox.setItems(DBDivisions.getUSDivisions());
+            divisionComboBox.setPromptText("State");
+        }
+        else if(selectedCountry.getCountryId() == 2){
+            divisionComboBox.setItems(DBDivisions.getUKDivisions());
+            divisionComboBox.setPromptText("Province");
+        }
+        else if(selectedCountry.getCountryId() == 3){
+            divisionComboBox.setItems(DBDivisions.getCANDivisions());
+            divisionComboBox.setPromptText("Province");
+        }
+        else {
+            return;
+        }
+    }
+
+
+
+    @FXML
+    void onActionSave(ActionEvent event) {
+
+    }
 
     @FXML
     void onActionCancel(ActionEvent actionEvent) throws IOException {
@@ -52,17 +80,11 @@ public class AddCustomerController implements Initializable {
         stage.show();
     }
 
-    @FXML
-    void onActionSave(ActionEvent event) {
-
-    }
-
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         countryComboBox.setItems(DBCountries.getAllCountries()); // SHOULD I DO THIS HERE?
         countryComboBox.setVisibleRowCount(3);
-        divisionComboBox.setItems(DBDivisions.getAllDivisions()); // SHOULD I DO THIS HERE?
+        // divisionComboBox.setItems(DBDivisions.getAllDivisions()); // SHOULD I DO THIS HERE?
         divisionComboBox.setVisibleRowCount(3);
         // divisionComboBox.setPromptText("Choose a division..");
         // divisionComboBox.getSelectionModel().selectFirst();  THESE TWO WILL BE USED WITH MODIFY???
