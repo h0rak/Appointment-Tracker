@@ -7,17 +7,17 @@ public class Customers {
     private String customerAddress;
     private String customerPostalCode;
     private String customerPhone;
-    private String customerCountry;
+//    private String customerCountry;
     private String customerDivision;
     // Customers have a divisionID and the division has a countryID. The country has a name.
 
-    public Customers(int customerId, String customerName, String customerAddress, String postalCode, String customerPhone, String country, String division) {
+    public Customers(int customerId, String customerName, String customerAddress, String postalCode, String customerPhone, String division) {
         this.customerId = customerId;
         this.customerName = customerName;
         this.customerAddress = customerAddress;
         this.customerPostalCode = postalCode;
         this.customerPhone = customerPhone;
-        this.customerCountry = country;
+//        this.customerCountry = country;
         this.customerDivision = division;
     }
 
@@ -62,6 +62,7 @@ public class Customers {
         this.customerPhone = customerPhone;
     }
 
+/*
     public String getCustomerCountry() {
         return customerCountry;
     }
@@ -69,6 +70,7 @@ public class Customers {
     public void setCustomerCountry(String country) {
         this.customerCountry = country;
     }
+*/
 
     public String getCustomerDivision() {
         return customerDivision;

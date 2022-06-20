@@ -85,7 +85,7 @@ public class AddCustomerController implements Initializable {
         countryComboBox.setItems(DBCountries.getAllCountries()); // SHOULD I DO THIS HERE?
         countryComboBox.setVisibleRowCount(3);
         // divisionComboBox.setItems(DBDivisions.getAllDivisions()); // SHOULD I DO THIS HERE?
-        divisionComboBox.setVisibleRowCount(3);
+        divisionComboBox.setVisibleRowCount(4);
         // divisionComboBox.setPromptText("Choose a division..");
         // divisionComboBox.getSelectionModel().selectFirst();  THESE TWO WILL BE USED WITH MODIFY???
         // divisionComboBox.setValue("a variable not a string?");

@@ -12,7 +12,7 @@ public class DBCustomers {
         ObservableList<Customers> allCustomersList = FXCollections.observableArrayList();
 
         try {
-            String sql = "SELECT customers.Customer_ID, customers.Customer_Name, customers.Address, customers.Postal_Code, customers.Phone, countries.Country, first_level_divisions.Division FROM customers, countries, first_level_divisions WHERE customers.Division_ID = first_level_divisions.Division_ID AND first_level_divisions.Country_ID = countries.Country_ID;"; // ADD STUFF IN THE QUOTES
+            String sql = "SELECT customers.Customer_ID, customers.Customer_Name, customers.Address, customers.Postal_Code, customers.Phone, first_level_divisions.Division FROM customers, first_level_divisions WHERE customers.Division_ID = first_level_divisions.Division_ID;"; // ADD STUFF IN THE QUOTES
             PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
@@ -21,10 +21,10 @@ public class DBCustomers {
                 String Address = rs.getString("Address");
                 String Postal_Code = rs.getString("Postal_Code");
                 String Phone = rs.getString("Phone");
-                String Country = rs.getString("Country");
+//                String Country = rs.getString("Country");
                 String Division = rs.getString("Division");
 
-                Customers c = new Customers(Customer_ID, Customer_Name, Address, Postal_Code, Phone, Country, Division);
+                Customers c = new Customers(Customer_ID, Customer_Name, Address, Postal_Code, Phone, Division);
                 allCustomersList.add(c);
             }
         }  catch (SQLException e){
@@ -37,9 +37,9 @@ public class DBCustomers {
 
     // in addition to getAllCustomers
     // create customer
-    public static void AddCustomer(String customerName, String customerAddress, String customerPostalCode, String customerPhone, String customerCountry, String customerDivision) {
+    public static void AddCustomer(String customerName, String customerAddress, String customerPostalCode, String customerPhone, String customerDivision) {
         try {
-            String sqlci = "INSERT INTO customers VALUES(NULL, ?, ?, ?)"; // will need to be adjusted
+            String sqlci = "INSERT INTO customers VALUES(NULL, ?, ?, ?, ?, ?)"; // will need to be adjusted
             PreparedStatement psci = JDBC.getConnection().prepareStatement(sqlci, Statement.RETURN_GENERATED_KEYS);
             // psci.setData( 1, desc1);
             // psci.setData( 2, desc2);
