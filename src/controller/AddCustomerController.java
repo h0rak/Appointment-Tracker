@@ -1,6 +1,7 @@
 package controller;
 
 import DAO.DBCountries;
+import DAO.DBCustomers;
 import DAO.DBDivisions;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,6 +17,7 @@ import model.Countries;
 import model.Divisions;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -40,21 +42,23 @@ public class AddCustomerController implements Initializable {
     private ComboBox<Countries> countryComboBox;
 
     @FXML
-    private ComboBox<Divisions> divisionComboBox; // THIS WILL NEED TO BE DIVISION??? first level type of course hehe
+    private ComboBox<Divisions> divisionComboBox;
 
     @FXML
     void onActionCountryComboBox(ActionEvent event) {
-        divisionComboBox.getSelectionModel().clearSelection();
         Countries selectedCountry = countryComboBox.getSelectionModel().getSelectedItem();
         if(selectedCountry.getCountryId() == 1){
+            divisionComboBox.getSelectionModel().clearSelection();
             divisionComboBox.setItems(DBDivisions.getUSDivisions());
             divisionComboBox.setPromptText("State");
         }
         else if(selectedCountry.getCountryId() == 2){
+            divisionComboBox.getSelectionModel().clearSelection();
             divisionComboBox.setItems(DBDivisions.getUKDivisions());
             divisionComboBox.setPromptText("Province");
         }
         else if(selectedCountry.getCountryId() == 3){
+            divisionComboBox.getSelectionModel().clearSelection();
             divisionComboBox.setItems(DBDivisions.getCANDivisions());
             divisionComboBox.setPromptText("Province");
         }
@@ -67,6 +71,21 @@ public class AddCustomerController implements Initializable {
 
     @FXML
     void onActionSave(ActionEvent event) {
+
+        try{
+            String cName = customerNameField.getText();
+            String cAddress = customerAddressField.getText();
+            String cPostal = customerPostalCodeField.getText();
+            String cPhone = customerPhoneNumberField.getText();
+            String cDivision = String.valueOf(divisionComboBox.getSelectionModel().getSelectedItem());
+            System.out.println(cDivision);
+
+            DBCustomers.AddCustomer(cName, cAddress, cPostal, cPhone, cDivision);
+
+        }
+        catch (NumberFormatException e){
+            e.printStackTrace();
+        }
 
     }
 

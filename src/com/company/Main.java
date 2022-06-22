@@ -6,15 +6,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
+import java.util.Locale;
 import java.util.Objects;
 
 // have to be able to translate to french/english main or login controller?
-// Locale.setDefault(new Locale("fr"));
 
 public class Main extends Application {
 
     public static void main(String[] args) {
+//         Locale.setDefault(new Locale("fr"));
         JDBC.openConnection();
         launch(args);
         JDBC.closeConnection();

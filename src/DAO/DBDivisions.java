@@ -35,13 +35,14 @@ public class DBDivisions {
         return allDivisionsList;
     }
 
-    public static ObservableList<Divisions> getUSDivisions() {
-        ObservableList<Divisions> USDivisions = FXCollections.observableArrayList();
+    public static ObservableList<Divisions> getUSDivisions() { // getDivisionByCountryId(int cID)
+        ObservableList<Divisions> divisions = FXCollections.observableArrayList();
         try{
             // String sql
-            String sql = "SELECT DIVISION_ID, DIVISION, COUNTRY_ID FROM first_level_divisions WHERE COUNTRY_ID = 1;";
+            String sql = "SELECT DIVISION_ID, DIVISION, COUNTRY_ID FROM first_level_divisions WHERE COUNTRY_ID = 1;";  // ?
             // PreparedStatement ps
             PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+//            ps.setInt(1, cID);
             // ResultSet rs
             ResultSet rs = ps.executeQuery();
             //while(rs.next())
@@ -51,13 +52,13 @@ public class DBDivisions {
                 int countryId = rs.getInt("COUNTRY_ID");
 
                 Divisions d = new Divisions(divisionId, divisionName, countryId);
-                USDivisions.add(d);
+                divisions.add(d);
             }
         }
         catch (SQLException e){
             e.printStackTrace();
         }
-        return USDivisions;
+        return divisions;
     }
 
     public static ObservableList<Divisions> getUKDivisions() {
@@ -109,4 +110,18 @@ public class DBDivisions {
         }
         return CANDivisions;
     }
+
+    /*public static Divisions getDivisionIdFromName(String cDivName) throws SQLException {
+        try{
+            int cDivId;
+            String sql = "SELECT Division_ID FROM first_level_divisions WHERE DIVISION = " + cDivName + ";";
+            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return cDivId;
+    }*/
+
 }

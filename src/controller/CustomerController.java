@@ -124,7 +124,7 @@ public class CustomerController implements Initializable {
         customerAddressCol.setCellValueFactory(new PropertyValueFactory<>("customerAddress"));
         customerPostalCodeCol.setCellValueFactory(new PropertyValueFactory<>("customerPostalCode"));
         customerPhoneCol.setCellValueFactory(new PropertyValueFactory<>("customerPhone"));
-//        customerCountryCol.setCellValueFactory(new PropertyValueFactory<>("customerCountry"));
+        customerCountryCol.setCellValueFactory(new PropertyValueFactory<>("customerCountry"));
         customerDivisionCol.setCellValueFactory(new PropertyValueFactory<>("customerDivision"));
 
 

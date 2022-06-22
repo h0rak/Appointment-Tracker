@@ -12,7 +12,7 @@ public class DBCustomers {
         ObservableList<Customers> allCustomersList = FXCollections.observableArrayList();
 
         try {
-            String sql = "SELECT customers.Customer_ID, customers.Customer_Name, customers.Address, customers.Postal_Code, customers.Phone, first_level_divisions.Division FROM customers, first_level_divisions WHERE customers.Division_ID = first_level_divisions.Division_ID;"; // ADD STUFF IN THE QUOTES
+            String sql = "SELECT customers.Customer_ID, customers.Customer_Name, customers.Address, customers.Postal_Code, customers.Phone, countries.Country, first_level_divisions.Division FROM customers, countries, first_level_divisions WHERE customers.Division_ID = first_level_divisions.Division_ID AND first_level_divisions.Country_ID = countries.Country_ID;";
             PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
@@ -21,10 +21,10 @@ public class DBCustomers {
                 String Address = rs.getString("Address");
                 String Postal_Code = rs.getString("Postal_Code");
                 String Phone = rs.getString("Phone");
-//                String Country = rs.getString("Country");
+                String Country = rs.getString("Country");
                 String Division = rs.getString("Division");
 
-                Customers c = new Customers(Customer_ID, Customer_Name, Address, Postal_Code, Phone, Division);
+                Customers c = new Customers(Customer_ID, Customer_Name, Address, Postal_Code, Phone, Country, Division);
                 allCustomersList.add(c);
             }
         }  catch (SQLException e){
@@ -39,24 +39,29 @@ public class DBCustomers {
     // create customer
     public static void AddCustomer(String customerName, String customerAddress, String customerPostalCode, String customerPhone, String customerDivision) {
         try {
-            String sqlci = "INSERT INTO customers VALUES(NULL, ?, ?, ?, ?, ?)"; // will need to be adjusted
-            PreparedStatement psci = JDBC.getConnection().prepareStatement(sqlci, Statement.RETURN_GENERATED_KEYS);
-            // psci.setData( 1, desc1);
-            // psci.setData( 2, desc2);
-            // psci.setData( 3, exampleID);
-            // psci.execute();
-            ResultSet rs = psci.getGeneratedKeys();
-            rs.next();
-            // int toyinfoID = rs.getInt( columnindex: 1);
-            // mysql statement
-            String sqlc = "INSERT INTO customers  VALUES(NULL, ?, ?, ?)";
-            PreparedStatement psc = JDBC.getConnection().prepareStatement(sqlc);
-            /*
-            psc.setString(1);
-            psc.setString(2);
-            psc.setString(3);
-             */
-            psc.execute();
+            String sql1 = "INSERT INTO customers VALUES(NULL, ?, ?, ?, ?, ?)"; // will need to be adjusted
+            PreparedStatement ps1= JDBC.getConnection().prepareStatement(sql1);
+            ps1.setString(1, customerName);
+            ps1.setString(2, customerAddress);
+            ps1.setString(3, customerPostalCode);
+            ps1.setString(4, customerPhone);
+            ps1.setString(5, customerDivision);
+            ps1.executeUpdate(); // OR EXECUTE UPDATE or just EXECUTE?
+
+/*
+            ResultSet rs1 = ps1.getGeneratedKeys();
+            rs1.next();
+            int customerId = rs1.getInt(1);
+
+            String sql2 = "INSERT INTO customers  VALUES(NULL, ?, ?, ?)";
+            PreparedStatement ps2 = JDBC.getConnection().prepareStatement(sql2);
+
+            ps2.setString(1);
+            ps2.setString(2);
+            ps2.setString(3);
+            ps2.execute();
+*/
+
         }
         catch(SQLException e){
             e.printStackTrace();
@@ -68,7 +73,11 @@ public class DBCustomers {
     public static void UpdateCustomer() {
 
     }
+
     // delete customer
+    public static void DeleteCustomer() {
+
+    }
 
 
 }
