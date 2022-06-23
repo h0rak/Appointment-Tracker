@@ -87,8 +87,8 @@ public class CustomerController implements Initializable {
     }
 
     @FXML
-    void onActionContactScreen(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/ContactScheduleScreen.fxml")));
+    void onActionReportsScreen(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/ReportScreen.fxml")));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setTitle("Contact Schedule");

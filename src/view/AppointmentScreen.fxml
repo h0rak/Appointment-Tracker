@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TableColumn?>
@@ -15,7 +14,7 @@
 
 <AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AppointmentController">
    <children>
-      <TableView fx:id="apptTableView" layoutX="48.0" layoutY="132.0" prefHeight="525.0" prefWidth="735.0">
+      <TableView fx:id="appointmentTableView" layoutX="48.0" layoutY="132.0" prefHeight="525.0" prefWidth="735.0">
         <columns>
           <TableColumn prefWidth="50.0" text="ApptID" />
           <TableColumn prefWidth="75.0" text="Title" />
@@ -35,13 +34,13 @@
             <VBox prefHeight="200.0" prefWidth="150.0" spacing="10.0">
                <children>
                   <Label text="Choose a screen:" />
-                  <RadioButton fx:id="apptScreenRadioButton" mnemonicParsing="false" onAction="#onActionAppointmentScreen" selected="true" text="Appointments">
+                  <RadioButton fx:id="appointmentScreenRadioButton" mnemonicParsing="false" onAction="#onActionAppointmentScreen" selected="true" text="Appointments">
                      <toggleGroup>
                         <ToggleGroup fx:id="tg1" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton fx:id="custScreenRadioButton" mnemonicParsing="false" onAction="#onActionCustomerScreen" text="Customers" toggleGroup="$tg1" />
-                  <RadioButton fx:id="contactScreenRadioButton" mnemonicParsing="false" onAction="#onActionContactScreen" text="Contact Schedule" toggleGroup="$tg1" />
+                  <RadioButton fx:id="customerScreenRadioButton" mnemonicParsing="false" onAction="#onActionCustomerScreen" text="Customers" toggleGroup="$tg1" />
+                  <RadioButton fx:id="reportScreenRadioButton" mnemonicParsing="false" onAction="#onActionReportScreen" text="Reports" toggleGroup="$tg1" />
                </children>
                <opaqueInsets>
                   <Insets />
@@ -68,48 +67,6 @@
                   <Insets top="15.0" />
                </padding>
             </VBox>
-            <VBox layoutX="215.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" spacing="5.0">
-               <children>
-                  <Label text="Reports:" />
-                  <Label layoutX="10.0" layoutY="39.0" text="Choose Month &amp; Type" />
-                  <HBox prefHeight="20.0" prefWidth="200.0" spacing="10.0">
-                     <children>
-                        <ComboBox fx:id="monthComboBox" prefWidth="95.0" promptText="Month" />
-                        <ComboBox fx:id="typeComboBox" prefWidth="95.0" promptText="Type" />
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="20.0" prefWidth="200.0" spacing="10.0">
-                     <children>
-                        <Button mnemonicParsing="false" onAction="#onActionTotalMonthType" prefWidth="95.0" text="Total" />
-                        <Label prefHeight="26.0" prefWidth="95.0">
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
-               </children>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-               <padding>
-                  <Insets top="15.0" />
-               </padding>
-            </VBox>
-            <VBox layoutX="375.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" spacing="5.0">
-               <children>
-                  <Label layoutX="10.0" layoutY="39.0" text="Total Appointment Hours:" />
-                  <Label text="(using current filter)" />
-                  <Label prefHeight="26.0" prefWidth="95.0">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </Label>
-               </children>
-               <padding>
-                  <Insets top="15.0" />
-               </padding>
-            </VBox>
          </children>
          <opaqueInsets>
             <Insets />
@@ -120,17 +77,22 @@
       </HBox>
       <VBox alignment="CENTER" layoutX="780.0" layoutY="265.0" prefHeight="200.0" prefWidth="119.0" spacing="10.0">
          <children>
-            <Button fx:id="addApptButton" mnemonicParsing="false" onAction="#onActionAddAppointment" prefHeight="35.0" prefWidth="85.0" text="Add">
+            <Label text="Appointment Actions:">
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </Label>
+            <Button fx:id="addAppointmentButton" mnemonicParsing="false" onAction="#onActionAddAppointment" prefHeight="35.0" prefWidth="85.0" text="Add">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="updateApptButton" mnemonicParsing="false" onAction="#onActionUpdateAppointment" prefHeight="35.0" prefWidth="85.0" text="Update">
+            <Button fx:id="updateAppointmentButton" mnemonicParsing="false" onAction="#onActionUpdateAppointment" prefHeight="35.0" prefWidth="85.0" text="Update">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="deleteApptButton" mnemonicParsing="false" onAction="#onActionDeleteAppointment" prefHeight="35.0" prefWidth="85.0" text="Delete">
+            <Button fx:id="deleteAppointmentButton" mnemonicParsing="false" onAction="#onActionDeleteAppointment" prefHeight="35.0" prefWidth="85.0" text="Delete">
                <font>
                   <Font size="18.0" />
                </font>

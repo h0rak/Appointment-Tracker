@@ -7,22 +7,21 @@ public class Customers {
     private String customerAddress;
     private String customerPostalCode;
     private String customerPhone;
-    private String customerCountry;
-    private String customerDivision;
-    // Customers have a divisionID and the division has a countryID. The country has a name.
+    private int customerDivisionId;
 
-    // edit attributes to match table
-    // add methods to get country and division strings
-
-    public Customers(int customerId, String customerName, String customerAddress, String postalCode, String customerPhone, String customerCountry, String customerDivision) {
+    public Customers(int customerId, String customerName, String customerAddress, String postalCode, String customerPhone, int customerDivisionId) {
         this.customerId = customerId;
         this.customerName = customerName;
         this.customerAddress = customerAddress;
         this.customerPostalCode = postalCode;
         this.customerPhone = customerPhone;
-        this.customerCountry = customerCountry;
-        this.customerDivision = customerDivision;
+        this.customerDivisionId = customerDivisionId;
     }
+
+    // Customers have a divisionID and the division has a countryID. The country has a name.
+
+    // edit attributes to match table
+    // add methods to get country and division strings
 
 
     public int getCustomerId() {
@@ -65,19 +64,11 @@ public class Customers {
         this.customerPhone = customerPhone;
     }
 
-    public String getCustomerCountry() {
-        return customerCountry;
+    public int getCustomerDivisionId() {
+        return customerDivisionId;
     }
 
-    public void setCustomerCountry(String customerCountry) {
-        this.customerCountry = customerCountry;
-    }
-
-    public String getCustomerDivision() {
-        return customerDivision;
-    }
-
-    public void setCustomerDivision(String customerDivision) {
-        this.customerDivision = customerDivision;
+    public void setCustomerDivisionId(int customerDivisionId) {
+        this.customerDivisionId = customerDivisionId;
     }
 }

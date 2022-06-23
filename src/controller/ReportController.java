@@ -13,13 +13,12 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import model.Appointments;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class ContactScheduleController implements Initializable {
+public class ReportController implements Initializable {
 
     @FXML
     private RadioButton apptScreenRadioButton;

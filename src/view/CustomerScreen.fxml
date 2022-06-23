@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CustomerController">
+<AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CustomerController">
    <children>
       <TableView fx:id="customerTableView" layoutX="48.0" layoutY="132.0" prefHeight="525.0" prefWidth="735.0">
         <columns>
@@ -36,7 +36,7 @@
                      </toggleGroup>
                   </RadioButton>
                   <RadioButton fx:id="custScreenRadioButton" mnemonicParsing="false" onAction="#onActionCustomerScreen" selected="true" text="Customers" toggleGroup="$tg1" />
-                  <RadioButton fx:id="contactScreenRadioButton" mnemonicParsing="false" onAction="#onActionContactScreen" text="Contact Schedule" toggleGroup="$tg1" />
+                  <RadioButton fx:id="contactScreenRadioButton" mnemonicParsing="false" onAction="#onActionReportsScreen" text="Contact Schedule" toggleGroup="$tg1" />
                </children>
                <opaqueInsets>
                   <Insets />

@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.Appointments;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
@@ -18,22 +19,19 @@ import java.util.ResourceBundle;
 public class AppointmentController implements Initializable {
 
     @FXML
-    private Button addApptButton;
+    private Button addAppointmentButton;
 
     @FXML
-    private RadioButton apptScreenRadioButton;
+    private TableView<Appointments> appointmentTableView;
 
     @FXML
-    private TableView<Appointments> apptTableView;
+    private RadioButton appointmentScreenRadioButton;
 
     @FXML
-    private RadioButton contactScreenRadioButton;
+    private RadioButton customerScreenRadioButton;
 
     @FXML
-    private RadioButton custScreenRadioButton;
-
-    @FXML
-    private Button deleteApptButton;
+    private Button deleteAppointmentButton;
 
     @FXML
     private RadioButton filterAllRadioButton;
@@ -45,16 +43,10 @@ public class AppointmentController implements Initializable {
     private RadioButton filterWeekRadioButton;
 
     @FXML
-    private ComboBox<?> monthComboBox;
+    private RadioButton reportScreenRadioButton;
 
     @FXML
-    private ComboBox<?> periodComboBox;
-
-    @FXML
-    private ComboBox<?> typeComboBox;
-
-    @FXML
-    private Button updateApptButton;
+    private Button updateAppointmentButton;
 
     @FXML
     void onActionAddAppointment(ActionEvent event) {
@@ -63,23 +55,13 @@ public class AppointmentController implements Initializable {
 
     @FXML
     void onActionAppointmentScreen(ActionEvent event) {
-
+        return;
     }
 
     @FXML
-    void onActionContactScreen(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/ContactScheduleScreen.fxml")));
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setTitle("Contact Schedule");
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
-    void onActionCustomerScreen(ActionEvent actionEvent) throws IOException {
+    void onActionCustomerScreen(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/CustomerScreen.fxml")));
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setTitle("Customers");
         stage.setScene(scene);
@@ -107,13 +89,13 @@ public class AppointmentController implements Initializable {
     }
 
     @FXML
-    void onActionTotalAppointmentHours(ActionEvent event) {
-
-    }
-
-    @FXML
-    void onActionTotalMonthType(ActionEvent event) {
-
+    void onActionReportScreen(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/ReportScreen.fxml")));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setTitle("Contact Schedule");
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
@@ -123,6 +105,7 @@ public class AppointmentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+//        apptTableView.setItems(Appointments.get); // getAllapts doesn't exist yet in the db appts
 
     }
 }
