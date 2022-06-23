@@ -24,25 +24,7 @@ import java.util.ResourceBundle;
 public class CustomerController implements Initializable {
 
     @FXML
-    private Button addCustomerButton;
-
-    @FXML
-    private RadioButton apptScreenRadioButton;
-
-    @FXML
-    private RadioButton contactScreenRadioButton;
-
-    @FXML
-    private RadioButton custScreenRadioButton;
-
-    @FXML
     private TableView<Customers> customerTableView;
-
-    @FXML
-    private Button deleteCustomerButton;
-
-    @FXML
-    private Button updateCustomerButton;
 
     @FXML
     private TableColumn<Customers, String> customerAddressCol;
@@ -65,7 +47,6 @@ public class CustomerController implements Initializable {
     @FXML
     private TableColumn<Customers, Integer> customerPostalCodeCol;
 
-
     @FXML
     void onActionAddCustomer(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AddCustomerScreen.fxml")));
@@ -87,18 +68,18 @@ public class CustomerController implements Initializable {
     }
 
     @FXML
-    void onActionReportsScreen(ActionEvent actionEvent) throws IOException {
+    void onActionReportScreen(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/ReportScreen.fxml")));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
-        stage.setTitle("Contact Schedule");
+        stage.setTitle("Reports");
         stage.setScene(scene);
         stage.show();
     }
 
     @FXML
     void onActionCustomerScreen(ActionEvent event) {
-
+        return;
     }
 
     @FXML
@@ -126,7 +107,5 @@ public class CustomerController implements Initializable {
         customerPhoneCol.setCellValueFactory(new PropertyValueFactory<>("customerPhone"));
         customerCountryCol.setCellValueFactory(new PropertyValueFactory<>("customerCountry"));
         customerDivisionCol.setCellValueFactory(new PropertyValueFactory<>("customerDivision"));
-
-
     }
 }

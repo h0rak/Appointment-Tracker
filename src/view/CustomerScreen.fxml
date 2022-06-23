@@ -30,13 +30,13 @@
             <VBox prefHeight="200.0" prefWidth="150.0" spacing="10.0">
                <children>
                   <Label text="Choose a screen:" />
-                  <RadioButton fx:id="apptScreenRadioButton" mnemonicParsing="false" onAction="#onActionAppointmentScreen" text="Appointments">
+                  <RadioButton mnemonicParsing="false" onAction="#onActionAppointmentScreen" text="Appointments">
                      <toggleGroup>
                         <ToggleGroup fx:id="tg1" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton fx:id="custScreenRadioButton" mnemonicParsing="false" onAction="#onActionCustomerScreen" selected="true" text="Customers" toggleGroup="$tg1" />
-                  <RadioButton fx:id="contactScreenRadioButton" mnemonicParsing="false" onAction="#onActionReportsScreen" text="Contact Schedule" toggleGroup="$tg1" />
+                  <RadioButton mnemonicParsing="false" onAction="#onActionCustomerScreen" selected="true" text="Customers" toggleGroup="$tg1" />
+                  <RadioButton mnemonicParsing="false" onAction="#onActionReportScreen" text="Reports" toggleGroup="$tg1" />
                </children>
                <opaqueInsets>
                   <Insets />
@@ -58,17 +58,22 @@
       </HBox>
       <VBox alignment="CENTER" layoutX="780.0" layoutY="265.0" prefHeight="200.0" prefWidth="119.0" spacing="10.0">
          <children>
-            <Button fx:id="addCustomerButton" mnemonicParsing="false" onAction="#onActionAddCustomer" prefHeight="35.0" prefWidth="85.0" text="Add">
+            <Label text="Customer Actions:">
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </Label>
+            <Button mnemonicParsing="false" onAction="#onActionAddCustomer" prefHeight="35.0" prefWidth="85.0" text="Add">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="updateCustomerButton" mnemonicParsing="false" onAction="#onActionUpdateCustomer" prefHeight="35.0" prefWidth="85.0" text="Update">
+            <Button mnemonicParsing="false" onAction="#onActionUpdateCustomer" prefHeight="35.0" prefWidth="85.0" text="Update">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="deleteCustomerButton" mnemonicParsing="false" onAction="#onActionDeleteCustomer" prefHeight="35.0" prefWidth="85.0" text="Delete">
+            <Button mnemonicParsing="false" onAction="#onActionDeleteCustomer" prefHeight="35.0" prefWidth="85.0" text="Delete">
                <font>
                   <Font size="18.0" />
                </font>

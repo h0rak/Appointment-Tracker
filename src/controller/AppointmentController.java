@@ -10,7 +10,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.Appointments;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
@@ -19,34 +18,7 @@ import java.util.ResourceBundle;
 public class AppointmentController implements Initializable {
 
     @FXML
-    private Button addAppointmentButton;
-
-    @FXML
     private TableView<Appointments> appointmentTableView;
-
-    @FXML
-    private RadioButton appointmentScreenRadioButton;
-
-    @FXML
-    private RadioButton customerScreenRadioButton;
-
-    @FXML
-    private Button deleteAppointmentButton;
-
-    @FXML
-    private RadioButton filterAllRadioButton;
-
-    @FXML
-    private RadioButton filterMonthRadioButton;
-
-    @FXML
-    private RadioButton filterWeekRadioButton;
-
-    @FXML
-    private RadioButton reportScreenRadioButton;
-
-    @FXML
-    private Button updateAppointmentButton;
 
     @FXML
     void onActionAddAppointment(ActionEvent event) {
@@ -93,7 +65,7 @@ public class AppointmentController implements Initializable {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/ReportScreen.fxml")));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
-        stage.setTitle("Contact Schedule");
+        stage.setTitle("Reports");
         stage.setScene(scene);
         stage.show();
     }

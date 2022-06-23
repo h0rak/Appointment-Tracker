@@ -24,8 +24,10 @@ public class DBCustomers {
                 String Country = rs.getString("Country");
                 String Division = rs.getString("Division");
 
+/*
                 Customers c = new Customers(Customer_ID, Customer_Name, Address, Postal_Code, Phone, Country, Division);
                 allCustomersList.add(c);
+*/
             }
         }  catch (SQLException e){
             e.printStackTrace();
