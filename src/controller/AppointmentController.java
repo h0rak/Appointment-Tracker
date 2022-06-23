@@ -21,11 +21,6 @@ public class AppointmentController implements Initializable {
     private TableView<Appointments> appointmentTableView;
 
     @FXML
-    void onActionAddAppointment(ActionEvent event) {
-
-    }
-
-    @FXML
     void onActionAppointmentScreen(ActionEvent event) {
         return;
     }
@@ -41,8 +36,13 @@ public class AppointmentController implements Initializable {
     }
 
     @FXML
-    void onActionDeleteAppointment(ActionEvent event) {
-
+    void onActionReportScreen(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/ReportScreen.fxml")));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setTitle("Reports");
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
@@ -61,17 +61,17 @@ public class AppointmentController implements Initializable {
     }
 
     @FXML
-    void onActionReportScreen(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/ReportScreen.fxml")));
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setTitle("Reports");
-        stage.setScene(scene);
-        stage.show();
+    void onActionAddAppointment(ActionEvent event) {
+
     }
 
     @FXML
     void onActionUpdateAppointment(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onActionDeleteAppointment(ActionEvent event) {
 
     }
 
