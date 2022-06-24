@@ -1,5 +1,5 @@
 package DAO;
 
-public class DBUsers {
+public abstract class DBUsers {
 
 }

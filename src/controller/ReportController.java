@@ -15,7 +15,6 @@ import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import model.Appointments;
 import model.Countries;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;

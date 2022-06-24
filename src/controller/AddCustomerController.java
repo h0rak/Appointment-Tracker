@@ -47,14 +47,15 @@ public class AddCustomerController implements Initializable {
     @FXML
     void onActionCountryComboBox(ActionEvent event) {
         Countries selectedCountry = countryComboBox.getSelectionModel().getSelectedItem();
-        if(selectedCountry.getCountryId() == 1){
+        divisionComboBox.setItems(DBDivisions.getDivisionsByCountryId(selectedCountry.getCountryId()));
+        /*if(selectedCountry.getCountryId() == 1){
             divisionComboBox.getSelectionModel().clearSelection();
-            divisionComboBox.setItems(DBDivisions.getUSDivisions());
+            divisionComboBox.setItems(DBDivisions.getUSDivisions(selectedCountry));
             divisionComboBox.setPromptText("State");
         }
         else if(selectedCountry.getCountryId() == 2){
             divisionComboBox.getSelectionModel().clearSelection();
-            divisionComboBox.setItems(DBDivisions.getUKDivisions());
+            divisionComboBox.setItems(DBDivisions.g());
             divisionComboBox.setPromptText("Province");
         }
         else if(selectedCountry.getCountryId() == 3){
@@ -64,20 +65,22 @@ public class AddCustomerController implements Initializable {
         }
         else {
             return;
-        }
+        }*/
     }
 
 
 
     @FXML
     void onActionSave(ActionEvent event) {
-
         try{
             String cName = customerNameField.getText();
             String cAddress = customerAddressField.getText();
             String cPostal = customerPostalCodeField.getText();
             String cPhone = customerPhoneNumberField.getText();
-            String cDivision = String.valueOf(divisionComboBox.getSelectionModel().getSelectedItem());
+//            String cDivision = String.valueOf(divisionComboBox.getSelectionModel().getSelectedItem());
+//            int cDivision = divisionComboBox.getSelectionModel().getSelectedItem();
+            Divisions comboBoxSelection = divisionComboBox.getSelectionModel().getSelectedItem();
+            int cDivision = comboBoxSelection.getDivisionId();
             System.out.println(cDivision);
 
             DBCustomers.AddCustomer(cName, cAddress, cPostal, cPhone, cDivision);

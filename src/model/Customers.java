@@ -9,20 +9,14 @@ public class Customers {
     private String customerPhone;
     private int customerDivisionId;
 
-    public Customers(int customerId, String customerName, String customerAddress, String postalCode, String customerPhone, int customerDivisionId) {
+    public Customers(int customerId, String customerName, String customerAddress, String customerPostalCode, String customerPhone, int customerDivisionId) {
         this.customerId = customerId;
         this.customerName = customerName;
         this.customerAddress = customerAddress;
-        this.customerPostalCode = postalCode;
+        this.customerPostalCode = customerPostalCode;
         this.customerPhone = customerPhone;
         this.customerDivisionId = customerDivisionId;
     }
-
-    // Customers have a divisionID and the division has a countryID. The country has a name.
-
-    // edit attributes to match table
-    // add methods to get country and division strings
-
 
     public int getCustomerId() {
         return customerId;

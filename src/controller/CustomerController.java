@@ -15,7 +15,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Customers;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
@@ -105,7 +104,7 @@ public class CustomerController implements Initializable {
         customerAddressCol.setCellValueFactory(new PropertyValueFactory<>("customerAddress"));
         customerPostalCodeCol.setCellValueFactory(new PropertyValueFactory<>("customerPostalCode"));
         customerPhoneCol.setCellValueFactory(new PropertyValueFactory<>("customerPhone"));
-        customerCountryCol.setCellValueFactory(new PropertyValueFactory<>("customerCountry"));
-        customerDivisionCol.setCellValueFactory(new PropertyValueFactory<>("customerDivision"));
+//        customerCountryCol.setCellValueFactory(new PropertyValueFactory<>("customerCountry"));
+        customerDivisionCol.setCellValueFactory(new PropertyValueFactory<>("customerDivisionId"));
     }
 }

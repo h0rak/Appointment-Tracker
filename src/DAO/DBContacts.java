@@ -1,4 +1,4 @@
 package DAO;
 
-public class DBContacts {
+public abstract class DBContacts {
 }

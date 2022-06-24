@@ -16,7 +16,8 @@ import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
 
-    // somewhere in initialize or maybe override i have to check the user's local time zone
+//     TODO somewhere in initialize or maybe override i have to check the user's local time zone
+//     TODO login activity txt file
 
     public TextField usernameInput;
     public PasswordField passwordInput;

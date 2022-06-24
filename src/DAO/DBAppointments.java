@@ -3,12 +3,11 @@ package DAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Appointments;
-
 import java.sql.SQLException;
 
-public class DBAppointments {
+public abstract class DBAppointments {
 
-    // list that gets all appointments??
+    // TODO list that gets all appointments??
     /*
     public static ObservableList<Appointments> getAllAppointments() {
         ObservableList<Appointments> allAppointmentsList = FXCollections.observableArrayList();

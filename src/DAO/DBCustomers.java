@@ -2,11 +2,12 @@ package DAO;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Pos;
 import model.Customers;
 import utilities.JDBC;
 import java.sql.*;
 
-public class DBCustomers {
+public abstract class DBCustomers {
 
     public static ObservableList<Customers> getAllCustomers() {
         ObservableList<Customers> allCustomersList = FXCollections.observableArrayList();
@@ -32,33 +33,17 @@ public class DBCustomers {
         return allCustomersList;
     }
 
-    // in addition to getAllCustomers
-    // create customer
-    public static void AddCustomer(String customerName, String customerAddress, String customerPostalCode, String customerPhone, String customerDivision) {
+//    TODO finish this method
+    public static void AddCustomer(String customerName, String customerAddress, String customerPostalCode, String customerPhone, int customerDivision) {
         try {
-            String sql1 = "INSERT INTO customers VALUES(NULL, ?, ?, ?, ?, ?)"; // will need to be adjusted
+            String sql1 = "INSERT INTO customers VALUES(NULL, ?, ?, ?, ?, NULL, NULL, NULL, NULL, ?)"; // will need to be adjusted
             PreparedStatement ps1= JDBC.getConnection().prepareStatement(sql1);
             ps1.setString(1, customerName);
             ps1.setString(2, customerAddress);
             ps1.setString(3, customerPostalCode);
             ps1.setString(4, customerPhone);
-            ps1.setString(5, customerDivision);
+            ps1.setInt(5, customerDivision);
             ps1.executeUpdate(); // OR EXECUTE UPDATE or just EXECUTE?
-
-/*
-            ResultSet rs1 = ps1.getGeneratedKeys();
-            rs1.next();
-            int customerId = rs1.getInt(1);
-
-            String sql2 = "INSERT INTO customers  VALUES(NULL, ?, ?, ?)";
-            PreparedStatement ps2 = JDBC.getConnection().prepareStatement(sql2);
-
-            ps2.setString(1);
-            ps2.setString(2);
-            ps2.setString(3);
-            ps2.execute();
-*/
-
         }
         catch(SQLException e){
             e.printStackTrace();
@@ -66,12 +51,12 @@ public class DBCustomers {
 
     }
 
-    // update customer
+    // TODO UpdateCustomer method
     public static void UpdateCustomer() {
 
     }
 
-    // delete customer
+    // TODO DeleteCustomer method
     public static void DeleteCustomer() {
 
     }
