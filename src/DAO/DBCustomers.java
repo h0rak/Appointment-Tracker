@@ -34,30 +34,50 @@ public abstract class DBCustomers {
     }
 
 //    TODO finish this method
-    public static void AddCustomer(String customerName, String customerAddress, String customerPostalCode, String customerPhone, int customerDivision) {
+    public static void AddCustomer(String customerName, String customerAddress, String customerPostalCode, String customerPhone, int customerDivisionId) {
         try {
-            String sql1 = "INSERT INTO customers VALUES(NULL, ?, ?, ?, ?, NULL, NULL, NULL, NULL, ?)"; // will need to be adjusted
-            PreparedStatement ps1= JDBC.getConnection().prepareStatement(sql1);
-            ps1.setString(1, customerName);
-            ps1.setString(2, customerAddress);
-            ps1.setString(3, customerPostalCode);
-            ps1.setString(4, customerPhone);
-            ps1.setInt(5, customerDivision);
-            ps1.executeUpdate(); // OR EXECUTE UPDATE or just EXECUTE?
+            String sql = "INSERT INTO customers VALUES(NULL, ?, ?, ?, ?, NULL, NULL, NULL, NULL, ?)"; // will need to be adjusted
+            PreparedStatement ps= JDBC.getConnection().prepareStatement(sql);
+            ps.setString(1, customerName);
+            ps.setString(2, customerAddress);
+            ps.setString(3, customerPostalCode);
+            ps.setString(4, customerPhone);
+            ps.setInt(5, customerDivisionId);
+            ps.executeUpdate(); // OR EXECUTE UPDATE or just EXECUTE?
         }
         catch(SQLException e){
             e.printStackTrace();
         }
-
     }
 
     // TODO UpdateCustomer method
-    public static void UpdateCustomer() {
-
+    public static void UpdateCustomer(int customerId, String customerName, String customerAddress, String customerPostalCode, String customerPhone, int customerDivisionId) {
+        String sql = "UPDATE customers SET Customer_Name = ?, Address = ?, Postal_Code = ?, Phone = ?, NULL, NULL, NULL, NULL, Division_ID = ? WHERE Customer_ID = ?";
+        try {
+            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+            ps.setString(1, customerName);
+            ps.setString(2, customerAddress);
+            ps.setString(3, customerPostalCode);
+            ps.setString(4, customerPhone);
+            ps.setInt(5,customerDivisionId);
+            ps.setInt(6, customerId);
+            ps.executeUpdate(); // i forgot to add this in. make sure to test
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     // TODO DeleteCustomer method
-    public static void DeleteCustomer() {
+    public static void DeleteCustomer(int customerId) {
+        String sql = "DELETE FROM customers WHERE Customer_ID = ?";
+        try{
+            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+            ps.setInt(1, customerId);
+            ps.executeUpdate();
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
 
     }
 

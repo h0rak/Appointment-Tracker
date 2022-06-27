@@ -10,6 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Customers;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
@@ -51,6 +53,19 @@ public class UpdateCustomerController implements Initializable {
     @FXML
     void onActionSave(ActionEvent event) {
 
+    }
+
+    public void SendCustomer(Customers customer) {
+        customerIdField.setText(String.valueOf(customer.getCustomerId())); // id name address postal phone division
+        customerNameField.setText(String.valueOf(customer.getCustomerName()));
+        customerAddressField.setText(String.valueOf(customer.getCustomerAddress()));
+        customerPostalCodeField.setText(String.valueOf(customer.getCustomerPostalCode()));
+        customerPhoneNumberField.setText(String.valueOf(customer.getCustomerPhone()));
+/*
+        countryComboBox.
+        divisionComboBox.setSelectionModel();
+
+*/
     }
 
     @Override

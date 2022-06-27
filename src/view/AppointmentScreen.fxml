@@ -12,9 +12,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AppointmentController">
+<AnchorPane prefHeight="625.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AppointmentController">
    <children>
-      <TableView fx:id="appointmentTableView" layoutX="48.0" layoutY="132.0" prefHeight="525.0" prefWidth="735.0">
+      <TableView fx:id="appointmentTableView" layoutX="45.0" layoutY="90.0" prefHeight="525.0" prefWidth="735.0">
         <columns>
           <TableColumn prefWidth="50.0" text="ApptID" />
           <TableColumn prefWidth="75.0" text="Title" />
@@ -31,7 +31,7 @@
       </TableView>
       <HBox alignment="CENTER_LEFT" prefHeight="90.0" prefWidth="900.0" spacing="10.0">
          <children>
-            <VBox prefHeight="200.0" prefWidth="150.0" spacing="10.0">
+            <VBox prefHeight="200.0" prefWidth="150.0" spacing="5.0">
                <children>
                   <Label text="Choose a screen:" />
                   <RadioButton fx:id="appointmentScreenRadioButton" mnemonicParsing="false" onAction="#onActionAppointmentScreen" selected="true" text="Appointments">
@@ -48,11 +48,8 @@
                <HBox.margin>
                   <Insets />
                </HBox.margin>
-               <padding>
-                  <Insets top="15.0" />
-               </padding>
             </VBox>
-            <VBox prefHeight="200.0" prefWidth="150.0" spacing="10.0">
+            <VBox prefHeight="200.0" prefWidth="150.0" spacing="5.0">
                <children>
                   <Label text="Choose a filter:" />
                   <RadioButton fx:id="filterAllRadioButton" mnemonicParsing="false" onAction="#onActionFilterAll" selected="true" text="All">
@@ -63,9 +60,6 @@
                   <RadioButton fx:id="filterMonthRadioButton" mnemonicParsing="false" onAction="#onActionFilterMonth" text="Current Month" toggleGroup="$tg2" />
                   <RadioButton fx:id="filterWeekRadioButton" mnemonicParsing="false" onAction="#onActionFilterWeek" text="Current Week" toggleGroup="$tg2" />
                </children>
-               <padding>
-                  <Insets top="15.0" />
-               </padding>
             </VBox>
          </children>
          <opaqueInsets>

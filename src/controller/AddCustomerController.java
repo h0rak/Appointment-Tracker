@@ -17,7 +17,6 @@ import model.Countries;
 import model.Divisions;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -48,27 +47,7 @@ public class AddCustomerController implements Initializable {
     void onActionCountryComboBox(ActionEvent event) {
         Countries selectedCountry = countryComboBox.getSelectionModel().getSelectedItem();
         divisionComboBox.setItems(DBDivisions.getDivisionsByCountryId(selectedCountry.getCountryId()));
-        /*if(selectedCountry.getCountryId() == 1){
-            divisionComboBox.getSelectionModel().clearSelection();
-            divisionComboBox.setItems(DBDivisions.getUSDivisions(selectedCountry));
-            divisionComboBox.setPromptText("State");
-        }
-        else if(selectedCountry.getCountryId() == 2){
-            divisionComboBox.getSelectionModel().clearSelection();
-            divisionComboBox.setItems(DBDivisions.g());
-            divisionComboBox.setPromptText("Province");
-        }
-        else if(selectedCountry.getCountryId() == 3){
-            divisionComboBox.getSelectionModel().clearSelection();
-            divisionComboBox.setItems(DBDivisions.getCANDivisions());
-            divisionComboBox.setPromptText("Province");
-        }
-        else {
-            return;
-        }*/
     }
-
-
 
     @FXML
     void onActionSave(ActionEvent event) {
@@ -77,19 +56,21 @@ public class AddCustomerController implements Initializable {
             String cAddress = customerAddressField.getText();
             String cPostal = customerPostalCodeField.getText();
             String cPhone = customerPhoneNumberField.getText();
-//            String cDivision = String.valueOf(divisionComboBox.getSelectionModel().getSelectedItem());
-//            int cDivision = divisionComboBox.getSelectionModel().getSelectedItem();
             Divisions comboBoxSelection = divisionComboBox.getSelectionModel().getSelectedItem();
             int cDivision = comboBoxSelection.getDivisionId();
-            System.out.println(cDivision);
 
             DBCustomers.AddCustomer(cName, cAddress, cPostal, cPhone, cDivision);
 
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/CustomerScreen.fxml")));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setTitle("Customers");
+            stage.setScene(scene);
+            stage.show();
         }
-        catch (NumberFormatException e){
+        catch (NumberFormatException | IOException e){
             e.printStackTrace();
         }
-
     }
 
     @FXML
@@ -106,10 +87,6 @@ public class AddCustomerController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         countryComboBox.setItems(DBCountries.getAllCountries()); // SHOULD I DO THIS HERE?
         countryComboBox.setVisibleRowCount(3);
-        // divisionComboBox.setItems(DBDivisions.getAllDivisions()); // SHOULD I DO THIS HERE?
         divisionComboBox.setVisibleRowCount(4);
-        // divisionComboBox.setPromptText("Choose a division..");
-        // divisionComboBox.getSelectionModel().selectFirst();  THESE TWO WILL BE USED WITH MODIFY???
-        // divisionComboBox.setValue("a variable not a string?");
     }
 }

@@ -8,16 +8,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Customers;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class CustomerController implements Initializable {
@@ -83,17 +81,51 @@ public class CustomerController implements Initializable {
 
     @FXML
     void onActionDeleteCustomer(ActionEvent event) {
-
+        Customers customerToDelete = customerTableView.getSelectionModel().getSelectedItem();
+        if (customerToDelete == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("Please select a customer to delete.");
+            alert.showAndWait();
+        }
+        else {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you wish to delete this customer?");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                DBCustomers.DeleteCustomer(customerToDelete.getCustomerId());
+                customerTableView.setItems(DBCustomers.getAllCustomers());
+            }
+            else {
+                customerTableView.getSelectionModel().clearSelection();
+            }
+        }
     }
 
     @FXML
     void onActionUpdateCustomer(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/UpdateCustomerScreen.fxml")));
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setTitle("Update Customer");
-        stage.setScene(scene);
-        stage.show();
+        try {
+            Customers updateCustomer = customerTableView.getSelectionModel().getSelectedItem();
+//            modifyPartIndex = Inventory.getAllParts().indexOf(modifyPart);
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/view/UpdateCustomerScreen.fxml"));
+            loader.load();
+
+            UpdateCustomerController ucc = loader.getController();
+            ucc.SendCustomer(customerTableView.getSelectionModel().getSelectedItem());
+
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Parent scene = loader.getRoot();
+            stage.setTitle("Update Customer");
+            stage.setScene(new Scene(scene));
+            stage.show();
+        }
+        catch (NullPointerException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("Please select a customer to update.");
+            alert.showAndWait();
+        }
     }
 
     @Override
@@ -104,7 +136,6 @@ public class CustomerController implements Initializable {
         customerAddressCol.setCellValueFactory(new PropertyValueFactory<>("customerAddress"));
         customerPostalCodeCol.setCellValueFactory(new PropertyValueFactory<>("customerPostalCode"));
         customerPhoneCol.setCellValueFactory(new PropertyValueFactory<>("customerPhone"));
-//        customerCountryCol.setCellValueFactory(new PropertyValueFactory<>("customerCountry"));
         customerDivisionCol.setCellValueFactory(new PropertyValueFactory<>("customerDivisionId"));
     }
 }
