@@ -1,5 +1,7 @@
 package controller;
 
+import DAO.DBCountries;
+import DAO.DBDivisions;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,8 +12,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Countries;
 import model.Customers;
-
+import model.Divisions;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
@@ -20,7 +23,7 @@ import java.util.ResourceBundle;
 public class UpdateCustomerController implements Initializable {
 
     @FXML
-    private ComboBox<?> countryComboBox;
+    private ComboBox<Countries> countryComboBox;
 
     @FXML
     private TextField customerAddressField;
@@ -38,7 +41,13 @@ public class UpdateCustomerController implements Initializable {
     private TextField customerPostalCodeField;
 
     @FXML
-    private ComboBox<?> divisionComboBox;
+    private ComboBox<Divisions> divisionComboBox;
+
+    @FXML
+    void onActionCountryComboBox(ActionEvent event) {
+        Countries selectedCountry = countryComboBox.getSelectionModel().getSelectedItem();
+        divisionComboBox.setItems(DBDivisions.getDivisionsByCountryId(selectedCountry.getCountryId()));
+    }
 
     @FXML
     void onActionCancel(ActionEvent actionEvent) throws IOException {
@@ -54,22 +63,24 @@ public class UpdateCustomerController implements Initializable {
     void onActionSave(ActionEvent event) {
 
     }
-
+// TODO Figure out how to populate combo boxes in UpdateCustomerController
     public void SendCustomer(Customers customer) {
         customerIdField.setText(String.valueOf(customer.getCustomerId())); // id name address postal phone division
         customerNameField.setText(String.valueOf(customer.getCustomerName()));
         customerAddressField.setText(String.valueOf(customer.getCustomerAddress()));
         customerPostalCodeField.setText(String.valueOf(customer.getCustomerPostalCode()));
         customerPhoneNumberField.setText(String.valueOf(customer.getCustomerPhone()));
-/*
-        countryComboBox.
-        divisionComboBox.setSelectionModel();
 
-*/
+        countryComboBox.setValue(DBCountries.getCountryNameFromDivisionId(customer.getCustomerDivisionId()));
+        divisionComboBox.setValue(DBDivisions.getDivisionNameFromDivisionId(customer.getCustomerDivisionId()));
+
+
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        countryComboBox.setItems(DBCountries.getAllCountries()); // SHOULD I DO THIS HERE?
+        countryComboBox.setVisibleRowCount(3);
+        divisionComboBox.setVisibleRowCount(4);
     }
 }

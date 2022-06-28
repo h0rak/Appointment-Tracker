@@ -65,4 +65,5 @@ public class Customers {
     public void setCustomerDivisionId(int customerDivisionId) {
         this.customerDivisionId = customerDivisionId;
     }
+
 }

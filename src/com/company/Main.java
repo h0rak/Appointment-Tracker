@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import java.util.Locale;
 import java.util.Objects;
 
-// have to be able to translate to french/english main or login controller?
+// TODO Must be able to translate to french/english @ Main or Login controller?
 
 public class Main extends Application {
 

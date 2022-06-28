@@ -2,7 +2,6 @@ package DAO;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.geometry.Pos;
 import model.Customers;
 import utilities.JDBC;
 import java.sql.*;
@@ -33,7 +32,6 @@ public abstract class DBCustomers {
         return allCustomersList;
     }
 
-//    TODO finish this method
     public static void AddCustomer(String customerName, String customerAddress, String customerPostalCode, String customerPhone, int customerDivisionId) {
         try {
             String sql = "INSERT INTO customers VALUES(NULL, ?, ?, ?, ?, NULL, NULL, NULL, NULL, ?)"; // will need to be adjusted
@@ -50,7 +48,7 @@ public abstract class DBCustomers {
         }
     }
 
-    // TODO UpdateCustomer method
+    // TODO UpdateCustomer method. This may need more work.
     public static void UpdateCustomer(int customerId, String customerName, String customerAddress, String customerPostalCode, String customerPhone, int customerDivisionId) {
         String sql = "UPDATE customers SET Customer_Name = ?, Address = ?, Postal_Code = ?, Phone = ?, NULL, NULL, NULL, NULL, Division_ID = ? WHERE Customer_ID = ?";
         try {
@@ -67,7 +65,6 @@ public abstract class DBCustomers {
         }
     }
 
-    // TODO DeleteCustomer method
     public static void DeleteCustomer(int customerId) {
         String sql = "DELETE FROM customers WHERE Customer_ID = ?";
         try{

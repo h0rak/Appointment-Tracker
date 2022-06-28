@@ -2,7 +2,6 @@ package model;
 
 public class Users {
 
-//    userId, userName, userPassword
     private int userId;
     private String userName;
     private String userPassword;

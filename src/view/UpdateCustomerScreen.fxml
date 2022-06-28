@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UpdateCustomerController">
+<AnchorPane prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UpdateCustomerController">
    <children>
       <VBox alignment="TOP_RIGHT" layoutX="125.0" layoutY="100.0" prefHeight="300.0" prefWidth="125.0" spacing="14.0">
          <children>
@@ -65,7 +65,7 @@
             <TextField fx:id="customerAddressField" alignment="TOP_RIGHT" layoutX="10.0" layoutY="36.0" promptText="123 Name St,  City" />
             <TextField fx:id="customerPostalCodeField" alignment="TOP_RIGHT" layoutX="10.0" layoutY="36.0" promptText="12345" />
             <TextField fx:id="customerPhoneNumberField" alignment="TOP_RIGHT" layoutX="10.0" layoutY="10.0" promptText="555-555-5555" />
-            <ComboBox fx:id="countryComboBox" nodeOrientation="LEFT_TO_RIGHT" prefWidth="150.0" promptText="Country" />
+            <ComboBox fx:id="countryComboBox" nodeOrientation="LEFT_TO_RIGHT" onAction="#onActionCountryComboBox" prefWidth="150.0" promptText="Country" />
             <ComboBox fx:id="divisionComboBox" prefWidth="150.0" promptText="First-level Division" />
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
                <children>

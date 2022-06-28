@@ -2,7 +2,6 @@ package model;
 
 public class Contacts {
 
-    // id name and email
    private int contactId;
    private String contactName;
    private String contactEmail;
@@ -12,8 +11,6 @@ public class Contacts {
        this.contactName = contactName;
        this.contactEmail = contactEmail;
    }
-
-   // possibly add methods
 
     public int getContactId() {
         return contactId;
