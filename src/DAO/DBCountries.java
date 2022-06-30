@@ -30,9 +30,39 @@ public abstract class DBCountries {
         return allCountriesList;
     }
 
-//    TODO Follow template from DBDivisions
-    public static Countries getCountryNameFromDivisionId(int customerDivisionId) {
+//    TODO - SETUP THIS METHOD!!
+    public static Countries getCustomerCountryFromDivisionId(int customerDivisionId) {
+        Countries c = null;
+        int cID = 0;
 
-        return null;
+        try{
+            String sql1 = "SELECT DIVISION_ID, DIVISION, COUNTRY_ID FROM first_level_divisions WHERE DIVISION_ID = ?;";
+            PreparedStatement ps1 = JDBC.getConnection().prepareStatement(sql1);
+            ps1.setInt(1, customerDivisionId);
+            ResultSet rs1 = ps1.executeQuery();
+            while(rs1.next()){
+                cID = rs1.getInt("COUNTRY_ID");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        try{
+            String sql2 = "SELECT Country_ID, Country FROM countries WHERE Country_ID = ?;";
+            PreparedStatement ps2 = JDBC.getConnection().prepareStatement(sql2);
+            ps2.setInt(1, cID);
+            ResultSet rs2 = ps2.executeQuery();
+            while(rs2.next()){
+                int countryID = rs2.getInt("Country_ID");
+                String countryName = rs2.getString("Country");
+
+                c = new Countries(countryID, countryName);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return c;
     }
+
 }

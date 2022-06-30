@@ -16,17 +16,17 @@
    <children>
       <TableView fx:id="appointmentTableView" layoutX="45.0" layoutY="90.0" prefHeight="525.0" prefWidth="735.0">
         <columns>
-          <TableColumn prefWidth="50.0" text="ApptID" />
-          <TableColumn prefWidth="75.0" text="Title" />
-            <TableColumn prefWidth="75.0" text="Description" />
-            <TableColumn prefWidth="75.0" text="Location" />
-            <TableColumn prefWidth="50.0" text="Type" />
+          <TableColumn fx:id="appointmentIdCol" prefWidth="50.0" text="ApptID" />
+          <TableColumn fx:id="appointmentTitleCol" prefWidth="75.0" text="Title" />
+            <TableColumn fx:id="appointmentDescriptionCol" prefWidth="75.0" text="Description" />
+            <TableColumn fx:id="appointmentLocationCol" prefWidth="75.0" text="Location" />
+            <TableColumn fx:id="appointmentTypeCol" prefWidth="50.0" text="Type" />
             <TableColumn prefWidth="65.0" text="Date" />
-            <TableColumn prefWidth="50.0" text="Start" />
-            <TableColumn prefWidth="50.0" text="End" />
-            <TableColumn prefWidth="83.3" text="CustomerID" />
-            <TableColumn prefWidth="83.3" text="UserID" />
-            <TableColumn prefWidth="83.3" text="ContactID" />
+            <TableColumn fx:id="startTimeCol" prefWidth="50.0" text="Start" />
+            <TableColumn fx:id="endTimeCol" prefWidth="50.0" text="End" />
+            <TableColumn fx:id="customerIdCol" prefWidth="83.3" text="CustomerID" />
+            <TableColumn fx:id="userIdCol" prefWidth="83.3" text="UserID" />
+            <TableColumn fx:id="contactIdCol" prefWidth="83.3" text="ContactID" />
         </columns>
       </TableView>
       <HBox alignment="CENTER_LEFT" prefHeight="90.0" prefWidth="900.0" spacing="10.0">
@@ -34,13 +34,13 @@
             <VBox prefHeight="200.0" prefWidth="150.0" spacing="5.0">
                <children>
                   <Label text="Choose a screen:" />
-                  <RadioButton fx:id="appointmentScreenRadioButton" mnemonicParsing="false" onAction="#onActionAppointmentScreen" selected="true" text="Appointments">
+                  <RadioButton mnemonicParsing="false" onAction="#onActionAppointmentScreen" selected="true" text="Appointments">
                      <toggleGroup>
                         <ToggleGroup fx:id="tg1" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton fx:id="customerScreenRadioButton" mnemonicParsing="false" onAction="#onActionCustomerScreen" text="Customers" toggleGroup="$tg1" />
-                  <RadioButton fx:id="reportScreenRadioButton" mnemonicParsing="false" onAction="#onActionReportScreen" text="Reports" toggleGroup="$tg1" />
+                  <RadioButton mnemonicParsing="false" onAction="#onActionCustomerScreen" text="Customers" toggleGroup="$tg1" />
+                  <RadioButton mnemonicParsing="false" onAction="#onActionReportScreen" text="Reports" toggleGroup="$tg1" />
                </children>
                <opaqueInsets>
                   <Insets />
@@ -52,13 +52,13 @@
             <VBox prefHeight="200.0" prefWidth="150.0" spacing="5.0">
                <children>
                   <Label text="Choose a filter:" />
-                  <RadioButton fx:id="filterAllRadioButton" mnemonicParsing="false" onAction="#onActionFilterAll" selected="true" text="All">
+                  <RadioButton mnemonicParsing="false" onAction="#onActionFilterAll" selected="true" text="All">
                      <toggleGroup>
                         <ToggleGroup fx:id="tg2" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton fx:id="filterMonthRadioButton" mnemonicParsing="false" onAction="#onActionFilterMonth" text="Current Month" toggleGroup="$tg2" />
-                  <RadioButton fx:id="filterWeekRadioButton" mnemonicParsing="false" onAction="#onActionFilterWeek" text="Current Week" toggleGroup="$tg2" />
+                  <RadioButton mnemonicParsing="false" onAction="#onActionFilterMonth" text="Current Month" toggleGroup="$tg2" />
+                  <RadioButton mnemonicParsing="false" onAction="#onActionFilterWeek" text="Current Week" toggleGroup="$tg2" />
                </children>
             </VBox>
          </children>
@@ -76,17 +76,17 @@
                   <Font size="12.0" />
                </font>
             </Label>
-            <Button fx:id="addAppointmentButton" mnemonicParsing="false" onAction="#onActionAddAppointment" prefHeight="35.0" prefWidth="85.0" text="Add">
+            <Button mnemonicParsing="false" onAction="#onActionAddAppointment" prefHeight="35.0" prefWidth="85.0" text="Add">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="updateAppointmentButton" mnemonicParsing="false" onAction="#onActionUpdateAppointment" prefHeight="35.0" prefWidth="85.0" text="Update">
+            <Button mnemonicParsing="false" onAction="#onActionUpdateAppointment" prefHeight="35.0" prefWidth="85.0" text="Update">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="deleteAppointmentButton" mnemonicParsing="false" onAction="#onActionDeleteAppointment" prefHeight="35.0" prefWidth="85.0" text="Delete">
+            <Button mnemonicParsing="false" onAction="#onActionDeleteAppointment" prefHeight="35.0" prefWidth="85.0" text="Delete">
                <font>
                   <Font size="18.0" />
                </font>

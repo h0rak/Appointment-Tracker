@@ -1,6 +1,7 @@
 package controller;
 
 import DAO.DBCountries;
+import DAO.DBCustomers;
 import DAO.DBDivisions;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -59,9 +60,31 @@ public class UpdateCustomerController implements Initializable {
         stage.show();
     }
 
+//    TODO - FIX THIS AFTER I FIX COMBO BOXES ON THIS CONTROLLER
     @FXML
     void onActionSave(ActionEvent event) {
+        try{
+            String cId = customerIdField.getText(); // String or int???
+            String cName = customerNameField.getText();
+            String cAddress = customerAddressField.getText();
+            String cPostal = customerPostalCodeField.getText();
+            String cPhone = customerPhoneNumberField.getText();
+            Divisions comboBoxSelection = divisionComboBox.getSelectionModel().getSelectedItem();
+            int cDivision = comboBoxSelection.getDivisionId();
 
+            // THIS NEEDS TESTING
+            DBCustomers.UpdateCustomer(Integer.parseInt(cId), cName, cAddress, cPostal, cPhone, cDivision);
+
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/CustomerScreen.fxml")));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setTitle("Customers");
+            stage.setScene(scene);
+            stage.show();
+        }
+        catch (NumberFormatException | IOException e){
+            e.printStackTrace();
+        }
     }
 // TODO Figure out how to populate combo boxes in UpdateCustomerController
     public void SendCustomer(Customers customer) {
@@ -71,7 +94,10 @@ public class UpdateCustomerController implements Initializable {
         customerPostalCodeField.setText(String.valueOf(customer.getCustomerPostalCode()));
         customerPhoneNumberField.setText(String.valueOf(customer.getCustomerPhone()));
 
-        countryComboBox.setValue(DBCountries.getCountryNameFromDivisionId(customer.getCustomerDivisionId()));
+//      TODO - SETUP THESE METHODS THAT AREN'T WORKING YET!!!
+        countryComboBox.setItems(DBCountries.getAllCountries());
+        countryComboBox.setValue(DBCountries.getCustomerCountryFromDivisionId(customer.getCustomerDivisionId()));
+//        divisionComboBox.setItems(DBDivisions.getDivisionsByCountryId(Integer.parseInt(countryComboBox.getId())));
         divisionComboBox.setValue(DBDivisions.getDivisionNameFromDivisionId(customer.getCustomerDivisionId()));
 
 

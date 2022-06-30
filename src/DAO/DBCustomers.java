@@ -50,7 +50,9 @@ public abstract class DBCustomers {
 
     // TODO UpdateCustomer method. This may need more work.
     public static void UpdateCustomer(int customerId, String customerName, String customerAddress, String customerPostalCode, String customerPhone, int customerDivisionId) {
-        String sql = "UPDATE customers SET Customer_Name = ?, Address = ?, Postal_Code = ?, Phone = ?, NULL, NULL, NULL, NULL, Division_ID = ? WHERE Customer_ID = ?";
+//        String sql = "UPDATE customers SET Customer_Name = ?, Address = ?, Postal_Code = ?, Phone = ?, NULL, NULL, NULL, NULL, Division_ID = ? WHERE Customer_ID = ?";
+        String sql = "UPDATE customers SET Customer_Name = ?, Address = ?, Postal_Code = ?, Phone = ?, Division_ID = ? WHERE Customer_ID = ?";
+
         try {
             PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
             ps.setString(1, customerName);
@@ -59,7 +61,7 @@ public abstract class DBCustomers {
             ps.setString(4, customerPhone);
             ps.setInt(5,customerDivisionId);
             ps.setInt(6, customerId);
-            ps.executeUpdate(); // i forgot to add this in. make sure to test
+            ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -77,6 +79,8 @@ public abstract class DBCustomers {
         }
 
     }
+
+
 
 
 }
