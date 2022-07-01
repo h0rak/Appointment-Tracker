@@ -97,7 +97,7 @@ public class UpdateCustomerController implements Initializable {
 //      TODO - SETUP THESE METHODS THAT AREN'T WORKING YET!!!
         countryComboBox.setItems(DBCountries.getAllCountries());
         countryComboBox.setValue(DBCountries.getCustomerCountryFromDivisionId(customer.getCustomerDivisionId()));
-//        divisionComboBox.setItems(DBDivisions.getDivisionsByCountryId(Integer.parseInt(countryComboBox.getId())));
+        divisionComboBox.setItems(DBDivisions.getDivisionsByCountryId(countryComboBox.getValue().getCountryId()));
         divisionComboBox.setValue(DBDivisions.getDivisionNameFromDivisionId(customer.getCustomerDivisionId()));
 
 

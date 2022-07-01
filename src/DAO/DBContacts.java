@@ -4,7 +4,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Contacts;
 import utilities.JDBC;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,7 +27,7 @@ public abstract class DBContacts {
             }
         }
         catch (SQLException e){
-            e.printStackTrace();;
+            e.printStackTrace();
         }
         return allContactsList;
     }
