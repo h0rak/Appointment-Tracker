@@ -4,7 +4,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Appointments;
 import utilities.JDBC;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,7 +12,6 @@ import java.time.LocalDateTime;
 
 public abstract class DBAppointments {
 
-    // TODO list that gets all appointments??
     public static ObservableList<Appointments> getAllAppointments() {
         ObservableList<Appointments> allAppointmentsList = FXCollections.observableArrayList();
 

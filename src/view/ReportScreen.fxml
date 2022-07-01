@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="625.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ReportController">
+<AnchorPane prefHeight="625.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ReportController">
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="90.0" prefWidth="900.0" spacing="10.0">
          <children>
@@ -47,17 +47,17 @@
          <children>
             <TableView fx:id="contactScheduleTableView" prefHeight="250.0" prefWidth="735.0">
               <columns>
-                <TableColumn prefWidth="50.0" text="ApptID" />
-                <TableColumn prefWidth="75.0" text="Title" />
-                  <TableColumn prefWidth="75.0" text="Description" />
-                  <TableColumn prefWidth="75.0" text="Location" />
-                  <TableColumn prefWidth="50.0" text="Type" />
+                <TableColumn fx:id="appointmentIdCol" prefWidth="50.0" text="ApptID" />
+                <TableColumn fx:id="appointmentTitleCol" prefWidth="75.0" text="Title" />
+                  <TableColumn fx:id="appointmentDescriptionCol" prefWidth="75.0" text="Description" />
+                  <TableColumn fx:id="appointmentLocationCol" prefWidth="75.0" text="Location" />
+                  <TableColumn fx:id="appointmentTypeCol" prefWidth="50.0" text="Type" />
                   <TableColumn prefWidth="65.0" text="Date" />
-                  <TableColumn prefWidth="50.0" text="Start" />
-                  <TableColumn prefWidth="50.0" text="End" />
-                  <TableColumn prefWidth="83.3" text="CustomerID" />
-                  <TableColumn prefWidth="83.3" text="UserID" />
-                  <TableColumn prefWidth="83.3" text="ContactID" />
+                  <TableColumn fx:id="startTimeCol" prefWidth="50.0" text="Start" />
+                  <TableColumn fx:id="endTimeCol" prefWidth="50.0" text="End" />
+                  <TableColumn fx:id="customerIdCol" prefWidth="83.3" text="CustomerID" />
+                  <TableColumn fx:id="userIdCol" prefWidth="83.3" text="UserID" />
+                  <TableColumn fx:id="contactIdCol" prefWidth="83.3" text="ContactID" />
               </columns>
             </TableView>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="125.0" spacing="10.0">
@@ -66,7 +66,7 @@
                      <font>
                         <Font size="12.0" />
                      </font></Label>
-                  <ComboBox onAction="#onActionFilterAppointmentByContact" prefWidth="100.0" promptText="Contact" />
+                  <ComboBox fx:id="contactComboBox" prefWidth="100.0" promptText="Contact" />
                </children>
                <HBox.margin>
                   <Insets />
@@ -112,13 +112,14 @@
                   <Insets />
                </HBox.margin>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="365.0" spacing="10.0">
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="365.0" spacing="10.0">
                <children>
                   <Label layoutX="10.0" layoutY="120.0" text="Total number of Customers by Country:" textAlignment="CENTER" wrapText="true">
                      <font>
                         <Font size="12.0" />
                      </font>
                   </Label>
+                  <Label fx:id="totalCustomersByCountryLabel" text="Label" />
                </children>
             </VBox>
          </children>

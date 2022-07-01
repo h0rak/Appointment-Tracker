@@ -56,7 +56,10 @@
       </VBox>
       <VBox layoutX="249.0" layoutY="100.0" prefHeight="300.0" prefWidth="125.0" spacing="6.5">
          <children>
-            <TextField fx:id="customerIdField" alignment="TOP_RIGHT" disable="true" />
+            <TextField fx:id="customerIdField" alignment="TOP_RIGHT" disable="true" promptText="Auto-generated">
+               <font>
+                  <Font name="System Italic" size="13.0" />
+               </font></TextField>
             <TextField fx:id="customerNameField" alignment="TOP_RIGHT" layoutX="10.0" layoutY="10.0" promptText="First Last">
                <font>
                   <Font name="System Italic" size="13.0" />
