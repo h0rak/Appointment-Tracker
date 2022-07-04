@@ -60,11 +60,11 @@ public class ReportController implements Initializable {
     @FXML
     private TableColumn<Appointments, Integer> userIdCol;
 
-    /*@FXML
+    @FXML
     private ComboBox<?> monthComboBox;
 
     @FXML
-    private ComboBox<?> typeComboBox;*/
+    private ComboBox<?> typeComboBox;
 
     @FXML
     private ComboBox<Contacts> contactComboBox;
@@ -87,6 +87,12 @@ public class ReportController implements Initializable {
         stage.setTitle("Customers");
         stage.setScene(scene);
         stage.show();
+    }
+
+    @FXML
+    void onActionFilterContactAppointments(ActionEvent event) {
+        Contacts selectedContact = contactComboBox.getSelectionModel().getSelectedItem();
+        contactScheduleTableView.setItems(DBAppointments.getAppointmentsByContactId(selectedContact.getContactId()));
     }
 
     @FXML

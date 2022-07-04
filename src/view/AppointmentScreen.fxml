@@ -12,21 +12,20 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="625.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AppointmentController">
+<AnchorPane prefHeight="625.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AppointmentController">
    <children>
       <TableView fx:id="appointmentTableView" layoutX="45.0" layoutY="90.0" prefHeight="525.0" prefWidth="735.0">
         <columns>
           <TableColumn fx:id="appointmentIdCol" prefWidth="50.0" text="ApptID" />
-          <TableColumn fx:id="appointmentTitleCol" prefWidth="75.0" text="Title" />
+          <TableColumn fx:id="appointmentTitleCol" prefWidth="50.0" text="Title" />
             <TableColumn fx:id="appointmentDescriptionCol" prefWidth="75.0" text="Description" />
             <TableColumn fx:id="appointmentLocationCol" prefWidth="75.0" text="Location" />
-            <TableColumn fx:id="appointmentTypeCol" prefWidth="50.0" text="Type" />
-            <TableColumn prefWidth="65.0" text="Date" />
-            <TableColumn fx:id="startTimeCol" prefWidth="50.0" text="Start" />
-            <TableColumn fx:id="endTimeCol" prefWidth="50.0" text="End" />
-            <TableColumn fx:id="customerIdCol" prefWidth="83.3" text="CustomerID" />
-            <TableColumn fx:id="userIdCol" prefWidth="83.3" text="UserID" />
-            <TableColumn fx:id="contactIdCol" prefWidth="83.3" text="ContactID" />
+            <TableColumn fx:id="appointmentTypeCol" prefWidth="75.0" text="Type" />
+            <TableColumn fx:id="startTimeCol" prefWidth="205.0" text="Start" />
+            <TableColumn fx:id="endTimeCol" prefWidth="205.0" text="End" />
+            <TableColumn fx:id="customerIdCol" prefWidth="50.0" text="CustomerID" />
+            <TableColumn fx:id="userIdCol" prefWidth="50.0" text="UserID" />
+            <TableColumn fx:id="contactIdCol" prefWidth="50.0" text="ContactID" />
         </columns>
       </TableView>
       <HBox alignment="CENTER_LEFT" prefHeight="90.0" prefWidth="900.0" spacing="10.0">

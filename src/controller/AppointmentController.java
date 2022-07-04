@@ -20,6 +20,8 @@ import java.util.ResourceBundle;
 
 public class AppointmentController implements Initializable {
 
+    //TODO - FIX TABLEVIEW, REMOVE DATE
+
     @FXML
     private TableView<Appointments> appointmentTableView;
 

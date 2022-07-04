@@ -60,7 +60,6 @@ public class UpdateCustomerController implements Initializable {
         stage.show();
     }
 
-//    TODO - FIX THIS AFTER I FIX COMBO BOXES ON THIS CONTROLLER
     @FXML
     void onActionSave(ActionEvent event) {
         try{
@@ -72,7 +71,6 @@ public class UpdateCustomerController implements Initializable {
             Divisions comboBoxSelection = divisionComboBox.getSelectionModel().getSelectedItem();
             int cDivision = comboBoxSelection.getDivisionId();
 
-            // THIS NEEDS TESTING
             DBCustomers.UpdateCustomer(Integer.parseInt(cId), cName, cAddress, cPostal, cPhone, cDivision);
 
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/CustomerScreen.fxml")));
@@ -86,7 +84,7 @@ public class UpdateCustomerController implements Initializable {
             e.printStackTrace();
         }
     }
-// TODO Figure out how to populate combo boxes in UpdateCustomerController
+
     public void SendCustomer(Customers customer) {
         customerIdField.setText(String.valueOf(customer.getCustomerId())); // id name address postal phone division
         customerNameField.setText(String.valueOf(customer.getCustomerName()));
@@ -94,13 +92,10 @@ public class UpdateCustomerController implements Initializable {
         customerPostalCodeField.setText(String.valueOf(customer.getCustomerPostalCode()));
         customerPhoneNumberField.setText(String.valueOf(customer.getCustomerPhone()));
 
-//      TODO - SETUP THESE METHODS THAT AREN'T WORKING YET!!!
         countryComboBox.setItems(DBCountries.getAllCountries());
         countryComboBox.setValue(DBCountries.getCustomerCountryFromDivisionId(customer.getCustomerDivisionId()));
         divisionComboBox.setItems(DBDivisions.getDivisionsByCountryId(countryComboBox.getValue().getCountryId()));
         divisionComboBox.setValue(DBDivisions.getDivisionNameFromDivisionId(customer.getCustomerDivisionId()));
-
-
     }
 
     @Override

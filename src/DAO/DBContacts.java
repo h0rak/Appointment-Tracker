@@ -22,7 +22,6 @@ public abstract class DBContacts {
                 String contactEmail = rs.getString("Email");
 
                 Contacts c = new Contacts(contactId, contactName, contactEmail);
-//                System.out.println(c.getContactEmail());
                 allContactsList.add(c);
             }
         }
