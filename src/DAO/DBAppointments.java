@@ -3,12 +3,13 @@ package DAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Appointments;
+import model.Contacts;
+import model.Customers;
 import utilities.JDBC;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 
 public abstract class DBAppointments {
 
@@ -81,6 +82,79 @@ public abstract class DBAppointments {
         }
         return contactAppointmentsList;
     }
+
+    public static Contacts getContactByAppointmentId(int aId) {
+
+        int cId = 0;
+        Contacts contact = null;
+
+        try {
+            String sql = "SELECT Contact_ID FROM appointments WHERE Appointment_ID = ?;";
+            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+            ps.setInt(1, aId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                cId = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            String sql2 = "SELECT * FROM client_schedule.contacts WHERE Contact_ID = ?;";
+            PreparedStatement ps2 = JDBC.getConnection().prepareStatement(sql2);
+            ps2.setInt(1, cId);
+            ResultSet rs2 = ps2.executeQuery();
+            while (rs2.next()) {
+                int contactId = rs2.getInt("Contact_ID");
+                String contactName = rs2.getString("Contact_Name");
+                String contactEmail = rs2.getString("Email");
+
+                contact = new Contacts(contactId, contactName, contactEmail);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return contact;
+    }
+
+    public static Customers getCustomerByAppointmentId(int aId) {
+
+        int cId = 0;
+        Customers customer = null;
+
+        try {
+            String sql = "SELECT Customer_ID FROM appointments WHERE Appointment_ID = ?;";
+            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+            ps.setInt(1, aId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                cId = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            String sql2 = "SELECT Customer_ID, Customer_Name, Address, Postal_Code, Phone, Division_ID FROM customers WHERE Customer_ID = ?;";
+            PreparedStatement ps2 = JDBC.getConnection().prepareStatement(sql2);
+            ps2.setInt(1, cId);
+            ResultSet rs2 = ps2.executeQuery();
+            while (rs2.next()) {
+                int customerId = rs2.getInt("Customer_ID");
+                String customerName = rs2.getString("Customer_Name");
+                String customerAddress = rs2.getString("Address");
+                String customerPostalCode = rs2.getString("Postal_Code");
+                String customerPhone = rs2.getString("Phone");
+                int customerDivisionId = rs2.getInt("Division_ID");
+
+                customer = new Customers(customerId, customerName, customerAddress, customerPostalCode, customerPhone, customerDivisionId);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return customer;
+    }
+
+
 
         public static ObservableList<String> getAllTypes(){
         ObservableList<String> allTypesList = FXCollections.observableArrayList();

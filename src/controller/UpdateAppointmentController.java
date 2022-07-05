@@ -1,8 +1,8 @@
 package controller;
 
 import DAO.DBAppointments;
-import DAO.DBCountries;
-import DAO.DBDivisions;
+import DAO.DBContacts;
+import DAO.DBCustomers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +14,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Appointments;
+import model.Contacts;
+import model.Customers;
 
 import java.io.IOException;
 import java.net.URL;
@@ -38,10 +40,10 @@ public class UpdateAppointmentController implements Initializable {
     private TextField appointmentTypeField;
 
     @FXML
-    private ComboBox<?> contactComboBox;
+    private ComboBox<Contacts> contactComboBox;
 
     @FXML
-    private ComboBox<?> customerComboBox;
+    private ComboBox<Customers> customerComboBox;
 
     @FXML
     private ComboBox<?> endTimeComboBox;
@@ -71,13 +73,14 @@ public class UpdateAppointmentController implements Initializable {
         appointmentDescriptionField.setText(String.valueOf(appointment.getAppointmentDescription()));
         appointmentLocationField.setText(String.valueOf(appointment.getAppointmentLocation()));
         appointmentTypeField.setText(String.valueOf(appointment.getAppointmentType()));
-
 /*
         startTimeComboBox.setItems(DBAppointments.getStartTime());
         startTimeComboBox.setValue(appointment.getStartTime()));
-        divisionComboBox.setItems(DBDivisions.getDivisionsByCountryId(countryComboBox.getValue().getCountryId()));
-        divisionComboBox.setValue(DBDivisions.getDivisionNameFromDivisionId(customer.getCustomerDivisionId()));
 */
+        customerComboBox.setItems(DBCustomers.getAllCustomers());
+        customerComboBox.setValue(DBAppointments.getCustomerByAppointmentId(appointment.getAppointmentId()));
+        contactComboBox.setItems(DBContacts.getAllContacts());
+        contactComboBox.setValue(DBAppointments.getContactByAppointmentId(appointment.getAppointmentId()));
     }
 
     @Override
