@@ -6,7 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import java.util.Locale;
+
+import java.time.ZonedDateTime;
 import java.util.Objects;
 
 // TODO Must be able to translate to french/english @ Main or Login controller?

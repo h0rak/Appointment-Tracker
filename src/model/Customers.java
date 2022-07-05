@@ -18,6 +18,10 @@ public class Customers {
         this.customerDivisionId = customerDivisionId;
     }
 
+    public String toString(){
+        return customerName;
+    }
+
     public int getCustomerId() {
         return customerId;
     }

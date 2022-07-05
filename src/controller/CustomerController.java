@@ -1,6 +1,7 @@
 package controller;
 
 import DAO.DBCustomers;
+import DAO.DBDivisions;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -136,6 +137,7 @@ public class CustomerController implements Initializable {
         customerAddressCol.setCellValueFactory(new PropertyValueFactory<>("customerAddress"));
         customerPostalCodeCol.setCellValueFactory(new PropertyValueFactory<>("customerPostalCode"));
         customerPhoneCol.setCellValueFactory(new PropertyValueFactory<>("customerPhone"));
-        customerDivisionCol.setCellValueFactory(new PropertyValueFactory<>("customerDivisionId"));
+//        customerDivisionCol.setCellValueFactory(new PropertyValueFactory<>("customerDivisionId"));
+
     }
 }

@@ -82,7 +82,7 @@ public abstract class DBAppointments {
         return contactAppointmentsList;
     }
 
-        public ObservableList<String> getAllTypes(){
+        public static ObservableList<String> getAllTypes(){
         ObservableList<String> allTypesList = FXCollections.observableArrayList();
 
         try{
@@ -100,5 +100,36 @@ public abstract class DBAppointments {
         }
         return allTypesList;
     }
+
+    public static void DeleteAppointment(int appointmentId){
+        String sql = "DELETE FROM appointments WHERE Appointment_ID = ?";
+        try{
+            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+            ps.setInt(1, appointmentId);
+            ps.executeUpdate();
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    // TODO Add Appointment method.
+/*
+    public static void AddAppointment(int appointmentId, String appointmentTitle, String appointmentDescription, String appointmentLocation, String appointmentType, Timestamp startTime, Timestamp endTime, int customerId, int userId, int contactId){
+        try {
+            String sql = "INSERT INTO appointment VALUES(NULL, ?, ?, ?, ?, NULL, NULL, NULL, NULL, ?)"; // TODO will need to be adjusted for appointment
+            PreparedStatement ps= JDBC.getConnection().prepareStatement(sql);
+            ps.setString(1, customerName);
+            ps.setString(2, customerAddress);
+            ps.setString(3, customerPostalCode);
+            ps.setString(4, customerPhone);
+            ps.setInt(5, customerDivisionId);
+            ps.executeUpdate(); // OR EXECUTE UPDATE or just EXECUTE?
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+*/
 
 }

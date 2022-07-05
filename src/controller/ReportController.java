@@ -2,6 +2,8 @@ package controller;
 
 import DAO.DBAppointments;
 import DAO.DBContacts;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +23,8 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class ReportController implements Initializable {
+
+    private final ObservableList<String> months = FXCollections.observableArrayList("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
 
     public ToggleGroup tg1;
 
@@ -61,13 +65,25 @@ public class ReportController implements Initializable {
     private TableColumn<Appointments, Integer> userIdCol;
 
     @FXML
-    private ComboBox<?> monthComboBox;
+    private ComboBox<String> monthComboBox;
 
     @FXML
-    private ComboBox<?> typeComboBox;
+    private ComboBox<String> typeComboBox;
 
     @FXML
     private ComboBox<Contacts> contactComboBox;
+
+    @FXML
+    private Label typeMonthTotalLabel;
+
+    @FXML
+    private Label ukNumberLabel;
+
+    @FXML
+    private Label usNumberLabel;
+
+    @FXML
+    private Label canNumberLabel;
 
     @FXML
     void onActionAppointmentScreen(ActionEvent actionEvent) throws IOException {
@@ -102,7 +118,7 @@ public class ReportController implements Initializable {
 
     @FXML
     void onActionTypeMonthTotal(ActionEvent event) {
-
+        typeMonthTotalLabel.setText(toString()); // setup method to get hour total from database
     }
 
     @Override
@@ -119,6 +135,10 @@ public class ReportController implements Initializable {
         customerIdCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         userIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
         contactIdCol.setCellValueFactory(new PropertyValueFactory<>("contactId"));
+        typeComboBox.setItems(DBAppointments.getAllTypes());
+        typeComboBox.setVisibleRowCount(4);
+        monthComboBox.setItems(months);
+        monthComboBox.setVisibleRowCount(4);
     }
 
 }

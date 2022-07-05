@@ -1,6 +1,7 @@
 package controller;
 
 import DAO.DBAppointments;
+import DAO.DBCustomers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,10 +13,13 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Appointments;
+import model.Customers;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class AppointmentController implements Initializable {
@@ -96,18 +100,68 @@ public class AppointmentController implements Initializable {
     }
 
     @FXML
-    void onActionAddAppointment(ActionEvent event) {
-
+    void onActionAddAppointment(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AddAppointmentScreen.fxml")));
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setTitle("Add Appointment");
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
-    void onActionUpdateAppointment(ActionEvent event) {
+    void onActionUpdateAppointment(ActionEvent actionEvent) throws IOException {
+        try {
+            Appointments updateAppointment = appointmentTableView.getSelectionModel().getSelectedItem();
 
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/view/UpdateAppointmentScreen.fxml"));
+            loader.load();
+
+            UpdateAppointmentController uac = loader.getController();
+            uac.SendAppointment(appointmentTableView.getSelectionModel().getSelectedItem());
+
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Parent scene = loader.getRoot();
+            stage.setTitle("Update Appointment");
+            stage.setScene(new Scene(scene));
+            stage.show();
+        } catch (NullPointerException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("Please select an appointment to update.");
+            alert.showAndWait();
+        }
+/*
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/UpdateAppointmentScreen.fxml")));
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setTitle("Update Appointment");
+        stage.setScene(scene);
+        stage.show();
+*/
     }
 
     @FXML
     void onActionDeleteAppointment(ActionEvent event) {
-
+        Appointments appointmentToDelete = appointmentTableView.getSelectionModel().getSelectedItem();
+        if (appointmentToDelete == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("Please select an appointment to delete.");
+            alert.showAndWait();
+        }
+        else {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you wish to delete this appointment?");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                DBAppointments.DeleteAppointment(appointmentToDelete.getAppointmentId());
+                appointmentTableView.setItems(DBAppointments.getAllAppointments());
+            }
+            else {
+                appointmentTableView.getSelectionModel().clearSelection();
+            }
+        }
     }
 
     @Override

@@ -2,10 +2,8 @@ package DAO;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.Countries;
 import model.Users;
 import utilities.JDBC;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -32,18 +30,5 @@ public abstract class DBUsers {
         }
         return allUsersList;
     }
-
-/*
-    public static boolean isVerifiedUser(int userId){
-        ObservableList<Users> allUsers = DBUsers.getAllUsers();
-        Users verifiedUser = null;
-
-        for(Users u : allUsers){
-
-        }
-
-
-    }
-*/
 
 }
