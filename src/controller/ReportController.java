@@ -116,9 +116,19 @@ public class ReportController implements Initializable {
         return;
     }
 
+//    TODO - FIX THIS ENTIRE METHOD
     @FXML
     void onActionTypeMonthTotal(ActionEvent event) {
-        typeMonthTotalLabel.setText(toString()); // setup method to get hour total from database
+        String typeToSearch = typeComboBox.getSelectionModel().getSelectedItem();
+        String monthToSearch = monthComboBox.getSelectionModel().getSelectedItem();
+        ObservableList<Appointments> appointmentsToAddHours = FXCollections.observableArrayList();
+
+/*
+        try{
+            String sql = "SELECT Appointment_ID, Title, Description, Location, Type, Start, End, Customer_ID, User_ID, Contact_ID FROM appointments WHERE Type = \"" + typeToSearch + "\"AND ";
+        }
+        typeMonthTotalLabel.setText(totalHours + " hours total"); // setup method to get hour total from database
+*/
     }
 
     @Override

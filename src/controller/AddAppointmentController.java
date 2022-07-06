@@ -10,13 +10,14 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Contacts;
 import model.Customers;
-
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalTime;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -50,6 +51,9 @@ public class AddAppointmentController implements Initializable {
     private ComboBox<String> startTimeComboBox;
 
     @FXML
+    private DatePicker datePickerWidget;
+
+    @FXML
     void onActionCancel(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AppointmentScreen.fxml")));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -68,6 +72,18 @@ public class AddAppointmentController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         contactComboBox.setItems(DBContacts.getAllContacts());
         customerComboBox.setItems(DBCustomers.getAllCustomers());
+
+        // THIS WILL CHANGE, RIGHT??
+        LocalTime start = LocalTime.of(8, 0);
+        LocalTime end = LocalTime.of(22, 0);
+
+        while(start.isBefore(end.plusMinutes(1))){
+            startTimeComboBox.getItems().add(String.valueOf(start));
+            endTimeComboBox.getItems().add(String.valueOf(start));
+            start = start.plusMinutes(10);
+        }
+
+
 
     }
 }

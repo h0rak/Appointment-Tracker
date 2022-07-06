@@ -106,7 +106,6 @@ public class CustomerController implements Initializable {
     void onActionUpdateCustomer(ActionEvent actionEvent) throws IOException {
         try {
             Customers updateCustomer = customerTableView.getSelectionModel().getSelectedItem();
-//            modifyPartIndex = Inventory.getAllParts().indexOf(modifyPart);
 
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/view/UpdateCustomerScreen.fxml"));
@@ -137,7 +136,6 @@ public class CustomerController implements Initializable {
         customerAddressCol.setCellValueFactory(new PropertyValueFactory<>("customerAddress"));
         customerPostalCodeCol.setCellValueFactory(new PropertyValueFactory<>("customerPostalCode"));
         customerPhoneCol.setCellValueFactory(new PropertyValueFactory<>("customerPhone"));
-//        customerDivisionCol.setCellValueFactory(new PropertyValueFactory<>("customerDivisionId"));
-
+        customerDivisionCol.setCellValueFactory(new PropertyValueFactory<>("customerDivisionId"));
     }
 }

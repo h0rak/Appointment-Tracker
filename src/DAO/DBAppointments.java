@@ -26,14 +26,10 @@ public abstract class DBAppointments {
                 String appointmentDescription = rs.getString("Description");
                 String appointmentLocation = rs.getString("Location");
                 String appointmentType = rs.getString("Type");
-//              Injecting Timestamp
-//              ps.setTimestamp();
-//              Extracting Timestamp
-//              rs.getTimestamp("");
-//              DateTimeFormatter
-//              DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm");
-                Timestamp startTime = rs.getTimestamp("Start");
-                Timestamp endTime = rs.getTimestamp("End");
+//                Timestamp startTime = rs.getTimestamp("Start");
+                Timestamp startTime = Timestamp.valueOf(rs.getString("Start"));
+//                Timestamp endTime = rs.getTimestamp("End");
+                Timestamp endTime = Timestamp.valueOf(rs.getString("End"));
                 int customerId = rs.getInt("Customer_ID");
                 int userId = rs.getInt("User_ID");
                 int contactId = rs.getInt("Contact_ID");
@@ -62,12 +58,6 @@ public abstract class DBAppointments {
                 String appointmentDescription = rs.getString("Description");
                 String appointmentLocation = rs.getString("Location");
                 String appointmentType = rs.getString("Type");
-//              Injecting Timestamp
-//              ps.setTimestamp();
-//              Extracting Timestamp
-//              rs.getTimestamp("");
-//              DateTimeFormatter
-//              DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm");
                 Timestamp startTime = rs.getTimestamp("Start");
                 Timestamp endTime = rs.getTimestamp("End");
                 int customerId = rs.getInt("Customer_ID");
@@ -154,9 +144,7 @@ public abstract class DBAppointments {
         return customer;
     }
 
-
-
-        public static ObservableList<String> getAllTypes(){
+    public static ObservableList<String> getAllTypes(){
         ObservableList<String> allTypesList = FXCollections.observableArrayList();
 
         try{

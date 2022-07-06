@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public class Appointments {
 
@@ -9,8 +10,8 @@ public class Appointments {
     private String appointmentDescription;
     private String appointmentLocation;
     private String appointmentType;
-    private Timestamp startTime; //was LocalDateTime data type
-    private Timestamp endTime; //was LocalDateTime data type
+    private Timestamp startTime; // LocalDateTime or Timestamp
+    private Timestamp endTime; // LocalDateTime or Timestamp
     private int customerId;
     private int userId;
     private int contactId;

@@ -37,7 +37,7 @@
                 </Label>
             </children>
         </VBox>
-        <HBox alignment="CENTER" layoutX="163.0" layoutY="131.0" prefHeight="25.0" prefWidth="125.0" spacing="5.0">
+        <HBox alignment="CENTER" layoutX="163.0" layoutY="131.0" prefHeight="31.0" prefWidth="125.0" spacing="5.0">
             <children>
                 <Button fx:id="resetButton" maxWidth="49.0" mnemonicParsing="false" onAction="#onActionReset" prefWidth="49.0" text="Reset" />
                 <Button fx:id="loginButton" maxWidth="49.0" mnemonicParsing="false" onAction="#onActionLogin" prefWidth="49.0" text="Login" />
