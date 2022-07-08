@@ -75,12 +75,19 @@ public class AddAppointmentController implements Initializable {
 
         // THIS WILL CHANGE, RIGHT??
         LocalTime start = LocalTime.of(8, 0);
-        LocalTime end = LocalTime.of(21, 0);
+        LocalTime end = LocalTime.of(22, 0);
 
-        LocalDateTime startLDT = LocalDateTime.of(LocalDate.now(),start);
-        ZonedDateTime startZDTFROMEST = startLDT.atZone(ZoneId.of("America/New_York"));
-        ZonedDateTime startZDTTOLOCAL = startZDTFROMEST.withZoneSameInstant(ZoneId.systemDefault());
-        start = startZDTTOLOCAL.toLocalTime();
+        // this was from mark
+        LocalDateTime startLdt = LocalDateTime.of(LocalDate.now(),start);
+        ZonedDateTime startZdtFromEst = startLdt.atZone(ZoneId.of("America/New_York"));
+        ZonedDateTime startZdtToLocal = startZdtFromEst.withZoneSameInstant(ZoneId.systemDefault());
+        start = startZdtToLocal.toLocalTime();
+
+        // this is me trying end time
+        LocalDateTime endLdt = LocalDateTime.of(LocalDate.now(),end);
+        ZonedDateTime endZdtFromEst = endLdt.atZone(ZoneId.of("America/New_York"));
+        ZonedDateTime endZdtToLocal = endZdtFromEst.withZoneSameInstant(ZoneId.systemDefault());
+        end = endZdtToLocal.toLocalTime();
 
 //      This sets the 15-minute intervals in the Start and End Time Combo Boxes
         while(start.isBefore(end.plusMinutes(1))){

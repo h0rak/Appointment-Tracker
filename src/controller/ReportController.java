@@ -151,6 +151,7 @@ public class ReportController implements Initializable {
         monthComboBox.setItems(months);
         monthComboBox.setVisibleRowCount(4);
         totalCustomersLabel.setText(DBCustomers.getTotalCustomers());
+        // TODO - MAKE REPORT TIME STAMP THE SAME AS APPOINTMENT CONTROLLER
     }
 
 }
