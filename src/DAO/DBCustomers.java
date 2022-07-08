@@ -77,7 +77,21 @@ public abstract class DBCustomers {
         catch (SQLException e){
             e.printStackTrace();
         }
+    }
 
+    public static String getTotalCustomers() {
+        String sql = "SELECT COUNT(*) FROM client_schedule.customers;";
+        String totalCustomers = null;
+        try {
+            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                totalCustomers = rs.getString(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return totalCustomers;
     }
 
 

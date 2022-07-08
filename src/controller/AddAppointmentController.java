@@ -17,7 +17,7 @@ import model.Contacts;
 import model.Customers;
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalTime;
+import java.time.*;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -45,10 +45,10 @@ public class AddAppointmentController implements Initializable {
     private ComboBox<Customers> customerComboBox;
 
     @FXML
-    private ComboBox<String> endTimeComboBox;
+    private ComboBox<LocalTime> endTimeComboBox; // <LocalTime>
 
     @FXML
-    private ComboBox<String> startTimeComboBox;
+    private ComboBox<LocalTime> startTimeComboBox; // <LocalTime>
 
     @FXML
     private DatePicker datePickerWidget;
@@ -75,15 +75,30 @@ public class AddAppointmentController implements Initializable {
 
         // THIS WILL CHANGE, RIGHT??
         LocalTime start = LocalTime.of(8, 0);
-        LocalTime end = LocalTime.of(22, 0);
+        LocalTime end = LocalTime.of(21, 0);
 
+        LocalDateTime startLDT = LocalDateTime.of(LocalDate.now(),start);
+        ZonedDateTime startZDTFROMEST = startLDT.atZone(ZoneId.of("America/New_York"));
+        ZonedDateTime startZDTTOLOCAL = startZDTFROMEST.withZoneSameInstant(ZoneId.systemDefault());
+        start = startZDTTOLOCAL.toLocalTime();
+
+//      This sets the 15-minute intervals in the Start and End Time Combo Boxes
         while(start.isBefore(end.plusMinutes(1))){
-            startTimeComboBox.getItems().add(String.valueOf(start));
-            endTimeComboBox.getItems().add(String.valueOf(start));
-            start = start.plusMinutes(10);
+            startTimeComboBox.getItems().add(start);
+            endTimeComboBox.getItems().add(start);
+            start = start.plusMinutes(15);
         }
 
+        LocalDateTime now = LocalDateTime.now();
+        datePickerWidget.setValue(now.toLocalDate());
+        LocalTime time = LocalTime.of(7,0);
 
+        startTimeComboBox.setValue(time);
+        endTimeComboBox.setValue(time.plusMinutes(15));
+        startTimeComboBox.setVisibleRowCount(5);
+        endTimeComboBox.setVisibleRowCount(5);
+        customerComboBox.setVisibleRowCount(5);
+        contactComboBox.setVisibleRowCount(5);
 
     }
 }

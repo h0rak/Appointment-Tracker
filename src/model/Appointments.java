@@ -73,6 +73,10 @@ public class Appointments {
         return startTime;
     }
 
+    public String getStartTimeDisplay(){
+        return startTime.toLocalDateTime().toString();
+    }
+
     public void setStartTime(Timestamp startTime) {
         this.startTime = startTime;
     }

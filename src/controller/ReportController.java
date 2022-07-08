@@ -2,6 +2,7 @@ package controller;
 
 import DAO.DBAppointments;
 import DAO.DBContacts;
+import DAO.DBCustomers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -59,7 +60,7 @@ public class ReportController implements Initializable {
     private TableColumn<Appointments, Timestamp> startTimeCol;
 
     @FXML
-    private Label totalCustomersByCountryLabel;
+    private Label totalCustomersLabel;
 
     @FXML
     private TableColumn<Appointments, Integer> userIdCol;
@@ -149,6 +150,7 @@ public class ReportController implements Initializable {
         typeComboBox.setVisibleRowCount(4);
         monthComboBox.setItems(months);
         monthComboBox.setVisibleRowCount(4);
+        totalCustomersLabel.setText(DBCustomers.getTotalCustomers());
     }
 
 }

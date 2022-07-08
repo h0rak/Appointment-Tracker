@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import java.util.Locale;
 import java.util.Objects;
 
 // TODO FRENCH / ENGLISH: MAIN OR LOGIN?
@@ -13,7 +14,7 @@ import java.util.Objects;
 public class Main extends Application {
 
     public static void main(String[] args) {
-//         Locale.setDefault(new Locale("fr"));
+         Locale.setDefault(new Locale("fr", "FR"));
         JDBC.openConnection();
         launch(args);
         JDBC.closeConnection();

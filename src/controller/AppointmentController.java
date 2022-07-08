@@ -86,7 +86,7 @@ public class AppointmentController implements Initializable {
 
     @FXML
     void onActionFilterAll(ActionEvent event) {
-
+        appointmentTableView.setItems(DBAppointments.getAllAppointments());
     }
 
     @FXML
@@ -132,14 +132,6 @@ public class AppointmentController implements Initializable {
             alert.setContentText("Please select an appointment to update.");
             alert.showAndWait();
         }
-/*
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/UpdateAppointmentScreen.fxml")));
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setTitle("Update Appointment");
-        stage.setScene(scene);
-        stage.show();
-*/
     }
 
     @FXML
@@ -172,7 +164,7 @@ public class AppointmentController implements Initializable {
         appointmentDescriptionCol.setCellValueFactory(new PropertyValueFactory<>("appointmentDescription"));
         appointmentLocationCol.setCellValueFactory(new PropertyValueFactory<>("appointmentLocation"));
         appointmentTypeCol.setCellValueFactory(new PropertyValueFactory<>("appointmentType"));
-        startTimeCol.setCellValueFactory(new PropertyValueFactory<>("startTime"));
+        startTimeCol.setCellValueFactory(new PropertyValueFactory<>("startTimeDisplay"));
         endTimeCol.setCellValueFactory(new PropertyValueFactory<>("endTime"));
         customerIdCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         userIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));

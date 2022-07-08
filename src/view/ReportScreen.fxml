@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="625.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ReportController">
+<AnchorPane prefHeight="400.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ReportController">
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="90.0" prefWidth="900.0" spacing="10.0">
          <children>
@@ -34,51 +34,32 @@
                <HBox.margin>
                   <Insets />
                </HBox.margin>
+               <padding>
+                  <Insets bottom="15.0" top="5.0" />
+               </padding>
             </VBox>
-         </children>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <padding>
-            <Insets left="45.0" right="45.0" />
-         </padding>
-      </HBox>
-      <HBox layoutY="105.0" prefHeight="250.0" prefWidth="900.0">
-         <children>
-            <TableView fx:id="contactScheduleTableView" prefHeight="250.0" prefWidth="735.0">
-              <columns>
-                <TableColumn fx:id="appointmentIdCol" prefWidth="50.0" text="ApptID" />
-                <TableColumn fx:id="appointmentTitleCol" prefWidth="50.0" text="Title" />
-                  <TableColumn fx:id="appointmentDescriptionCol" prefWidth="75.0" text="Description" />
-                  <TableColumn fx:id="appointmentLocationCol" prefWidth="75.0" text="Location" />
-                  <TableColumn fx:id="appointmentTypeCol" prefWidth="105.0" text="Type" />
-                  <TableColumn fx:id="startTimeCol" prefWidth="190.0" text="Start Time" />
-                  <TableColumn fx:id="endTimeCol" prefWidth="190.0" text="End Time" />
-                  <TableColumn fx:id="customerIdCol" prefWidth="50.0" text="CustomerID" />
-                  <TableColumn fx:id="userIdCol" prefWidth="50.0" text="UserID" />
-                  <TableColumn fx:id="contactIdCol" prefWidth="50.0" text="ContactID" />
-              </columns>
-            </TableView>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="125.0" spacing="10.0">
+            <VBox prefHeight="200.0" prefWidth="200.0" spacing="5.0">
                <children>
-                  <Label layoutX="10.0" layoutY="39.0" text="Choose a Contact:" textAlignment="CENTER" wrapText="true">
-                     <font>
-                        <Font size="12.0" />
-                     </font></Label>
-                  <ComboBox fx:id="contactComboBox" onAction="#onActionFilterContactAppointments" prefWidth="100.0" promptText="Contact" />
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Total number of Customers: " textAlignment="CENTER" wrapText="true">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="totalCustomersLabel" text="Answer" underline="true">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets top="5.0" />
+                     </padding>
+                  </HBox>
                </children>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
             </VBox>
-         </children>
-         <padding>
-            <Insets left="45.0" />
-         </padding>
-      </HBox>
-      <HBox layoutY="376.0" prefHeight="250.0" prefWidth="900.0">
-         <children>
-            <VBox prefHeight="200.0" prefWidth="365.0" spacing="5.0">
+            <VBox prefHeight="75.0" prefWidth="250.0" spacing="5.0">
                <children>
                   <Label layoutX="10.0" layoutY="120.0" text="Total appointments by Type &amp; Month:" textAlignment="CENTER" wrapText="true">
                      <font>
@@ -108,46 +89,53 @@
                      </children>
                   </HBox>
                </children>
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </VBox>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets left="45.0" right="45.0" />
+         </padding>
+      </HBox>
+      <HBox layoutY="105.0" prefHeight="250.0" prefWidth="900.0">
+         <children>
+            <TableView fx:id="contactScheduleTableView" prefHeight="300.0" prefWidth="735.0">
+              <columns>
+                <TableColumn fx:id="appointmentIdCol" prefWidth="45.0" text="ApptID" />
+                <TableColumn fx:id="appointmentTitleCol" prefWidth="55.0" text="Title" />
+                  <TableColumn fx:id="appointmentDescriptionCol" prefWidth="75.0" text="Description" />
+                  <TableColumn fx:id="appointmentLocationCol" prefWidth="75.0" text="Location" />
+                  <TableColumn fx:id="appointmentTypeCol" prefWidth="100.0" text="Type" />
+                  <TableColumn fx:id="startTimeCol" prefWidth="125.0" text="Start Time" />
+                  <TableColumn fx:id="endTimeCol" prefWidth="125.0" text="End Time" />
+                  <TableColumn fx:id="customerIdCol" prefWidth="45.0" text="CustomerID" />
+                  <TableColumn fx:id="userIdCol" prefWidth="45.0" text="UserID" />
+                  <TableColumn fx:id="contactIdCol" prefWidth="45.0" text="ContactID" />
+              </columns>
                <HBox.margin>
                   <Insets />
                </HBox.margin>
-            </VBox>
-            <VBox prefHeight="200.0" prefWidth="365.0" spacing="5.0">
+            </TableView>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="125.0" spacing="10.0">
                <children>
-                  <Label layoutX="10.0" layoutY="120.0" text="Total number of Customers by Country:" textAlignment="CENTER" wrapText="true">
+                  <Label layoutX="10.0" layoutY="39.0" text="Choose a Contact:" textAlignment="CENTER" wrapText="true">
                      <font>
                         <Font size="12.0" />
-                     </font>
-                  </Label>
-                  <HBox prefHeight="15.0" prefWidth="200.0">
-                     <children>
-                        <Label fx:id="totalCustomersByCountryLabel" text="United States: " />
-                        <Label fx:id="usNumberLabel" layoutX="10.0" layoutY="10.0" text="USNumber" />
-                     </children>
-                  </HBox>
-                  <HBox layoutX="10.0" layoutY="30.0" prefHeight="15.0" prefWidth="200.0">
-                     <children>
-                        <Label fx:id="totalCustomersByCountryLabel2" text="United Kingdom: " />
-                        <Label fx:id="ukNumberLabel" layoutX="10.0" layoutY="10.0" text="UKNumber" />
-                     </children>
-                  </HBox>
-                  <HBox layoutX="10.0" layoutY="52.0" prefHeight="15.0" prefWidth="200.0">
-                     <children>
-                        <Label fx:id="totalCustomersByCountryLabel21" text="Canada: " />
-                        <Label fx:id="canNumberLabel" layoutX="10.0" layoutY="10.0" text="CANNumber" />
-                     </children>
-                  </HBox>
+                     </font></Label>
+                  <ComboBox fx:id="contactComboBox" onAction="#onActionFilterContactAppointments" prefWidth="100.0" promptText="Contact" />
                </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
             </VBox>
          </children>
          <padding>
             <Insets left="45.0" />
          </padding>
       </HBox>
-      <Label layoutX="45.0" layoutY="90.0" text="Filter appointments by Contact to view a contact's schedule" textAlignment="CENTER" wrapText="true">
-         <font>
-            <Font size="12.0" />
-         </font>
-      </Label>
    </children>
 </AnchorPane>
