@@ -117,7 +117,7 @@ public class ReportController implements Initializable {
         return;
     }
 
-//    TODO - FIX THIS ENTIRE METHOD
+//    TODO - FIX THIS ENTIRE METHOD (HAVE TO FIX TIME FIRST)
     @FXML
     void onActionTypeMonthTotal(ActionEvent event) {
         String typeToSearch = typeComboBox.getSelectionModel().getSelectedItem();
