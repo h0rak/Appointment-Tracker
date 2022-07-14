@@ -141,8 +141,8 @@ public class ReportController implements Initializable {
         appointmentDescriptionCol.setCellValueFactory(new PropertyValueFactory<>("appointmentDescription"));
         appointmentLocationCol.setCellValueFactory(new PropertyValueFactory<>("appointmentLocation"));
         appointmentTypeCol.setCellValueFactory(new PropertyValueFactory<>("appointmentType"));
-        startTimeCol.setCellValueFactory(new PropertyValueFactory<>("startTime"));
-        endTimeCol.setCellValueFactory(new PropertyValueFactory<>("endTime"));
+        startTimeCol.setCellValueFactory(new PropertyValueFactory<>("startTimeDisplay"));
+        endTimeCol.setCellValueFactory(new PropertyValueFactory<>("endTimeDisplay"));
         customerIdCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         userIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
         contactIdCol.setCellValueFactory(new PropertyValueFactory<>("contactId"));
@@ -151,7 +151,6 @@ public class ReportController implements Initializable {
         monthComboBox.setItems(months);
         monthComboBox.setVisibleRowCount(4);
         totalCustomersLabel.setText(DBCustomers.getTotalCustomers());
-        // TODO - MAKE REPORT TIME STAMP THE SAME AS APPOINTMENT CONTROLLER
     }
 
 }

@@ -85,6 +85,10 @@ public class Appointments {
         return endTime;
     }
 
+    public String getEndTimeDisplay(){
+        return endTime.toLocalDateTime().toString();
+    }
+
     public void setEndTime(Timestamp endTime) {
         this.endTime = endTime;
     }

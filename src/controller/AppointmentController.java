@@ -13,8 +13,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Appointments;
-import model.Customers;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
@@ -165,7 +163,7 @@ public class AppointmentController implements Initializable {
         appointmentLocationCol.setCellValueFactory(new PropertyValueFactory<>("appointmentLocation"));
         appointmentTypeCol.setCellValueFactory(new PropertyValueFactory<>("appointmentType"));
         startTimeCol.setCellValueFactory(new PropertyValueFactory<>("startTimeDisplay"));
-        endTimeCol.setCellValueFactory(new PropertyValueFactory<>("endTime"));
+        endTimeCol.setCellValueFactory(new PropertyValueFactory<>("endTimeDisplay"));
         customerIdCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         userIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
         contactIdCol.setCellValueFactory(new PropertyValueFactory<>("contactId"));

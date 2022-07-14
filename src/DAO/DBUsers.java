@@ -31,4 +31,8 @@ public abstract class DBUsers {
         return allUsersList;
     }
 
+    public static int getFakeUserId(){
+        return 1;
+    }
+
 }

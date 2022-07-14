@@ -26,9 +26,7 @@ public abstract class DBAppointments {
                 String appointmentDescription = rs.getString("Description");
                 String appointmentLocation = rs.getString("Location");
                 String appointmentType = rs.getString("Type");
-//                Timestamp startTime = rs.getTimestamp("Start");
                 Timestamp startTime = Timestamp.valueOf(rs.getString("Start"));
-//                Timestamp endTime = rs.getTimestamp("End");
                 Timestamp endTime = Timestamp.valueOf(rs.getString("End"));
                 int customerId = rs.getInt("Customer_ID");
                 int userId = rs.getInt("User_ID");
@@ -176,22 +174,25 @@ public abstract class DBAppointments {
     }
 
     // TODO Add Appointment method.
-/*
-    public static void AddAppointment(int appointmentId, String appointmentTitle, String appointmentDescription, String appointmentLocation, String appointmentType, Timestamp startTime, Timestamp endTime, int customerId, int userId, int contactId){
+    public static void AddAppointment(String appointmentTitle, String appointmentDescription, String appointmentLocation, String appointmentType, Timestamp startTime, Timestamp endTime, int customerId, int userId, int contactId){
         try {
-            String sql = "INSERT INTO appointment VALUES(NULL, ?, ?, ?, ?, NULL, NULL, NULL, NULL, ?)"; // TODO will need to be adjusted for appointment
+            String sql = "INSERT INTO appointments VALUES(NULL, ?, ?, ?, ?, ?, ?, NULL, NULL, NULL, NULL, ?, ?, ?)";
             PreparedStatement ps= JDBC.getConnection().prepareStatement(sql);
-            ps.setString(1, customerName);
-            ps.setString(2, customerAddress);
-            ps.setString(3, customerPostalCode);
-            ps.setString(4, customerPhone);
-            ps.setInt(5, customerDivisionId);
+            ps.setString(1, appointmentTitle);
+            ps.setString(2, appointmentDescription);
+            ps.setString(3, appointmentLocation);
+            ps.setString(4, appointmentType);
+            ps.setTimestamp(5, startTime);
+            ps.setTimestamp(6, endTime);
+            ps.setInt(7, customerId);
+            ps.setInt(8, userId);
+            ps.setInt(9, contactId);
+
             ps.executeUpdate(); // OR EXECUTE UPDATE or just EXECUTE?
         }
         catch(SQLException e){
             e.printStackTrace();
         }
     }
-*/
 
 }

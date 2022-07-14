@@ -1,7 +1,9 @@
 package controller;
 
+import DAO.DBAppointments;
 import DAO.DBContacts;
 import DAO.DBCustomers;
+import DAO.DBUsers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,8 +17,12 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Contacts;
 import model.Customers;
+import model.Divisions;
+import model.Users;
+
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Timestamp;
 import java.time.*;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -65,7 +71,30 @@ public class AddAppointmentController implements Initializable {
 
     @FXML
     void onActionSave(ActionEvent event) {
+        System.out.println("");
+        try{
+            String aTitle = appointmentTitleField.getText();
+            String aDescription = appointmentDescriptionField.getText();
+            String aLocation = appointmentLocationField.getText();
+            String aType = appointmentTypeField.getText();
+            Timestamp aStart = Timestamp.valueOf(LocalDateTime.of(datePickerWidget.getValue(),startTimeComboBox.getValue()));
+            Timestamp aEnd = Timestamp.valueOf(LocalDateTime.of(datePickerWidget.getValue(),endTimeComboBox.getValue()));
+            int aCustomerId = customerComboBox.getSelectionModel().getSelectedItem().getCustomerId();
+            int aUserId = DBUsers.getFakeUserId();
+            int aContactId = contactComboBox.getSelectionModel().getSelectedItem().getContactId();
 
+            DBAppointments.AddAppointment(aTitle, aDescription, aLocation, aType, aStart, aEnd, aCustomerId, aUserId, aContactId);
+
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AppointmentScreen.fxml")));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setTitle("Appointments");
+            stage.setScene(scene);
+            stage.show();
+        }
+        catch (NumberFormatException | IOException e){
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -100,8 +129,8 @@ public class AddAppointmentController implements Initializable {
         datePickerWidget.setValue(now.toLocalDate());
         LocalTime time = LocalTime.of(7,0);
 
-        startTimeComboBox.setValue(time);
-        endTimeComboBox.setValue(time.plusMinutes(15));
+//        startTimeComboBox.setValue(time);
+//        endTimeComboBox.setValue(time.plusMinutes(15));
         startTimeComboBox.setVisibleRowCount(5);
         endTimeComboBox.setVisibleRowCount(5);
         customerComboBox.setVisibleRowCount(5);
