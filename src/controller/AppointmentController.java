@@ -1,7 +1,6 @@
 package controller;
 
 import DAO.DBAppointments;
-import DAO.DBCustomers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,8 +20,6 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class AppointmentController implements Initializable {
-
-    //TODO - FIX TABLEVIEW, REMOVE DATE
 
     @FXML
     private TableView<Appointments> appointmentTableView;

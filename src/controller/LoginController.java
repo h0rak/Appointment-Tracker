@@ -1,14 +1,18 @@
 package controller;
 
+import DAO.DBUsers;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Users;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Locale;
@@ -30,34 +34,41 @@ public class LoginController implements Initializable {
 
     public void onActionLogin(ActionEvent actionEvent) throws IOException {
 
-        // get text fields
+        String userName = usernameInput.getText();
+        String userPassword = passwordInput.getText();
+        boolean matchExists = false;
 
-        // check database for combination of username password
+        ObservableList<Users> allUsersList = DBUsers.getAllUsers();
+        for (Users u : allUsersList){
+            if(u.getUserName().equals(userName) && u.getUserPassword().equals(userPassword)){
+                matchExists = true;
+                break;
+            }
+        }
+        if (matchExists){
+            // TODO print valid login to a file
 
-        // if .. correct
+            // TODO 15 minute alert (grab user element)
 
-        // print valid login to a file
+            // change screens
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AppointmentScreen.fxml")));
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setTitle("Appointments");
+            stage.setScene(scene);
+            stage.show();
+        }
+        else {
+            // TODO print invalid login to a file
 
-        // 15 minute alert (grab user element)
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("Invalid username / password combination.");
+            alert.showAndWait();
+            // TODO Code repository : PrintWriter
+        }
 
-        // change screens
-
-        // if .. not correct
-
-        // print invalid login to a file
-
-        // pop-up alert "bad login"
-
-        // Code repository : PrintWriter
-
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AppointmentScreen.fxml")));
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setTitle("Appointments");
-        stage.setScene(scene);
-        stage.show();
     }
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

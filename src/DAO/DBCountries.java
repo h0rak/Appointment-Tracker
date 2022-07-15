@@ -30,7 +30,6 @@ public abstract class DBCountries {
         return allCountriesList;
     }
 
-//    TODO - SETUP THIS METHOD!!
     public static Countries getCustomerCountryFromDivisionId(int customerDivisionId) {
         Countries c = null;
         int cID = 0;

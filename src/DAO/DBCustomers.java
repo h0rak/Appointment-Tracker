@@ -48,7 +48,6 @@ public abstract class DBCustomers {
         }
     }
 
-    // TODO UpdateCustomer method. This may need more work.
     public static void UpdateCustomer(int customerId, String customerName, String customerAddress, String customerPostalCode, String customerPhone, int customerDivisionId) {
 //        String sql = "UPDATE customers SET Customer_Name = ?, Address = ?, Postal_Code = ?, Phone = ?, NULL, NULL, NULL, NULL, Division_ID = ? WHERE Customer_ID = ?";
         String sql = "UPDATE customers SET Customer_Name = ?, Address = ?, Postal_Code = ?, Phone = ?, Division_ID = ? WHERE Customer_ID = ?";

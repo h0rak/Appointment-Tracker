@@ -86,9 +86,6 @@ public class UpdateAppointmentController implements Initializable {
         customerComboBox.setValue(DBAppointments.getCustomerByAppointmentId(appointment.getAppointmentId()));
         contactComboBox.setItems(DBContacts.getAllContacts());
         contactComboBox.setValue(DBAppointments.getContactByAppointmentId(appointment.getAppointmentId()));
-
-
-
     }
 
     @Override
