@@ -1,6 +1,8 @@
 package controller;
 
 import DAO.DBAppointments;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +17,7 @@ import model.Appointments;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -86,12 +89,12 @@ public class AppointmentController implements Initializable {
 
     @FXML
     void onActionFilterMonth(ActionEvent event) {
-
+        appointmentTableView.setItems(appointmentsThisMonth());
     }
 
     @FXML
     void onActionFilterWeek(ActionEvent event) {
-
+        appointmentTableView.setItems(appointmentsThisWeek());
     }
 
     @FXML
@@ -148,6 +151,40 @@ public class AppointmentController implements Initializable {
             else {
                 appointmentTableView.getSelectionModel().clearSelection();
             }
+        }
+    }
+
+    private ObservableList<Appointments> appointmentsThisMonth(){
+        ObservableList<Appointments> appointmentsThisMonthList = FXCollections.observableArrayList();
+        ObservableList<Appointments> allAppointmentsList = FXCollections.observableArrayList();
+
+        allAppointmentsList = DBAppointments.getAllAppointments();
+        LocalDateTime now = LocalDateTime.now();
+
+        for (Appointments a : allAppointmentsList){
+            if (a.getStartTime().toLocalDateTime().isAfter(now) && a.getStartTime().toLocalDateTime().isBefore(now.plusDays(30))){
+                appointmentsThisMonthList.add(a);
+            }
+        }
+
+        return appointmentsThisMonthList;
+    }
+
+    private ObservableList<Appointments> appointmentsThisWeek(){
+        {
+            ObservableList<Appointments> appointmentsThisWeekList = FXCollections.observableArrayList();
+            ObservableList<Appointments> allAppointmentsList = FXCollections.observableArrayList();
+
+            allAppointmentsList = DBAppointments.getAllAppointments();
+            LocalDateTime now = LocalDateTime.now();
+
+            for (Appointments a : allAppointmentsList){
+                if (a.getStartTime().toLocalDateTime().isAfter(now) && a.getStartTime().toLocalDateTime().isBefore(now.plusDays(7))){
+                    appointmentsThisWeekList.add(a);
+                }
+            }
+
+            return appointmentsThisWeekList;
         }
     }
 
