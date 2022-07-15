@@ -71,7 +71,6 @@ public class AddAppointmentController implements Initializable {
 
     @FXML
     void onActionSave(ActionEvent event) {
-        System.out.println("");
         try{
             String aTitle = appointmentTitleField.getText();
             String aDescription = appointmentDescriptionField.getText();
@@ -80,7 +79,7 @@ public class AddAppointmentController implements Initializable {
             Timestamp aStart = Timestamp.valueOf(LocalDateTime.of(datePickerWidget.getValue(),startTimeComboBox.getValue()));
             Timestamp aEnd = Timestamp.valueOf(LocalDateTime.of(datePickerWidget.getValue(),endTimeComboBox.getValue()));
             int aCustomerId = customerComboBox.getSelectionModel().getSelectedItem().getCustomerId();
-            int aUserId = DBUsers.getFakeUserId();
+            int aUserId = DBUsers.getFakeUserId(); //TODO - Fix how the userId is gathered
             int aContactId = contactComboBox.getSelectionModel().getSelectedItem().getContactId();
 
             DBAppointments.AddAppointment(aTitle, aDescription, aLocation, aType, aStart, aEnd, aCustomerId, aUserId, aContactId);
@@ -99,10 +98,7 @@ public class AddAppointmentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        contactComboBox.setItems(DBContacts.getAllContacts());
-        customerComboBox.setItems(DBCustomers.getAllCustomers());
 
-        // THIS WILL CHANGE, RIGHT??
         LocalTime start = LocalTime.of(8, 0);
         LocalTime end = LocalTime.of(22, 0);
 
@@ -111,7 +107,6 @@ public class AddAppointmentController implements Initializable {
         ZonedDateTime startZdtFromEst = startLdt.atZone(ZoneId.of("America/New_York"));
         ZonedDateTime startZdtToLocal = startZdtFromEst.withZoneSameInstant(ZoneId.systemDefault());
         start = startZdtToLocal.toLocalTime();
-
         // this is me trying end time
         LocalDateTime endLdt = LocalDateTime.of(LocalDate.now(),end);
         ZonedDateTime endZdtFromEst = endLdt.atZone(ZoneId.of("America/New_York"));
@@ -129,12 +124,13 @@ public class AddAppointmentController implements Initializable {
         datePickerWidget.setValue(now.toLocalDate());
         LocalTime time = LocalTime.of(7,0);
 
-//        startTimeComboBox.setValue(time);
-//        endTimeComboBox.setValue(time.plusMinutes(15));
         startTimeComboBox.setVisibleRowCount(5);
         endTimeComboBox.setVisibleRowCount(5);
-        customerComboBox.setVisibleRowCount(5);
-        contactComboBox.setVisibleRowCount(5);
 
+        customerComboBox.setItems(DBCustomers.getAllCustomers());
+        customerComboBox.setVisibleRowCount(5);
+
+        contactComboBox.setItems(DBContacts.getAllContacts());
+        contactComboBox.setVisibleRowCount(5);
     }
 }

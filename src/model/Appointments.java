@@ -2,6 +2,7 @@ package model;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class Appointments {
 
@@ -69,9 +70,7 @@ public class Appointments {
         this.appointmentType = appointmentType;
     }
 
-    public Timestamp getStartTime() {
-        return startTime;
-    }
+    public Timestamp getStartTime() { return startTime; }
 
     public String getStartTimeDisplay(){
         return startTime.toLocalDateTime().toString();
@@ -116,4 +115,5 @@ public class Appointments {
     public void setContactId(int contactId) {
         this.contactId = contactId;
     }
+
 }

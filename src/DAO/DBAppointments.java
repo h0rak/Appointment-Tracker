@@ -173,7 +173,6 @@ public abstract class DBAppointments {
         }
     }
 
-    // TODO Add Appointment method.
     public static void AddAppointment(String appointmentTitle, String appointmentDescription, String appointmentLocation, String appointmentType, Timestamp startTime, Timestamp endTime, int customerId, int userId, int contactId){
         try {
             String sql = "INSERT INTO appointments VALUES(NULL, ?, ?, ?, ?, ?, ?, NULL, NULL, NULL, NULL, ?, ?, ?)";
