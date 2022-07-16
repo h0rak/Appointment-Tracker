@@ -156,26 +156,19 @@ public class AppointmentController implements Initializable {
 
     private ObservableList<Appointments> appointmentsThisMonth(){
         ObservableList<Appointments> appointmentsThisMonthList = FXCollections.observableArrayList();
-        ObservableList<Appointments> allAppointmentsList = FXCollections.observableArrayList();
-
-        allAppointmentsList = DBAppointments.getAllAppointments();
+        ObservableList<Appointments> allAppointmentsList = DBAppointments.getAllAppointments();
         LocalDateTime now = LocalDateTime.now();
-
         for (Appointments a : allAppointmentsList){
             if (a.getStartTime().toLocalDateTime().isAfter(now) && a.getStartTime().toLocalDateTime().isBefore(now.plusDays(30))){
                 appointmentsThisMonthList.add(a);
             }
         }
-
         return appointmentsThisMonthList;
     }
 
     private ObservableList<Appointments> appointmentsThisWeek(){
-        {
             ObservableList<Appointments> appointmentsThisWeekList = FXCollections.observableArrayList();
-            ObservableList<Appointments> allAppointmentsList = FXCollections.observableArrayList();
-
-            allAppointmentsList = DBAppointments.getAllAppointments();
+            ObservableList<Appointments> allAppointmentsList = DBAppointments.getAllAppointments();
             LocalDateTime now = LocalDateTime.now();
 
             for (Appointments a : allAppointmentsList){
@@ -183,9 +176,7 @@ public class AppointmentController implements Initializable {
                     appointmentsThisWeekList.add(a);
                 }
             }
-
             return appointmentsThisWeekList;
-        }
     }
 
     @Override
