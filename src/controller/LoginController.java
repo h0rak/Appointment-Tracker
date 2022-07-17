@@ -21,8 +21,9 @@ import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
 
-//     TODO somewhere in initialize or maybe override i have to check the user's local time zone
-//     TODO login activity txt file
+// TODO somewhere in initialize or maybe override i have to check the user's local time zone
+// TODO login activity txt file (PrintWriter)
+// TODO 15-minute alert - grab user element
 
     public TextField usernameInput;
     public PasswordField passwordInput;
@@ -40,16 +41,14 @@ public class LoginController implements Initializable {
 
         ObservableList<Users> allUsersList = DBUsers.getAllUsers();
         for (Users u : allUsersList){
-            if(u.getUserName().equals(userName) && u.getUserPassword().equals(userPassword)){
+
+           if(u.getUserName().equals(userName) && u.getUserPassword().equals(userPassword)){
                 matchExists = true;
                 break;
             }
+
         }
         if (matchExists){
-            // TODO print valid login to a file
-
-            // TODO 15 minute alert (grab user element)
-
             // change screens
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AppointmentScreen.fxml")));
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -59,15 +58,19 @@ public class LoginController implements Initializable {
             stage.show();
         }
         else {
-            // TODO print invalid login to a file
-
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setContentText("Invalid username / password combination.");
-            alert.showAndWait();
-            // TODO Code repository : PrintWriter
+            if(Objects.equals(userName, "") && Objects.equals(userPassword, "")) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText("Please enter a username / password.");
+                alert.showAndWait();
+            }
+            else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText("Invalid username / password combination.");
+                alert.showAndWait();
+            }
         }
-
     }
 
     @Override
