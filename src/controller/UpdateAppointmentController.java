@@ -3,6 +3,7 @@ package controller;
 import DAO.DBAppointments;
 import DAO.DBContacts;
 import DAO.DBCustomers;
+import DAO.DBUsers;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,6 +22,7 @@ import model.Customers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Timestamp;
 import java.time.*;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -68,8 +70,31 @@ public class UpdateAppointmentController implements Initializable {
     }
 
     @FXML
-    void onActionSave(ActionEvent event) {
+    void onActionSave(ActionEvent event) { // TODO This isn't working for updating - does nothing
+        try{
+            String aId = appointmentIdField.getText();
+            String aTitle = appointmentTitleField.getText();
+            String aDescription = appointmentDescriptionField.getText();
+            String aLocation = appointmentLocationField.getText();
+            String aType = appointmentTypeField.getText();
+            Timestamp aStart = Timestamp.valueOf(LocalDateTime.of(datePickerWidget.getValue(),startTimeComboBox.getValue()));
+            Timestamp aEnd = Timestamp.valueOf(LocalDateTime.of(datePickerWidget.getValue(),endTimeComboBox.getValue()));
+            int aCustomerId = customerComboBox.getSelectionModel().getSelectedItem().getCustomerId();
+            int aUserId = DBUsers.getFakeUserId(); //TODO - Fix how the userId is gathered
+            int aContactId = contactComboBox.getSelectionModel().getSelectedItem().getContactId();
 
+            DBAppointments.UpdateAppointment(Integer.parseInt(aId), aTitle, aDescription, aLocation, aType, aStart, aEnd, aCustomerId, aUserId, aContactId);
+
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AppointmentScreen.fxml")));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setTitle("Appointments");
+            stage.setScene(scene);
+            stage.show();
+        }
+        catch (NumberFormatException | IOException e){
+            e.printStackTrace();
+        }
     }
 
 

@@ -51,10 +51,10 @@ public class AddAppointmentController implements Initializable {
     private ComboBox<Customers> customerComboBox;
 
     @FXML
-    private ComboBox<LocalTime> endTimeComboBox; // <LocalTime>
+    private ComboBox<LocalTime> endTimeComboBox;
 
     @FXML
-    private ComboBox<LocalTime> startTimeComboBox; // <LocalTime>
+    private ComboBox<LocalTime> startTimeComboBox;
 
     @FXML
     private DatePicker datePickerWidget;

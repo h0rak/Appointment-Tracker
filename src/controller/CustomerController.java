@@ -1,7 +1,10 @@
 package controller;
 
+import DAO.DBAppointments;
 import DAO.DBCustomers;
 import DAO.DBDivisions;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import model.Appointments;
 import model.Customers;
 import java.io.IOException;
 import java.net.URL;
@@ -83,11 +87,29 @@ public class CustomerController implements Initializable {
     @FXML
     void onActionDeleteCustomer(ActionEvent event) {
         Customers customerToDelete = customerTableView.getSelectionModel().getSelectedItem();
+        ObservableList<Appointments> allAppointmentsList = DBAppointments.getAllAppointments();
+        ObservableList<Appointments> customerAppointments = FXCollections.observableArrayList();
+        int customerId = customerToDelete.getCustomerId();
+        String customerName = customerToDelete.getCustomerName();
+
+        for (Appointments a : allAppointmentsList){
+            if (a.getCustomerId() == customerId){
+                customerAppointments.add(a);
+            }
+        }
+
         if (customerToDelete == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setContentText("Please select a customer to delete.");
             alert.showAndWait();
+        }
+        else if (!customerAppointments.isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("Customers with existing appointments cannot be deleted.");
+            alert.showAndWait();
+
         }
         else {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you wish to delete this customer?");
@@ -95,6 +117,10 @@ public class CustomerController implements Initializable {
             if (result.isPresent() && result.get() == ButtonType.OK) {
                 DBCustomers.DeleteCustomer(customerToDelete.getCustomerId());
                 customerTableView.setItems(DBCustomers.getAllCustomers());
+                Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+                alert2.setTitle("Delete Successful");
+                alert2.setContentText("Customer with ID " + customerId + ", \"" + customerName + "\" was successfully deleted.");
+                alert2.showAndWait();
             }
             else {
                 customerTableView.getSelectionModel().clearSelection();
@@ -102,11 +128,10 @@ public class CustomerController implements Initializable {
         }
     }
 
+
     @FXML
     void onActionUpdateCustomer(ActionEvent actionEvent) throws IOException {
         try {
-            Customers updateCustomer = customerTableView.getSelectionModel().getSelectedItem();
-
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/view/UpdateCustomerScreen.fxml"));
             loader.load();

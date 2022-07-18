@@ -63,7 +63,7 @@ public class UpdateCustomerController implements Initializable {
     @FXML
     void onActionSave(ActionEvent event) {
         try{
-            String cId = customerIdField.getText(); // String or int???
+            String cId = customerIdField.getText();
             String cName = customerNameField.getText();
             String cAddress = customerAddressField.getText();
             String cPostal = customerPostalCodeField.getText();

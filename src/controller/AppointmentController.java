@@ -179,6 +179,17 @@ public class AppointmentController implements Initializable {
             return appointmentsThisWeekList;
     }
 
+    private void appointmentAlert(){
+        ObservableList<Appointments> allAppointmentsList = DBAppointments.getAllAppointments();
+        for (Appointments a : allAppointmentsList){
+            if (LocalDateTime.now().plusMinutes(15).isAfter(LocalDateTime.now())){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Alert");
+                alert.setContentText("There's an appointment within 15 minutes!");
+            }
+        }
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         appointmentTableView.setItems(DBAppointments.getAllAppointments());
@@ -192,5 +203,6 @@ public class AppointmentController implements Initializable {
         customerIdCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         userIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
         contactIdCol.setCellValueFactory(new PropertyValueFactory<>("contactId"));
+        appointmentAlert();
     }
 }

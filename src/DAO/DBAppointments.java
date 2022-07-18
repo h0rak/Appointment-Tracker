@@ -6,10 +6,8 @@ import model.Appointments;
 import model.Contacts;
 import model.Customers;
 import utilities.JDBC;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Timestamp;
+
+import java.sql.*;
 
 public abstract class DBAppointments {
 
@@ -192,6 +190,27 @@ public abstract class DBAppointments {
         catch(SQLException e){
             e.printStackTrace();
         }
+    } // location type start end 1 2 3 4 Customer_ID User_ID Contact_ID
+
+    public static void UpdateAppointment(int appointmentId, String appointmentTitle, String appointmentDescription, String appointmentLocation, String appointmentType, Timestamp startTime, Timestamp endTime, int customerId, int userId, int contactId){
+        String sql = "UPDATE appointments SET Title = ?, Description = ?, Location = ?, Type = ?, Start = ?, End = ?, Customer_ID = ?, User_ID = ?, Contact_ID = ? WHERE Appointment_ID = ?;";
+        try{
+            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+            ps.setString(1, appointmentTitle);
+            ps.setString(2, appointmentDescription);
+            ps.setString(3, appointmentLocation);
+            ps.setString(4, appointmentType);
+            ps.setTimestamp(5, startTime);
+            ps.setTimestamp(6, endTime);
+            ps.setInt(7, customerId);
+            ps.setInt(8, userId);
+            ps.setInt(9, contactId);
+            ps.setInt(10, appointmentId);
+        }
+        catch (NumberFormatException | SQLException e){
+            e.printStackTrace();
+        }
+
     }
 
 }
