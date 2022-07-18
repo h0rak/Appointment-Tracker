@@ -110,8 +110,6 @@ public class AppointmentController implements Initializable {
     @FXML
     void onActionUpdateAppointment(ActionEvent actionEvent) throws IOException {
         try {
-            Appointments updateAppointment = appointmentTableView.getSelectionModel().getSelectedItem();
-
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/view/UpdateAppointmentScreen.fxml"));
             loader.load();

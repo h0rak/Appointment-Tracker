@@ -4,7 +4,6 @@ import DAO.DBAppointments;
 import DAO.DBContacts;
 import DAO.DBCustomers;
 import DAO.DBUsers;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,7 +18,6 @@ import javafx.stage.Stage;
 import model.Appointments;
 import model.Contacts;
 import model.Customers;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
@@ -97,9 +95,8 @@ public class UpdateAppointmentController implements Initializable {
         }
     }
 
-
     public void SendAppointment(Appointments appointment) {
-        appointmentIdField.setText(String.valueOf(appointment.getAppointmentId())); // id title description location type
+        appointmentIdField.setText(String.valueOf(appointment.getAppointmentId())); // id title description location type start end customer user contact
         appointmentTitleField.setText(String.valueOf(appointment.getAppointmentTitle()));
         appointmentDescriptionField.setText(String.valueOf(appointment.getAppointmentDescription()));
         appointmentLocationField.setText(String.valueOf(appointment.getAppointmentLocation()));

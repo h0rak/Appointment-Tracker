@@ -190,7 +190,7 @@ public abstract class DBAppointments {
         catch(SQLException e){
             e.printStackTrace();
         }
-    } // location type start end 1 2 3 4 Customer_ID User_ID Contact_ID
+    }
 
     public static void UpdateAppointment(int appointmentId, String appointmentTitle, String appointmentDescription, String appointmentLocation, String appointmentType, Timestamp startTime, Timestamp endTime, int customerId, int userId, int contactId){
         String sql = "UPDATE appointments SET Title = ?, Description = ?, Location = ?, Type = ?, Start = ?, End = ?, Customer_ID = ?, User_ID = ?, Contact_ID = ? WHERE Appointment_ID = ?;";
@@ -206,6 +206,7 @@ public abstract class DBAppointments {
             ps.setInt(8, userId);
             ps.setInt(9, contactId);
             ps.setInt(10, appointmentId);
+            ps.executeUpdate(); // forgot this. that's why it wasn't updating.
         }
         catch (NumberFormatException | SQLException e){
             e.printStackTrace();
