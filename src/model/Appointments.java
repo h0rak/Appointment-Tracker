@@ -1,8 +1,6 @@
 package model;
 
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 public class Appointments {
 
@@ -11,8 +9,8 @@ public class Appointments {
     private String appointmentDescription;
     private String appointmentLocation;
     private String appointmentType;
-    private Timestamp startTime; // LocalDateTime or Timestamp
-    private Timestamp endTime; // LocalDateTime or Timestamp
+    private Timestamp startTime;
+    private Timestamp endTime;
     private int customerId;
     private int userId;
     private int contactId;
