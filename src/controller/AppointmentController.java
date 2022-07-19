@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import model.Appointments;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -180,10 +181,20 @@ public class AppointmentController implements Initializable {
     private void appointmentAlert(){
         ObservableList<Appointments> allAppointmentsList = DBAppointments.getAllAppointments();
         for (Appointments a : allAppointmentsList){
-            if (LocalDateTime.now().plusMinutes(15).isAfter(LocalDateTime.now())){
+            if (LocalDateTime.now().isBefore(a.getStartTime().toLocalDateTime()) && LocalDateTime.now().plusMinutes(15).isAfter(a.getStartTime().toLocalDateTime())){
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Alert");
-                alert.setContentText("There's an appointment within 15 minutes!");
+                alert.setContentText("There's an appointment within the next 15 minutes!\n\n" +
+                        "Appointment ID: " + a.getAppointmentId() + ", Date: " + a.getStartTime().toLocalDateTime().toLocalDate() + ", Time: " + a.getStartTime().toLocalDateTime().toLocalTime() + "-" + a.getEndTime().toLocalDateTime().toLocalTime());
+                alert.showAndWait();
+                break;
+            } else if (LocalDateTime.now().isAfter(a.getStartTime().toLocalDateTime()) && LocalDateTime.now().isBefore(a.getEndTime().toLocalDateTime())) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Alert");
+                alert.setContentText("There's an appointment taking place now.\n\n" +
+                        "Appointment ID: " + a.getAppointmentId() + ", Date: " + a.getStartTime().toLocalDateTime().toLocalDate() + ", Time: " + a.getStartTime().toLocalDateTime().toLocalTime() + "-" + a.getEndTime().toLocalDateTime().toLocalTime());
+                alert.showAndWait();
+                break;
             }
         }
     }

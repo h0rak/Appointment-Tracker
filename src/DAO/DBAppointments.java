@@ -6,7 +6,6 @@ import model.Appointments;
 import model.Contacts;
 import model.Customers;
 import utilities.JDBC;
-
 import java.sql.*;
 
 public abstract class DBAppointments {
