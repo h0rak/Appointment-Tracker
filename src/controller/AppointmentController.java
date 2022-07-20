@@ -1,6 +1,7 @@
 package controller;
 
 import DAO.DBAppointments;
+import com.company.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -57,6 +58,8 @@ public class AppointmentController implements Initializable {
 
     @FXML
     private TableColumn<Appointments, Integer> contactIdCol;
+
+    public static boolean firstTime = true;
 
     @FXML
     void onActionAppointmentScreen(ActionEvent event) {
@@ -133,7 +136,11 @@ public class AppointmentController implements Initializable {
 
     @FXML
     void onActionDeleteAppointment(ActionEvent event) {
+
         Appointments appointmentToDelete = appointmentTableView.getSelectionModel().getSelectedItem();
+        int appointmentId = appointmentToDelete.getAppointmentId();
+        String appointmentType = appointmentToDelete.getAppointmentType();
+
         if (appointmentToDelete == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -146,6 +153,10 @@ public class AppointmentController implements Initializable {
             if (result.isPresent() && result.get() == ButtonType.OK) {
                 DBAppointments.DeleteAppointment(appointmentToDelete.getAppointmentId());
                 appointmentTableView.setItems(DBAppointments.getAllAppointments());
+                Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+                alert2.setTitle("Appointment Cancelled");
+                alert2.setContentText("Appointment with ID " + appointmentId + " and type \"" + appointmentType + "\" was successfully cancelled.");
+                alert2.showAndWait();
             }
             else {
                 appointmentTableView.getSelectionModel().clearSelection();
@@ -179,22 +190,34 @@ public class AppointmentController implements Initializable {
     }
 
     private void appointmentAlert(){
-        ObservableList<Appointments> allAppointmentsList = DBAppointments.getAllAppointments();
-        for (Appointments a : allAppointmentsList){
-            if (LocalDateTime.now().isBefore(a.getStartTime().toLocalDateTime()) && LocalDateTime.now().plusMinutes(15).isAfter(a.getStartTime().toLocalDateTime())){
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Alert");
-                alert.setContentText("There's an appointment within the next 15 minutes!\n\n" +
-                        "Appointment ID: " + a.getAppointmentId() + ", Date: " + a.getStartTime().toLocalDateTime().toLocalDate() + ", Time: " + a.getStartTime().toLocalDateTime().toLocalTime() + "-" + a.getEndTime().toLocalDateTime().toLocalTime());
-                alert.showAndWait();
-                break;
-            } else if (LocalDateTime.now().isAfter(a.getStartTime().toLocalDateTime()) && LocalDateTime.now().isBefore(a.getEndTime().toLocalDateTime())) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Alert");
-                alert.setContentText("There's an appointment taking place now.\n\n" +
-                        "Appointment ID: " + a.getAppointmentId() + ", Date: " + a.getStartTime().toLocalDateTime().toLocalDate() + ", Time: " + a.getStartTime().toLocalDateTime().toLocalTime() + "-" + a.getEndTime().toLocalDateTime().toLocalTime());
-                alert.showAndWait();
-                break;
+        if (firstTime){
+            ObservableList<Appointments> allAppointmentsList = DBAppointments.getAllAppointments();
+            for (Appointments a : allAppointmentsList){
+                if (LocalDateTime.now().isBefore(a.getStartTime().toLocalDateTime()) && LocalDateTime.now().plusMinutes(15).isAfter(a.getStartTime().toLocalDateTime())){
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Alert");
+                    alert.setContentText("There's an appointment within the next 15 minutes!\n\n" +
+                            "Appointment ID: " + a.getAppointmentId() + ", Date: " + a.getStartTime().toLocalDateTime().toLocalDate() + ", Time: " + a.getStartTime().toLocalDateTime().toLocalTime() + "-" + a.getEndTime().toLocalDateTime().toLocalTime());
+                    alert.showAndWait();
+                    firstTime = false;
+                    break;
+                } else if (LocalDateTime.now().isAfter(a.getStartTime().toLocalDateTime()) && LocalDateTime.now().isBefore(a.getEndTime().toLocalDateTime())) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Alert");
+                    alert.setContentText("There's an appointment taking place now.\n\n" +
+                            "Appointment ID: " + a.getAppointmentId() + ", Date: " + a.getStartTime().toLocalDateTime().toLocalDate() + ", Time: " + a.getStartTime().toLocalDateTime().toLocalTime() + "-" + a.getEndTime().toLocalDateTime().toLocalTime());
+                    alert.showAndWait();
+                    firstTime = false;
+                    break;
+                }
+                else {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Alert");
+                    alert.setContentText("There are no upcoming appointments scheduled.\n");
+                    alert.showAndWait();
+                    firstTime = false;
+                    break;
+                }
             }
         }
     }

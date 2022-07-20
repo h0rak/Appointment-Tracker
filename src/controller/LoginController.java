@@ -38,22 +38,16 @@ public class LoginController implements Initializable {
     }
 
     public void onActionLogin(ActionEvent actionEvent) throws IOException {
-
         String userName = usernameInput.getText();
         String userPassword = passwordInput.getText();
-//        boolean matchExists = false;
-
         ObservableList<Users> allUsersList = DBUsers.getAllUsers();
         for (Users u : allUsersList){
-
            if(u.getUserName().equals(userName) && u.getUserPassword().equals(userPassword)){
                 matchExists = true;
                 break;
             }
-
         }
         if (matchExists){
-            // change screens
             appendText();
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AppointmentScreen.fxml")));
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -81,7 +75,6 @@ public class LoginController implements Initializable {
     }
 
     private void appendText() { // TODO login activity txt file (PrintWriter)
-
         String result;
         if (matchExists){
             result = "SUCCESSFUL";
@@ -89,7 +82,6 @@ public class LoginController implements Initializable {
         else {
             result = "FAILED";
         }
-
         try {
             PrintWriter pw = new PrintWriter(new FileOutputStream(new File("login_activity.txt"), true));
             //login_activity.txt will appear in the project's root directory under NetBeans projects
