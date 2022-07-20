@@ -16,7 +16,6 @@ import model.Users;
 import java.io.*;
 import java.net.URL;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -25,12 +24,13 @@ import java.util.logging.Logger;
 
 public class LoginController implements Initializable {
 
-// TODO somewhere in initialize or maybe override i have to check the user's local time zone
-// TODO 15-minute alert - grab user element
+// TODO - CHECK USER'S LOCALE
+// TODO - 15-MINUTE ALERT; GRAB USER ELEMENT
 
     public TextField usernameInput;
     public PasswordField passwordInput;
     private boolean matchExists = false;
+//    private final ResourceBundle rb = ResourceBundle.getBundle("utilities/RB", Locale.getDefault());
 
     public void onActionReset(ActionEvent actionEvent) {
         usernameInput.clear();
@@ -94,7 +94,7 @@ public class LoginController implements Initializable {
             PrintWriter pw = new PrintWriter(new FileOutputStream(new File("login_activity.txt"), true));
             //login_activity.txt will appear in the project's root directory under NetBeans projects
             //Note that Notepad will not display the following lines on separate lines
-            pw.append("Login Attempt: " + result + ", User: " + usernameInput.getText() + ", Date / Time: " + LocalDateTime.now() + ".\n");
+            pw.append("Login Attempt: ").append(result).append(", User: ").append(usernameInput.getText()).append(", Date / Time: ").append(String.valueOf(LocalDateTime.now())).append(".\n");
             pw.close();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
@@ -103,6 +103,5 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
     }
 }

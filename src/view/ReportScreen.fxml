@@ -38,27 +38,6 @@
                   <Insets bottom="15.0" top="5.0" />
                </padding>
             </VBox>
-            <VBox prefHeight="200.0" prefWidth="200.0" spacing="5.0">
-               <children>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Label text="Total number of Customers: " textAlignment="CENTER" wrapText="true">
-                           <font>
-                              <Font size="12.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="totalCustomersLabel" text="Answer" underline="true">
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                        </Label>
-                     </children>
-                     <padding>
-                        <Insets top="5.0" />
-                     </padding>
-                  </HBox>
-               </children>
-            </VBox>
             <VBox prefHeight="75.0" prefWidth="250.0" spacing="5.0">
                <children>
                   <Label layoutX="10.0" layoutY="120.0" text="Total appointments by Type &amp; Month:" textAlignment="CENTER" wrapText="true">
@@ -92,6 +71,27 @@
                <padding>
                   <Insets top="5.0" />
                </padding>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="200.0" spacing="5.0">
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Total number of Customers: " textAlignment="CENTER" wrapText="true">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="totalCustomersLabel" text="Answer" textFill="RED">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets top="5.0" />
+                     </padding>
+                  </HBox>
+               </children>
             </VBox>
          </children>
          <opaqueInsets>

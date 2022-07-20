@@ -158,7 +158,7 @@ public class AppointmentController implements Initializable {
         ObservableList<Appointments> allAppointmentsList = DBAppointments.getAllAppointments();
         LocalDateTime now = LocalDateTime.now();
         for (Appointments a : allAppointmentsList){
-            if (a.getStartTime().toLocalDateTime().isAfter(now) && a.getStartTime().toLocalDateTime().isBefore(now.plusDays(30))){
+            if (a.getStartTime().toLocalDateTime().getMonth() == LocalDateTime.now().getMonth() && a.getStartTime().toLocalDateTime().getYear() == LocalDateTime.now().getYear()) {
                 appointmentsThisMonthList.add(a);
             }
         }
