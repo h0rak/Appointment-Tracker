@@ -13,11 +13,11 @@
     <children>
         <VBox alignment="CENTER_RIGHT" layoutX="226.0" layoutY="68.0" prefHeight="56.0" prefWidth="186.0" spacing="5.0">
             <children>
-                <TextField fx:id="usernameInput" promptText="type your username...">
+                <TextField fx:id="usernameInput">
                     <font>
                         <Font name="System Italic" size="13.0" />
                     </font></TextField>
-                <PasswordField fx:id="passwordInput" promptText="type your password...">
+                <PasswordField fx:id="passwordInput">
                     <font>
                         <Font name="System Italic" size="13.0" />
                     </font></PasswordField>
@@ -25,23 +25,28 @@
         </VBox>
         <VBox alignment="CENTER_RIGHT" layoutX="101.0" layoutY="68.0" prefHeight="57.0" prefWidth="125.0" spacing="10.0">
             <children>
-                <Label text="Username: ">
+                <Label fx:id="usernameLabel" text="Username: ">
                     <font>
                         <Font size="14.0" />
                     </font>
                 </Label>
-                <Label text="Password: ">
+                <Label fx:id="passwordLabel" text="Password: ">
                     <font>
                         <Font size="14.0" />
                     </font>
                 </Label>
             </children>
         </VBox>
-        <HBox alignment="CENTER" layoutX="163.0" layoutY="131.0" prefHeight="31.0" prefWidth="125.0" spacing="5.0">
+        <HBox alignment="CENTER" layoutX="126.0" layoutY="132.0" prefHeight="31.0" prefWidth="200.0" spacing="5.0">
             <children>
-                <Button fx:id="resetButton" maxWidth="49.0" mnemonicParsing="false" onAction="#onActionReset" prefWidth="49.0" text="Reset" />
-                <Button fx:id="loginButton" maxWidth="49.0" mnemonicParsing="false" onAction="#onActionLogin" prefWidth="49.0" text="Login" />
+                <Button fx:id="resetButton" maxWidth="85.0" mnemonicParsing="false" onAction="#onActionReset" prefWidth="85.0" text="Reset" />
+                <Button fx:id="loginButton" maxWidth="85.0" mnemonicParsing="false" onAction="#onActionLogin" prefWidth="85.0" text="Login" />
             </children>
         </HBox>
+      <Label fx:id="zoneLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="75.0" layoutY="189.0" maxWidth="300.0" prefWidth="300.0" text="Label">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>
