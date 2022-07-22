@@ -17,7 +17,6 @@ import javafx.stage.Stage;
 import model.Appointments;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Objects;

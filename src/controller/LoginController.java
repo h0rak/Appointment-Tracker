@@ -22,8 +22,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class LoginController implements Initializable {
-// TODO - CHECK USER'S LOCALE
-// TODO - 15-MINUTE ALERT; GRAB USER ELEMENT
 
     public TextField usernameInput;
     public PasswordField passwordInput;
@@ -104,7 +102,7 @@ public class LoginController implements Initializable {
         }
     }
 
-    private void appendLoginAttempts() { // TODO login activity txt file (PrintWriter)
+    private void appendLoginAttempts() {
         String result;
         if (matchExists){
             result = "SUCCESSFUL";

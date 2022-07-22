@@ -6,14 +6,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import java.util.Locale;
 import java.util.Objects;
-
-// TODO FRENCH / ENGLISH: MAIN OR LOGIN?
+import java.util.Locale;
 
 public class Main extends Application {
 
-    public boolean firstTime = true;
+//    TODO + ERROR CHECKING WITH CUSTOMERS
+//    TODO + ERROR CHECKING WITH APPOINTMENTS (SCHEDULING OVERLAPPING APPOINTMENTS)
+//    TODO + 2 LAMBDA EXPRESSIONS
+//    TODO + JAVADOC
+//    TODO + README.TXT
+
 
     public static void main(String[] args) {
 //        Locale.setDefault(new Locale("fr"));
