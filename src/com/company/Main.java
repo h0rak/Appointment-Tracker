@@ -17,7 +17,6 @@ public class Main extends Application {
 //    TODO + JAVADOC
 //    TODO + README.TXT
 
-
     public static void main(String[] args) {
 //        Locale.setDefault(new Locale("fr"));
         JDBC.openConnection();

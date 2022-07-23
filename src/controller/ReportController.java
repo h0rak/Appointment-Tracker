@@ -20,12 +20,14 @@ import model.Contacts;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class ReportController implements Initializable {
 
-    private final ObservableList<String> months = FXCollections.observableArrayList("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+    private final ObservableList<String> months = FXCollections.observableArrayList("JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER");
 
     public ToggleGroup tg1;
 
@@ -63,6 +65,9 @@ public class ReportController implements Initializable {
     private Label totalCustomersLabel;
 
     @FXML
+    private Label typeMonthTotalLabel;
+
+    @FXML
     private TableColumn<Appointments, Integer> userIdCol;
 
     @FXML
@@ -74,17 +79,6 @@ public class ReportController implements Initializable {
     @FXML
     private ComboBox<Contacts> contactComboBox;
 
-    @FXML
-    private Label typeMonthTotalLabel;
-
-    @FXML
-    private Label ukNumberLabel;
-
-    @FXML
-    private Label usNumberLabel;
-
-    @FXML
-    private Label canNumberLabel;
 
     @FXML
     void onActionAppointmentScreen(ActionEvent actionEvent) throws IOException {
@@ -121,16 +115,18 @@ public class ReportController implements Initializable {
     @FXML
     void onActionTypeMonthTotal(ActionEvent event) {
         String typeToSearch = typeComboBox.getSelectionModel().getSelectedItem();
-        String monthToSearch = monthComboBox.getSelectionModel().getSelectedItem();
-        ObservableList<Appointments> appointmentsToAddHours = FXCollections.observableArrayList();
+        Month monthToSearch = Month.valueOf(monthComboBox.getSelectionModel().getSelectedItem());
+        int totalHours = 0;
+        System.out.println(monthComboBox.getSelectionModel().getSelectedItem());
 
-/*
-        try{
-            String sql = "SELECT Appointment_ID, Title, Description, Location, Type, Start, End, Customer_ID, User_ID, Contact_ID FROM appointments WHERE Type = \"" + typeToSearch + "\"AND ";
+        for (Appointments a: DBAppointments.getAllAppointments()){
+            if (a.getAppointmentType().equals(typeToSearch) && a.getStartTime().toLocalDateTime().getMonth().equals(monthToSearch)) {
+                totalHours += a.getStartTime().toLocalDateTime().compareTo(a.getEndTime().toLocalDateTime());
+                System.out.println(a.getStartTime().toLocalDateTime().getMonth());
+            }
         }
-        typeMonthTotalLabel.setText(totalHours + " hours total"); // setup method to get hour total from database
-*/
-    }
+        typeMonthTotalLabel.setText(String.valueOf(Math.abs(totalHours)) + " hours total"); // setup method to get hour total from database
+        }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
