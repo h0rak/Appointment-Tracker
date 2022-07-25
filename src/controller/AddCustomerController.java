@@ -16,6 +16,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Countries;
+import model.Customers;
 import model.Divisions;
 import java.io.IOException;
 import java.net.URL;
@@ -24,7 +25,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class AddCustomerController implements Initializable {
-
+    
     @FXML
     private TextField customerNameField;
 
@@ -59,17 +60,31 @@ public class AddCustomerController implements Initializable {
             Divisions comboBoxSelection = divisionComboBox.getSelectionModel().getSelectedItem();
             int cDivision = comboBoxSelection.getDivisionId();
 
-            DBCustomers.AddCustomer(cName, cAddress, cPostal, cPhone, cDivision);
+            String errorMessage = Customers.inputChecker(cName, cAddress, cPostal, cPhone, cDivision, "");
 
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/CustomerScreen.fxml")));
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setTitle("Customers");
-            stage.setScene(scene);
-            stage.show();
-        }
-        catch (NumberFormatException | IOException e){
-            e.printStackTrace();
+            if (errorMessage.length() > 0){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning");
+                alert.setHeaderText("Invalid input. Customer not saved. See value error(s) below.");
+                alert.setContentText(errorMessage);
+                alert.showAndWait();
+            }
+            else {
+                DBCustomers.AddCustomer(cName, cAddress, cPostal, cPhone, cDivision);
+
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/CustomerScreen.fxml")));
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setTitle("Customers");
+                stage.setScene(scene);
+                stage.show();
+            }
+        } catch (NullPointerException | IOException e) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning");
+            alert.setHeaderText("Invalid input. Customer not saved. See value error(s) below.");
+            alert.setContentText("No text fields, widgets, or combo boxes may be left blank.");
+            alert.showAndWait();
         }
     }
 

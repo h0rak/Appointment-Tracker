@@ -18,7 +18,7 @@ public class Main extends Application {
 //    TODO + README.TXT
 
     public static void main(String[] args) {
-//        Locale.setDefault(new Locale("fr"));
+        Locale.setDefault(new Locale("fr"));
         JDBC.openConnection();
         launch(args);
         JDBC.closeConnection();

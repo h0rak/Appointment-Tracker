@@ -1,7 +1,5 @@
 package model;
 
-import controller.AddAppointmentController;
-
 import java.sql.Timestamp;
 
 public class Appointments {

@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -62,8 +63,9 @@ public class UpdateCustomerController implements Initializable {
 
     @FXML
     void onActionSave(ActionEvent event) {
-        try{
-            String cId = customerIdField.getText();
+
+        try {
+            int cId = Integer.parseInt(customerIdField.getText());
             String cName = customerNameField.getText();
             String cAddress = customerAddressField.getText();
             String cPostal = customerPostalCodeField.getText();
@@ -71,22 +73,35 @@ public class UpdateCustomerController implements Initializable {
             Divisions comboBoxSelection = divisionComboBox.getSelectionModel().getSelectedItem();
             int cDivision = comboBoxSelection.getDivisionId();
 
-            DBCustomers.UpdateCustomer(Integer.parseInt(cId), cName, cAddress, cPostal, cPhone, cDivision);
+            String errorMessage = Customers.inputChecker(cName, cAddress, cPostal, cPhone, cDivision, "");
 
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/CustomerScreen.fxml")));
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setTitle("Customers");
-            stage.setScene(scene);
-            stage.show();
-        }
-        catch (NumberFormatException | IOException e){
-            e.printStackTrace();
+            if (errorMessage.length() > 0) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning");
+                alert.setHeaderText("Invalid input. Customer not updated. See value error(s) below.");
+                alert.setContentText(errorMessage);
+                alert.showAndWait();
+            } else {
+                DBCustomers.UpdateCustomer(cId, cName, cAddress, cPostal, cPhone, cDivision);
+
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/CustomerScreen.fxml")));
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setTitle("Customers");
+                stage.setScene(scene);
+                stage.show();
+            }
+        } catch (IOException e) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning");
+            alert.setHeaderText("Invalid input. Customer not updated. See value error(s) below.");
+            alert.setContentText("No text fields, widgets, or combo boxes may be left blank.");
+            alert.showAndWait();
         }
     }
 
     public void SendCustomer(Customers customer) {
-        customerIdField.setText(String.valueOf(customer.getCustomerId())); // id name address postal phone division
+        customerIdField.setText(String.valueOf(customer.getCustomerId()));
         customerNameField.setText(String.valueOf(customer.getCustomerName()));
         customerAddressField.setText(String.valueOf(customer.getCustomerAddress()));
         customerPostalCodeField.setText(String.valueOf(customer.getCustomerPostalCode()));
@@ -100,7 +115,7 @@ public class UpdateCustomerController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        countryComboBox.setItems(DBCountries.getAllCountries()); // SHOULD I DO THIS HERE?
+        countryComboBox.setItems(DBCountries.getAllCountries());
         countryComboBox.setVisibleRowCount(3);
         divisionComboBox.setVisibleRowCount(4);
     }

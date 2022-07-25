@@ -70,4 +70,23 @@ public class Customers {
         this.customerDivisionId = customerDivisionId;
     }
 
+    public static String inputChecker(String customerName, String customerAddress, String customerPostalCode, String customerPhone, int customerDivisionId, String errorMessage){
+        if (customerName.isBlank()){
+            errorMessage += "\nPlease enter a customer name.";
+        }
+        if (customerAddress.isBlank()){
+            errorMessage += "\nPlease enter an address.";
+        }
+        if (customerPostalCode.isBlank()){
+            errorMessage += "\nPlease enter a postal code.";
+        }
+        if (customerPhone.isBlank()){
+            errorMessage += "\nPlease enter a phone number.";
+        }
+        if (customerDivisionId < 1){
+            errorMessage += "\nPlease choose a country followed by\na state, province, or district.";
+        }
+        return errorMessage;
+    }
+
 }

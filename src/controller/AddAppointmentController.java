@@ -107,32 +107,6 @@ public class AddAppointmentController implements Initializable {
             alert.setContentText("No text fields, widgets, or combo boxes may be left blank.");
             alert.showAndWait();
         }
-
-/*
-        try{
-            String aTitle = appointmentTitleField.getText();
-            String aDescription = appointmentDescriptionField.getText();
-            String aLocation = appointmentLocationField.getText();
-            String aType = appointmentTypeField.getText();
-            Timestamp aStart = Timestamp.valueOf(LocalDateTime.of(datePickerWidget.getValue(),startTimeComboBox.getValue()));
-            Timestamp aEnd = Timestamp.valueOf(LocalDateTime.of(datePickerWidget.getValue(),endTimeComboBox.getValue()));
-            int aCustomerId = customerComboBox.getSelectionModel().getSelectedItem().getCustomerId();
-            int aUserId = DBUsers.getFakeUserId();
-            int aContactId = contactComboBox.getSelectionModel().getSelectedItem().getContactId();
-
-            DBAppointments.AddAppointment(aTitle, aDescription, aLocation, aType, aStart, aEnd, aCustomerId, aUserId, aContactId);
-
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AppointmentScreen.fxml")));
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setTitle("Appointments");
-            stage.setScene(scene);
-            stage.show();
-        }
-        catch (NullPointerException | IOException e){
-            e.printStackTrace();
-        }
-*/
     }
 
     @Override
@@ -141,18 +115,15 @@ public class AddAppointmentController implements Initializable {
         LocalTime start = LocalTime.of(8, 0);
         LocalTime end = LocalTime.of(22, 0);
 
-        // this was from mark
         LocalDateTime startLdt = LocalDateTime.of(LocalDate.now(),start);
         ZonedDateTime startZdt = startLdt.atZone(ZoneId.of("America/New_York"));
         ZonedDateTime startZdtToEastern = startZdt.withZoneSameInstant(ZoneId.systemDefault());
         start = startZdtToEastern.toLocalTime();
-        // this is me trying end time
         LocalDateTime endLdt = LocalDateTime.of(LocalDate.now(),end);
         ZonedDateTime endZdt = endLdt.atZone(ZoneId.of("America/New_York"));
         ZonedDateTime endZdtToEastern = endZdt.withZoneSameInstant(ZoneId.systemDefault());
         end = endZdtToEastern.toLocalTime();
 
-//      This sets the 15-minute intervals in the Start and End Time Combo Boxes
         while(start.isBefore(end.plusMinutes(1))){
             startTimeComboBox.getItems().add(start);
             endTimeComboBox.getItems().add(start);
@@ -161,7 +132,7 @@ public class AddAppointmentController implements Initializable {
 
         LocalDateTime now = LocalDateTime.now();
         datePickerWidget.setValue(now.toLocalDate());
-        LocalTime time = LocalTime.of(7,0);
+//        LocalTime time = LocalTime.of(7,0);
 
         startTimeComboBox.setVisibleRowCount(5);
         endTimeComboBox.setVisibleRowCount(5);

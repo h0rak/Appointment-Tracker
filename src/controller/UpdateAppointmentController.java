@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -68,9 +69,10 @@ public class UpdateAppointmentController implements Initializable {
     }
 
     @FXML
-    void onActionSave(ActionEvent event) { // TODO This isn't working for updating - does nothing
+    void onActionSave(ActionEvent event) {
+
         try{
-            String aId = appointmentIdField.getText();
+            int aId = Integer.parseInt(appointmentIdField.getText());
             String aTitle = appointmentTitleField.getText();
             String aDescription = appointmentDescriptionField.getText();
             String aLocation = appointmentLocationField.getText();
@@ -78,25 +80,40 @@ public class UpdateAppointmentController implements Initializable {
             Timestamp aStart = Timestamp.valueOf(LocalDateTime.of(datePickerWidget.getValue(),startTimeComboBox.getValue()));
             Timestamp aEnd = Timestamp.valueOf(LocalDateTime.of(datePickerWidget.getValue(),endTimeComboBox.getValue()));
             int aCustomerId = customerComboBox.getSelectionModel().getSelectedItem().getCustomerId();
-            int aUserId = DBUsers.getFakeUserId(); //TODO - Fix how the userId is gathered
+            int aUserId = DBUsers.getFakeUserId();
             int aContactId = contactComboBox.getSelectionModel().getSelectedItem().getContactId();
 
-            DBAppointments.UpdateAppointment(Integer.parseInt(aId), aTitle, aDescription, aLocation, aType, aStart, aEnd, aCustomerId, aUserId, aContactId);
+            String errorMessage = Appointments.inputChecker(aTitle, aDescription, aLocation, aType, aStart, aEnd, aCustomerId, aUserId, aContactId, "");
 
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AppointmentScreen.fxml")));
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setTitle("Appointments");
-            stage.setScene(scene);
-            stage.show();
+            if (errorMessage.length() > 0){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning");
+                alert.setHeaderText("Invalid input. Appointment not updated. See value error(s) below.");
+                alert.setContentText(errorMessage);
+                alert.showAndWait();
+            }
+            else {
+                DBAppointments.UpdateAppointment(aId, aTitle, aDescription, aLocation, aType, aStart, aEnd, aCustomerId, aUserId, aContactId);
+
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AppointmentScreen.fxml")));
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setTitle("Appointments");
+                stage.setScene(scene);
+                stage.show();
+            }
         }
-        catch (NumberFormatException | IOException e){
-            e.printStackTrace();
+        catch (NullPointerException | IOException e) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning");
+            alert.setHeaderText("Invalid input. Appointment not updated. See value error(s) below.");
+            alert.setContentText("No text fields, widgets, or combo boxes may be left blank.");
+            alert.showAndWait();
         }
     }
 
     public void SendAppointment(Appointments appointment) {
-        appointmentIdField.setText(String.valueOf(appointment.getAppointmentId())); // id title description location type start end customer user contact
+        appointmentIdField.setText(String.valueOf(appointment.getAppointmentId()));
         appointmentTitleField.setText(String.valueOf(appointment.getAppointmentTitle()));
         appointmentDescriptionField.setText(String.valueOf(appointment.getAppointmentDescription()));
         appointmentLocationField.setText(String.valueOf(appointment.getAppointmentLocation()));
@@ -115,18 +132,15 @@ public class UpdateAppointmentController implements Initializable {
         LocalTime start = LocalTime.of(8, 0);
         LocalTime end = LocalTime.of(22, 0);
 
-        // this was from mark
         LocalDateTime startLdt = LocalDateTime.of(LocalDate.now(),start);
         ZonedDateTime startZdtFromEst = startLdt.atZone(ZoneId.of("America/New_York"));
         ZonedDateTime startZdtToLocal = startZdtFromEst.withZoneSameInstant(ZoneId.systemDefault());
         start = startZdtToLocal.toLocalTime();
-        // this is me trying end time
         LocalDateTime endLdt = LocalDateTime.of(LocalDate.now(),end);
         ZonedDateTime endZdtFromEst = endLdt.atZone(ZoneId.of("America/New_York"));
         ZonedDateTime endZdtToLocal = endZdtFromEst.withZoneSameInstant(ZoneId.systemDefault());
         end = endZdtToLocal.toLocalTime();
 
-//      This sets the 15-minute intervals in the Start and End Time Combo Boxes
         while(start.isBefore(end.plusMinutes(1))){
             startTimeComboBox.getItems().add(start);
             endTimeComboBox.getItems().add(start);
