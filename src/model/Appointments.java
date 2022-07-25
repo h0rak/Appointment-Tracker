@@ -129,7 +129,7 @@ public class Appointments {
         if (appointmentType.isEmpty()) {
             errorMessage = errorMessage + "\nPlease enter a type.";
         }
-        if (startTime == endTime) {
+        if (startTime.compareTo(endTime) == 0) {
             errorMessage = errorMessage + "\nStart time and end time cannot be the same value.";
         }
         else if (startTime.toLocalDateTime().isAfter(endTime.toLocalDateTime())) {

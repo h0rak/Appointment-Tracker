@@ -26,9 +26,6 @@ import java.util.ResourceBundle;
 public class AddCustomerController implements Initializable {
 
     @FXML
-    private TextField customerIdField;
-
-    @FXML
     private TextField customerNameField;
 
     @FXML
@@ -92,7 +89,7 @@ public class AddCustomerController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        countryComboBox.setItems(DBCountries.getAllCountries()); // SHOULD I DO THIS HERE?
+        countryComboBox.setItems(DBCountries.getAllCountries());
         countryComboBox.setVisibleRowCount(3);
         divisionComboBox.setVisibleRowCount(4);
     }
