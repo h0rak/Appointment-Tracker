@@ -38,7 +38,7 @@
                   <Insets bottom="15.0" top="5.0" />
                </padding>
             </VBox>
-            <VBox prefHeight="75.0" prefWidth="250.0" spacing="5.0">
+            <VBox prefHeight="75.0" prefWidth="350.0" spacing="5.0">
                <children>
                   <Label layoutX="10.0" layoutY="120.0" text="Total appointments by Type &amp; Month:" textAlignment="CENTER" wrapText="true">
                      <font>
@@ -57,12 +57,12 @@
                   <HBox prefHeight="25.0" prefWidth="200.0" spacing="5.0">
                      <children>
                         <Button mnemonicParsing="false" onAction="#onActionTypeMonthTotal" text="Total" />
-                        <Label fx:id="typeMonthTotalLabel" text="0 hours total">
+                        <Label fx:id="typeMonthTotalLabel" text="select Type/Month and click &quot;Total&quot; button.">
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
                            <font>
-                              <Font name="System Bold" size="13.0" />
+                              <Font name="System Italic" size="13.0" />
                            </font>
                         </Label>
                      </children>

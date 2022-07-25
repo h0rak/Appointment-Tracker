@@ -15,6 +15,7 @@ import java.io.*;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -73,7 +74,6 @@ public class LoginController implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 if (Locale.getDefault().getLanguage().equals("fr")){
                     ResourceBundle rb = ResourceBundle.getBundle("utilities/RB", Locale.getDefault());
-//                    alert.setTitle(rb.getString( "Error"));
                     alert.setContentText(rb.getString("Please"));
                     alert.showAndWait();
                 }
@@ -92,7 +92,6 @@ public class LoginController implements Initializable {
                     alert.showAndWait();
                 }
                 else {
-                    //localeLanguageSetter();
                     alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Error");
                     alert.setContentText("Invalid username / password combination.");
@@ -112,7 +111,7 @@ public class LoginController implements Initializable {
         }
         try {
             PrintWriter pw = new PrintWriter(new FileOutputStream(new File("login_activity.txt"), true));
-            pw.append("Login Attempt: ").append(result).append(", User: ").append(usernameInput.getText()).append(", Date / Time: ").append(String.valueOf(LocalDateTime.now())).append(".\n");
+            pw.append("Login Attempt: ").append(result).append(", User: ").append(usernameInput.getText()).append(", Date / Time: ").append(String.valueOf(LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME))).append(".\n");
             pw.close();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);

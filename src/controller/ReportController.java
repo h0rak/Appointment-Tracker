@@ -112,20 +112,17 @@ public class ReportController implements Initializable {
     }
 
     @FXML
-    void onActionTypeMonthTotal(ActionEvent event) {
+    void onActionTypeMonthTotal(ActionEvent event) throws NullPointerException {
         String typeToSearch = typeComboBox.getSelectionModel().getSelectedItem();
         Month monthToSearch = Month.valueOf(monthComboBox.getSelectionModel().getSelectedItem());
-        int totalHours = 0;
-        System.out.println(monthComboBox.getSelectionModel().getSelectedItem());
-
+        int total = 0;
         for (Appointments a: DBAppointments.getAllAppointments()){
             if (a.getAppointmentType().equals(typeToSearch) && a.getStartTime().toLocalDateTime().getMonth().equals(monthToSearch)) {
-                totalHours += a.getStartTime().toLocalDateTime().compareTo(a.getEndTime().toLocalDateTime());
-                System.out.println(a.getStartTime().toLocalDateTime().getMonth());
+                total += 1;
             }
         }
-        typeMonthTotalLabel.setText(String.valueOf(Math.abs(totalHours)) + " hours total"); // setup method to get hour total from database
-        }
+        typeMonthTotalLabel.setText(String.valueOf(total) + " " + typeToSearch + " appointment(s) in " + monthToSearch + ".");
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -142,8 +139,10 @@ public class ReportController implements Initializable {
         userIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
         contactIdCol.setCellValueFactory(new PropertyValueFactory<>("contactId"));
         typeComboBox.setItems(DBAppointments.getAllTypes());
+        typeComboBox.setValue(DBAppointments.getAllTypes().get(0));
         typeComboBox.setVisibleRowCount(4);
         monthComboBox.setItems(months);
+        monthComboBox.setValue(LocalDateTime.now().getMonth().name());
         monthComboBox.setVisibleRowCount(4);
         totalCustomersLabel.setText(DBCustomers.getTotalCustomers());
     }

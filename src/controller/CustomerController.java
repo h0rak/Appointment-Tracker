@@ -85,49 +85,51 @@ public class CustomerController implements Initializable {
     }
 
     @FXML
-    void onActionDeleteCustomer(ActionEvent event) {
-        Customers customerToDelete = customerTableView.getSelectionModel().getSelectedItem();
-        ObservableList<Appointments> allAppointmentsList = DBAppointments.getAllAppointments();
-        ObservableList<Appointments> customerAppointments = FXCollections.observableArrayList();
-        int customerId = customerToDelete.getCustomerId();
-        String customerName = customerToDelete.getCustomerName();
+    void onActionDeleteCustomer(ActionEvent event) throws NullPointerException{
+        try {
+            Customers customerToDelete = customerTableView.getSelectionModel().getSelectedItem();
+            ObservableList<Appointments> allAppointmentsList = DBAppointments.getAllAppointments();
+            ObservableList<Appointments> customerAppointments = FXCollections.observableArrayList();
+            int customerId = customerToDelete.getCustomerId();
+//        int customerId = customerTableView.getSelectionModel().getSelectedItem().getCustomerId();
+            String customerName = customerToDelete.getCustomerName();
+//        String customerName = customerTableView.getSelectionModel().getSelectedItem().getCustomerName();
 
-        for (Appointments a : allAppointmentsList){
-            if (a.getCustomerId() == customerId){
-                customerAppointments.add(a);
+            for (Appointments a : allAppointmentsList){
+                if (a.getCustomerId() == customerId){
+                    customerAppointments.add(a);
+                }
+            }
+            if (!customerAppointments.isEmpty()){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText("Customers with existing appointments cannot be deleted.");
+                alert.showAndWait();
+            }
+            else {
+
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you wish to delete this customer?");
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.isPresent() && result.get() == ButtonType.OK) {
+                    DBCustomers.DeleteCustomer(customerToDelete.getCustomerId());
+                    customerTableView.setItems(DBCustomers.getAllCustomers());
+                    Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+                    alert2.setTitle("Delete Successful");
+                    alert2.setContentText("Customer with ID " + customerId + ", \"" + customerName + "\" was successfully deleted.");
+                    alert2.showAndWait();
+                }
+                else {
+                    customerTableView.getSelectionModel().clearSelection();
+                }
             }
         }
-
-        if (customerToDelete == null) {
+        catch (NullPointerException e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setContentText("Please select a customer to delete.");
             alert.showAndWait();
         }
-        else if (!customerAppointments.isEmpty()){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setContentText("Customers with existing appointments cannot be deleted.");
-            alert.showAndWait();
-
-        }
-        else {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you wish to delete this customer?");
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.isPresent() && result.get() == ButtonType.OK) {
-                DBCustomers.DeleteCustomer(customerToDelete.getCustomerId());
-                customerTableView.setItems(DBCustomers.getAllCustomers());
-                Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
-                alert2.setTitle("Delete Successful");
-                alert2.setContentText("Customer with ID " + customerId + ", \"" + customerName + "\" was successfully deleted.");
-                alert2.showAndWait();
-            }
-            else {
-                customerTableView.getSelectionModel().clearSelection();
-            }
-        }
     }
-
 
     @FXML
     void onActionUpdateCustomer(ActionEvent actionEvent) throws IOException {

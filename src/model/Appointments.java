@@ -1,5 +1,7 @@
 package model;
 
+import controller.AddAppointmentController;
+
 import java.sql.Timestamp;
 
 public class Appointments {
@@ -113,5 +115,34 @@ public class Appointments {
     public void setContactId(int contactId) {
         this.contactId = contactId;
     }
+
+    public static String inputChecker(String appointmentTitle, String appointmentDescription, String appointmentLocation, String appointmentType, Timestamp startTime, Timestamp endTime, int customerId, int userId, int contactId, String errorMessage) {
+        if (appointmentTitle.isEmpty()) {
+            errorMessage = errorMessage + "\nPlease enter a title.";
+        }
+        if (appointmentDescription.isEmpty()) {
+            errorMessage = errorMessage + "\nPlease enter a description.";
+        }
+        if (appointmentLocation.isEmpty()) {
+            errorMessage = errorMessage + "\nPlease enter a location.";
+        }
+        if (appointmentType.isEmpty()) {
+            errorMessage = errorMessage + "\nPlease enter a type.";
+        }
+        if (startTime == endTime) {
+            errorMessage = errorMessage + "\nStart time and end time cannot be the same value.";
+        }
+        else if (startTime.toLocalDateTime().isAfter(endTime.toLocalDateTime())) {
+            errorMessage = errorMessage + "\nStart time must come before the end time.";
+        }
+        if (customerId < 1) {
+            errorMessage = errorMessage + "\nPlease choose a customer.";
+        }
+        if (contactId < 1) {
+            errorMessage = errorMessage + "\nPlease choose a contact.";
+        }
+        return errorMessage;
+    }
+
 
 }

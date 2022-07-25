@@ -135,11 +135,7 @@ public class AppointmentController implements Initializable {
 
     @FXML
     void onActionDeleteAppointment(ActionEvent event) {
-
         Appointments appointmentToDelete = appointmentTableView.getSelectionModel().getSelectedItem();
-        int appointmentId = appointmentToDelete.getAppointmentId();
-        String appointmentType = appointmentToDelete.getAppointmentType();
-
         if (appointmentToDelete == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -152,6 +148,8 @@ public class AppointmentController implements Initializable {
             if (result.isPresent() && result.get() == ButtonType.OK) {
                 DBAppointments.DeleteAppointment(appointmentToDelete.getAppointmentId());
                 appointmentTableView.setItems(DBAppointments.getAllAppointments());
+                int appointmentId = appointmentToDelete.getAppointmentId();
+                String appointmentType = appointmentToDelete.getAppointmentType();
                 Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
                 alert2.setTitle("Appointment Cancelled");
                 alert2.setContentText("Appointment with ID " + appointmentId + " and type \"" + appointmentType + "\" was successfully cancelled.");
