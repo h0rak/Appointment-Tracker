@@ -11,10 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.Appointments;
 import model.Contacts;
@@ -24,6 +21,7 @@ import java.net.URL;
 import java.sql.Timestamp;
 import java.time.*;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class UpdateAppointmentController implements Initializable {
@@ -60,12 +58,16 @@ public class UpdateAppointmentController implements Initializable {
 
     @FXML
     void onActionCancel(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AppointmentScreen.fxml")));
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setTitle("Appointments");
-        stage.setScene(scene);
-        stage.show();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Any unsaved information will be lost. Do you wish to continue?");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AppointmentScreen.fxml")));
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setTitle("Appointments");
+            stage.setScene(scene);
+            stage.show();
+        }
     }
 
     @FXML
