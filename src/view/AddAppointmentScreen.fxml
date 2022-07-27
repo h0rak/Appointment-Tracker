@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -11,96 +10,130 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddAppointmentController">
+<AnchorPane prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddAppointmentController">
    <children>
-      <VBox alignment="TOP_RIGHT" layoutX="127.0" layoutY="100.0" prefHeight="300.0" prefWidth="125.0" spacing="14.0">
-         <children>
-            <Label text="ID:">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="10.0" layoutY="10.0" text="Title:">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="10.0" layoutY="27.0" text="Description:">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="10.0" layoutY="44.0" text="Location:">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="10.0" layoutY="61.0" text="Type:">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="92.0" layoutY="142.0" text="Date:">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="92.0" layoutY="175.0" text="Start TIme:">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="68.0" layoutY="208.0" text="End Time:">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="65.0" layoutY="241.0" text="Customer:">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="68.0" layoutY="241.0" text="Contact:">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-         </children>
-         <padding>
-            <Insets right="5.0" />
-         </padding>
-      </VBox>
-      <VBox layoutX="249.0" layoutY="100.0" prefHeight="300.0" prefWidth="125.0" spacing="6.5">
-         <children>
-            <TextField fx:id="appointmentIdField" alignment="TOP_RIGHT" disable="true" promptText="Auto-generated">
-               <font>
-                  <Font name="System Italic" size="13.0" />
-               </font></TextField>
-            <TextField fx:id="appointmentTitleField" alignment="TOP_RIGHT" layoutX="10.0" layoutY="10.0" promptText="Title">
-               <font>
-                  <Font name="System Italic" size="13.0" />
-               </font>
-            </TextField>
-            <TextField fx:id="appointmentDescriptionField" alignment="TOP_RIGHT" layoutX="10.0" layoutY="36.0" promptText="Description" />
-            <TextField fx:id="appointmentLocationField" alignment="TOP_RIGHT" layoutX="10.0" layoutY="36.0" promptText="Location" />
-            <TextField fx:id="appointmentTypeField" alignment="TOP_RIGHT" layoutX="10.0" layoutY="10.0" promptText="Type" />
-            <DatePicker fx:id="datePickerWidget" />
-            <ComboBox fx:id="startTimeComboBox" nodeOrientation="LEFT_TO_RIGHT" prefWidth="150.0" />
-            <ComboBox fx:id="endTimeComboBox" prefWidth="150.0" />
-            <ComboBox fx:id="customerComboBox" layoutX="10.0" layoutY="205.0" prefWidth="150.0" />
-            <ComboBox fx:id="contactComboBox" layoutX="10.0" layoutY="284.0" prefWidth="150.0" />
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
-               <children>
-                  <Button mnemonicParsing="false" onAction="#onActionCancel" prefWidth="60.0" text="Cancel" />
-                  <Button mnemonicParsing="false" onAction="#onActionSave" prefWidth="60.0" text="Save" />
-               </children>
-            </HBox>
-         </children>
-      </VBox>
-      <Label layoutX="188.0" layoutY="45.0" text="Add Appointment">
+      <Label layoutX="176.0" layoutY="32.0" text="Add Appointment">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
+      <VBox layoutX="125.0" layoutY="75.0" prefHeight="300.0" prefWidth="250.0" spacing="5.0">
+         <children>
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="ID:">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="appointmentIdField" alignment="TOP_RIGHT" disable="true" maxWidth="150.0" promptText="Auto-generated">
+                     <font>
+                        <Font name="System Italic" size="13.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="368.0" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Title:">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="appointmentTitleField" alignment="TOP_RIGHT" maxWidth="150.0" promptText="Title">
+                     <font>
+                        <Font name="System Italic" size="13.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="374.0" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Description:">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="appointmentDescriptionField" alignment="TOP_RIGHT" maxWidth="150.0" promptText="Description" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="381.0" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Location:">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="appointmentLocationField" alignment="TOP_RIGHT" maxWidth="150.0" promptText="Location" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="387.0" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Type:">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="appointmentTypeField" alignment="TOP_RIGHT" maxWidth="150.0" promptText="Type" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="381.0" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Date:">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <DatePicker fx:id="datePickerWidget" maxWidth="150.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="381.0" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Start TIme:">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="startTimeComboBox" maxWidth="150.0" nodeOrientation="LEFT_TO_RIGHT" prefWidth="150.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="381.0" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="End Time:">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="endTimeComboBox" maxWidth="150.0" prefWidth="150.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="381.0" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Customer:">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="customerComboBox" maxWidth="150.0" prefWidth="150.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="374.0" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Contact:">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="contactComboBox" maxWidth="150.0" prefWidth="150.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#onActionCancel" prefWidth="72.5" text="Cancel" />
+                  <Button mnemonicParsing="false" onAction="#onActionSave" prefWidth="72.5" text="Save" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

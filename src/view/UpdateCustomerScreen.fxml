@@ -20,7 +20,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="customerIdField" alignment="TOP_RIGHT" disable="true" />
+                  <TextField fx:id="customerIdField" alignment="TOP_RIGHT" disable="true" maxWidth="150.0" />
                </children>
             </HBox>
             <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
@@ -30,7 +30,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="customerNameField" alignment="TOP_RIGHT" promptText="First Last">
+                  <TextField fx:id="customerNameField" alignment="TOP_RIGHT" maxWidth="150.0" promptText="First Last">
                      <font>
                         <Font name="System Italic" size="13.0" />
                      </font>
@@ -44,7 +44,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="customerAddressField" alignment="TOP_RIGHT" promptText="123 Name St,  City" />
+                  <TextField fx:id="customerAddressField" alignment="TOP_RIGHT" maxWidth="150.0" promptText="123 Name St,  City" />
                </children>
             </HBox>
             <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="69.0" prefHeight="100.0" prefWidth="200.0">
@@ -54,7 +54,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="customerPostalCodeField" alignment="TOP_RIGHT" promptText="12345" />
+                  <TextField fx:id="customerPostalCodeField" alignment="TOP_RIGHT" maxWidth="150.0" promptText="12345" />
                </children>
             </HBox>
             <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="79.0" prefHeight="100.0" prefWidth="200.0">
@@ -64,7 +64,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="customerPhoneNumberField" alignment="TOP_RIGHT" promptText="555-555-5555" />
+                  <TextField fx:id="customerPhoneNumberField" alignment="TOP_RIGHT" maxWidth="150.0" promptText="555-555-5555" />
                </children>
             </HBox>
             <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="84.0" prefHeight="100.0" prefWidth="200.0">
@@ -74,7 +74,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="countryComboBox" nodeOrientation="LEFT_TO_RIGHT" onAction="#onActionCountryComboBox" prefWidth="150.0" promptText="Country" />
+                  <ComboBox fx:id="countryComboBox" maxWidth="150.0" nodeOrientation="LEFT_TO_RIGHT" onAction="#onActionCountryComboBox" prefWidth="150.0" promptText="Country" />
                </children>
             </HBox>
             <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="88.0" prefHeight="100.0" prefWidth="200.0">
@@ -84,7 +84,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="divisionComboBox" prefWidth="150.0" promptText="First-level Division" />
+                  <ComboBox fx:id="divisionComboBox" maxWidth="150.0" prefWidth="150.0" promptText="First-level Division" />
                </children>
             </HBox>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
