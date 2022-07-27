@@ -13,7 +13,7 @@
     <children>
         <VBox alignment="CENTER" layoutX="1.0" layoutY="75.0" prefHeight="56.0" prefWidth="450.0" spacing="5.0">
             <children>
-            <HBox alignment="CENTER_RIGHT" maxWidth="250.0" prefHeight="100.0" prefWidth="250.0">
+            <HBox alignment="CENTER_RIGHT" maxWidth="300.0" prefHeight="100.0" prefWidth="300.0">
                <children>
                       <Label fx:id="usernameLabel" text="Username: ">
                           <font>
@@ -27,7 +27,7 @@
                   </TextField>
                </children>
             </HBox>
-            <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="72.0" maxWidth="250.0" prefHeight="100.0" prefWidth="250.0">
+            <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="72.0" maxWidth="300.0" prefHeight="100.0" prefWidth="300.0">
                <children>
                       <Label fx:id="passwordLabel" text="Password: ">
                           <font>
@@ -41,7 +41,7 @@
                   </PasswordField>
                </children>
             </HBox>
-              <HBox alignment="CENTER" maxWidth="250.0" prefHeight="31.0" prefWidth="250.0" spacing="5.0">
+              <HBox alignment="CENTER" maxWidth="300.0" prefHeight="31.0" prefWidth="300.0" spacing="5.0">
                   <children>
                       <Button fx:id="resetButton" maxWidth="85.0" mnemonicParsing="false" onAction="#onActionReset" prefWidth="85.0" text="Reset" />
                       <Button fx:id="loginButton" maxWidth="85.0" mnemonicParsing="false" onAction="#onActionLogin" prefWidth="85.0" text="Login" />

@@ -11,14 +11,12 @@ import java.util.Locale;
 
 public class Main extends Application {
 
-//    TODO + ERROR CHECKING WITH CUSTOMERS
-//    TODO + ERROR CHECKING WITH APPOINTMENTS (SCHEDULING OVERLAPPING APPOINTMENTS)
 //    TODO + 2 LAMBDA EXPRESSIONS
 //    TODO + JAVADOC
 //    TODO + README.TXT
 
     public static void main(String[] args) {
-//        Locale.setDefault(new Locale("fr"));
+        Locale.setDefault(new Locale("fr"));
         JDBC.openConnection();
         launch(args);
         JDBC.closeConnection();
