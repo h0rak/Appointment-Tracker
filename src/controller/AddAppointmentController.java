@@ -71,7 +71,6 @@ public class AddAppointmentController implements Initializable {
     @FXML
     void onActionSave(ActionEvent event) throws NullPointerException {
 
-        int existingAppointments = 0;
 
         try{
             String aTitle = appointmentTitleField.getText();
@@ -94,11 +93,12 @@ public class AddAppointmentController implements Initializable {
                 alert.showAndWait();
             }
             else {
+                int existingAppointments = 0;
                 ObservableList<Appointments> customersAppointments = Appointments.getCustomersAppointmentList(aCustomerId);
                 for (Appointments a : customersAppointments) {
                     if (aStart.toLocalDateTime().isBefore(a.getStartTime().toLocalDateTime()) && aEnd.toLocalDateTime().isAfter(a.getStartTime().toLocalDateTime())) {
                         existingAppointments += 1;
-                    } else if (aStart.toLocalDateTime().isEqual(a.getEndTime().toLocalDateTime())) {
+                    } else if (aStart.toLocalDateTime().isEqual(a.getStartTime().toLocalDateTime())) {
                         existingAppointments += 1;
                     } else if (aStart.toLocalDateTime().isAfter(a.getStartTime().toLocalDateTime()) && aStart.toLocalDateTime().isBefore(a.getEndTime().toLocalDateTime())) {
                         existingAppointments += 1;
