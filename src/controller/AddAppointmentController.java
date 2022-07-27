@@ -4,6 +4,7 @@ import DAO.DBAppointments;
 import DAO.DBContacts;
 import DAO.DBCustomers;
 import DAO.DBUsers;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -69,6 +70,9 @@ public class AddAppointmentController implements Initializable {
 
     @FXML
     void onActionSave(ActionEvent event) throws NullPointerException {
+
+        int existingAppointments = 0;
+
         try{
             String aTitle = appointmentTitleField.getText();
             String aDescription = appointmentDescriptionField.getText();
@@ -90,14 +94,32 @@ public class AddAppointmentController implements Initializable {
                 alert.showAndWait();
             }
             else {
-                DBAppointments.AddAppointment(aTitle, aDescription, aLocation, aType, aStart, aEnd, aCustomerId, aUserId, aContactId);
+                ObservableList<Appointments> customersAppointments = Appointments.getCustomersAppointmentList(aCustomerId);
+                for (Appointments a : customersAppointments) {
+                    if (aStart.toLocalDateTime().isBefore(a.getStartTime().toLocalDateTime()) && aEnd.toLocalDateTime().isAfter(a.getStartTime().toLocalDateTime())) {
+                        existingAppointments += 1;
+                    } else if (aStart.toLocalDateTime().isEqual(a.getEndTime().toLocalDateTime())) {
+                        existingAppointments += 1;
+                    } else if (aStart.toLocalDateTime().isAfter(a.getStartTime().toLocalDateTime()) && aStart.toLocalDateTime().isBefore(a.getEndTime().toLocalDateTime())) {
+                        existingAppointments += 1;
+                    }
+                }
+                if (existingAppointments > 0) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Appointment not added.");
+                    alert.setContentText(" Customer has existing appointments in timeslot.");
+                    alert.showAndWait();
+                } else {
+                    DBAppointments.AddAppointment(aTitle, aDescription, aLocation, aType, aStart, aEnd, aCustomerId, aUserId, aContactId);
 
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AppointmentScreen.fxml")));
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                Scene scene = new Scene(root);
-                stage.setTitle("Appointments");
-                stage.setScene(scene);
-                stage.show();
+                    Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AppointmentScreen.fxml")));
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    Scene scene = new Scene(root);
+                    stage.setTitle("Appointments");
+                    stage.setScene(scene);
+                    stage.show();
+                }
             }
         }
         catch (NullPointerException | IOException e) {

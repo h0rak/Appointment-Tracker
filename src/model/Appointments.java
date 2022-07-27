@@ -1,5 +1,10 @@
 package model;
 
+import DAO.DBAppointments;
+import controller.AddAppointmentController;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.sql.Timestamp;
 
 public class Appointments {
@@ -141,6 +146,37 @@ public class Appointments {
         }
         return errorMessage;
     }
+
+    public static ObservableList<Appointments> getCustomersAppointmentList(int customerId){
+        ObservableList<Appointments> allAppointmentsList = DBAppointments.getAllAppointments();
+        ObservableList<Appointments> customersAppointmentList = FXCollections.observableArrayList();
+
+        for (Appointments a : allAppointmentsList){
+            if (a.getCustomerId() == customerId){
+                customersAppointmentList.add(a);
+            }
+        }
+        return customersAppointmentList;
+    }
+
+/*
+    public boolean customerAvailable(int customerId){
+        ObservableList<Appointments> allAppointmentsList = DBAppointments.getAllAppointments();
+        ObservableList<Appointments> customersAppointmentList = FXCollections.observableArrayList();
+        for (Appointments a : allAppointmentsList) {
+            if (a.getAppointmentId() == customerId) {
+                customersAppointmentList.add(a);
+            }
+        }
+        for (Appointments a : customersAppointmentList) {
+            Timestamp start = a.getStartTime();
+            Timestamp end = a.getEndTime();
+            AddAppointmentController aac = new AddAppointmentController();
+            Timestamp start1 = aac.start
+
+        }
+    }
+*/
 
 
 }

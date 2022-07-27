@@ -25,6 +25,8 @@ import java.util.ResourceBundle;
 
 public class AppointmentController implements Initializable {
 
+    private static boolean firstTime = true;
+
     @FXML
     private TableView<Appointments> appointmentTableView;
 
@@ -57,8 +59,6 @@ public class AppointmentController implements Initializable {
 
     @FXML
     private TableColumn<Appointments, Integer> contactIdCol;
-
-    public static boolean firstTime = true;
 
     @FXML
     void onActionAppointmentScreen(ActionEvent event) {
@@ -187,8 +187,49 @@ public class AppointmentController implements Initializable {
     }
 
     private void appointmentAlert(){
+        ObservableList<Appointments> allAppointmentsList = DBAppointments.getAllAppointments();
+        ObservableList<Appointments> upcomingAppointmentsList = FXCollections.observableArrayList();
+        ObservableList<Appointments> currentAppointmentsList = FXCollections.observableArrayList();
+        for (Appointments a : allAppointmentsList) {
+            if (LocalDateTime.now().isBefore(a.getStartTime().toLocalDateTime()) && LocalDateTime.now().plusMinutes(15).isAfter(a.getStartTime().toLocalDateTime())) {
+                upcomingAppointmentsList.add(a);
+            } else if (LocalDateTime.now().isAfter(a.getStartTime().toLocalDateTime()) && LocalDateTime.now().isBefore(a.getEndTime().toLocalDateTime())) {
+                currentAppointmentsList.add(a);
+            }
+        }
+        if (!upcomingAppointmentsList.isEmpty() && firstTime){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Alert");
+            for (Appointments a : upcomingAppointmentsList) {
+                alert.setContentText("There's an appointment within the next 15 minutes!\n\n" +
+                        "Appointment ID: " + a.getAppointmentId() + ", Date: " + a.getStartTime().toLocalDateTime().toLocalDate() + ", Time: " + a.getStartTime().toLocalDateTime().toLocalTime() + "-" + a.getEndTime().toLocalDateTime().toLocalTime());
+            }
+            alert.showAndWait();
+            firstTime = false;
+        } else if (!currentAppointmentsList.isEmpty() && firstTime) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Alert");
+            for (Appointments a : currentAppointmentsList) {
+                alert.setContentText("There's an appointment taking place now.\n\n" +
+                        "Appointment ID: " + a.getAppointmentId() + ", Date: " + a.getStartTime().toLocalDateTime().toLocalDate() + ", Time: " + a.getStartTime().toLocalDateTime().toLocalTime() + "-" + a.getEndTime().toLocalDateTime().toLocalTime());
+            }
+            alert.showAndWait();
+            firstTime = false;
+        }
+        else if (firstTime){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Alert");
+            alert.setContentText("There are no upcoming appointments scheduled.\n");
+            alert.showAndWait();
+            firstTime = false;
+        }
+
+
+
+/*
         if (firstTime){
             ObservableList<Appointments> allAppointmentsList = DBAppointments.getAllAppointments();
+            ObservableList<Appointments> upcomingAppointmentsList = FXCollections.observableArrayList();
             for (Appointments a : allAppointmentsList){
                 if (LocalDateTime.now().isBefore(a.getStartTime().toLocalDateTime()) && LocalDateTime.now().plusMinutes(15).isAfter(a.getStartTime().toLocalDateTime())){
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -217,6 +258,7 @@ public class AppointmentController implements Initializable {
                 }
             }
         }
+*/
     }
 
     @Override
