@@ -21,7 +21,7 @@
          <children>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label text="ID:">
+                  <Label text="ID: ">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -35,7 +35,7 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="368.0" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label text="Title:">
+                  <Label text="Title: ">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -49,7 +49,7 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="374.0" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label text="Description:">
+                  <Label text="Description: ">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -59,7 +59,7 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="381.0" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label text="Location:">
+                  <Label text="Location: ">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -69,7 +69,7 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="387.0" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label text="Type:">
+                  <Label text="Type: ">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -79,7 +79,7 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="381.0" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label text="Date:">
+                  <Label text="Date: ">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -89,7 +89,7 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="381.0" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label text="Start TIme:">
+                  <Label text="Start TIme: ">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -99,7 +99,7 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="381.0" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label text="End Time:">
+                  <Label text="End Time: ">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -109,7 +109,7 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="381.0" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label text="Customer:">
+                  <Label text="Customer: ">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -119,7 +119,7 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="374.0" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label text="Contact:">
+                  <Label text="Contact: ">
                      <font>
                         <Font size="15.0" />
                      </font>
