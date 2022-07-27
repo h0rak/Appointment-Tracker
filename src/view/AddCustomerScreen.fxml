@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -10,70 +9,92 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddCustomerController">
+<AnchorPane prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddCustomerController">
    <children>
-      <VBox alignment="TOP_RIGHT" layoutX="127.0" layoutY="100.0" prefHeight="300.0" prefWidth="125.0" spacing="14.0">
+      <VBox alignment="CENTER_RIGHT" layoutX="127.0" layoutY="100.0" prefHeight="300.0" prefWidth="250.0">
          <children>
-            <Label text="ID:">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="10.0" layoutY="10.0" text="Name:">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="10.0" layoutY="27.0" text="Address:">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="10.0" layoutY="44.0" text="Postal Code:">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="10.0" layoutY="61.0" text="Phone Number:">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="92.0" layoutY="142.0" text="Country:">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="92.0" layoutY="175.0" text="Division:">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-         </children>
-         <padding>
-            <Insets right="5.0" />
-         </padding>
-      </VBox>
-      <VBox layoutX="249.0" layoutY="100.0" prefHeight="300.0" prefWidth="125.0" spacing="6.5">
-         <children>
-            <TextField fx:id="customerIdField" alignment="TOP_RIGHT" disable="true" promptText="Auto-generated">
-               <font>
-                  <Font name="System Italic" size="13.0" />
-               </font></TextField>
-            <TextField fx:id="customerNameField" alignment="TOP_RIGHT" layoutX="10.0" layoutY="10.0" promptText="First Last">
-               <font>
-                  <Font name="System Italic" size="13.0" />
-               </font>
-            </TextField>
-            <TextField fx:id="customerAddressField" alignment="TOP_RIGHT" layoutX="10.0" layoutY="36.0" promptText="123 Name St,  City" />
-            <TextField fx:id="customerPostalCodeField" alignment="TOP_RIGHT" layoutX="10.0" layoutY="36.0" promptText="12345" />
-            <TextField fx:id="customerPhoneNumberField" alignment="TOP_RIGHT" layoutX="10.0" layoutY="10.0" promptText="555-555-5555" />
-            <ComboBox fx:id="countryComboBox" nodeOrientation="LEFT_TO_RIGHT" onAction="#onActionCountryComboBox" prefWidth="150.0" promptText="Country" />
-            <ComboBox fx:id="divisionComboBox" prefWidth="150.0" promptText="First-level Division" />
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#onActionCancel" prefWidth="60.0" text="Cancel" />
-                  <Button mnemonicParsing="false" onAction="#onActionSave" prefWidth="60.0" text="Save" />
+                  <Label text="ID:">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="customerIdField" alignment="TOP_RIGHT" disable="true" maxWidth="150.0" promptText="Auto-generated">
+                     <font>
+                        <Font name="System Italic" size="13.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Name:">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="customerNameField" alignment="TOP_RIGHT" maxWidth="150.0" promptText="First Last">
+                     <font>
+                        <Font name="System Italic" size="13.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="52.0" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Address:">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="customerAddressField" alignment="TOP_RIGHT" maxWidth="150.0" promptText="123 Name St,  City" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="66.0" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Postal Code:">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="customerPostalCodeField" alignment="TOP_RIGHT" maxWidth="150.0" promptText="12345" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="73.0" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Phone:">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="customerPhoneNumberField" alignment="TOP_RIGHT" maxWidth="150.0" promptText="555-555-5555" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="77.0" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Country:">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="countryComboBox" nodeOrientation="LEFT_TO_RIGHT" onAction="#onActionCountryComboBox" prefWidth="150.0" promptText="Country" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="80.0" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Division:">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="divisionComboBox" prefWidth="150.0" promptText="First-level Division" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#onActionCancel" prefWidth="72.5" text="Cancel" />
+                  <Button mnemonicParsing="false" onAction="#onActionSave" prefWidth="72.5" text="Save" />
                </children>
             </HBox>
          </children>
