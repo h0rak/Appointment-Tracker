@@ -73,8 +73,6 @@ public class UpdateAppointmentController implements Initializable {
 
     @FXML
     void onActionSave(ActionEvent event) {
-
-
         try{
             int aId = Integer.parseInt(appointmentIdField.getText());
             String aTitle = appointmentTitleField.getText();

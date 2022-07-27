@@ -70,8 +70,6 @@ public class AddAppointmentController implements Initializable {
 
     @FXML
     void onActionSave(ActionEvent event) throws NullPointerException {
-
-
         try{
             String aTitle = appointmentTitleField.getText();
             String aDescription = appointmentDescriptionField.getText();
@@ -154,7 +152,6 @@ public class AddAppointmentController implements Initializable {
 
         LocalDateTime now = LocalDateTime.now();
         datePickerWidget.setValue(now.toLocalDate());
-//        LocalTime time = LocalTime.of(7,0);
 
         startTimeComboBox.setVisibleRowCount(5);
         endTimeComboBox.setVisibleRowCount(5);
