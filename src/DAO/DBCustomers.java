@@ -3,6 +3,7 @@ package DAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Customers;
+import utilities.CustomerSumInterface;
 import utilities.JDBC;
 import java.sql.*;
 
@@ -76,7 +77,7 @@ public abstract class DBCustomers {
         }
     }
 
-    public static String getTotalCustomers() {
+    public static String getTotalCustomers() { // Created Lambda Expression to replace this method
         String sql = "SELECT COUNT(*) FROM client_schedule.customers;";
         String totalCustomers = null;
         try {
@@ -90,5 +91,4 @@ public abstract class DBCustomers {
         }
         return totalCustomers;
     }
-
 }

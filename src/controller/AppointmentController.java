@@ -223,42 +223,6 @@ public class AppointmentController implements Initializable {
             alert.showAndWait();
             firstTime = false;
         }
-
-
-
-/*
-        if (firstTime){
-            ObservableList<Appointments> allAppointmentsList = DBAppointments.getAllAppointments();
-            ObservableList<Appointments> upcomingAppointmentsList = FXCollections.observableArrayList();
-            for (Appointments a : allAppointmentsList){
-                if (LocalDateTime.now().isBefore(a.getStartTime().toLocalDateTime()) && LocalDateTime.now().plusMinutes(15).isAfter(a.getStartTime().toLocalDateTime())){
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Alert");
-                    alert.setContentText("There's an appointment within the next 15 minutes!\n\n" +
-                            "Appointment ID: " + a.getAppointmentId() + ", Date: " + a.getStartTime().toLocalDateTime().toLocalDate() + ", Time: " + a.getStartTime().toLocalDateTime().toLocalTime() + "-" + a.getEndTime().toLocalDateTime().toLocalTime());
-                    alert.showAndWait();
-                    firstTime = false;
-                    break;
-                } else if (LocalDateTime.now().isAfter(a.getStartTime().toLocalDateTime()) && LocalDateTime.now().isBefore(a.getEndTime().toLocalDateTime())) {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Alert");
-                    alert.setContentText("There's an appointment taking place now.\n\n" +
-                            "Appointment ID: " + a.getAppointmentId() + ", Date: " + a.getStartTime().toLocalDateTime().toLocalDate() + ", Time: " + a.getStartTime().toLocalDateTime().toLocalTime() + "-" + a.getEndTime().toLocalDateTime().toLocalTime());
-                    alert.showAndWait();
-                    firstTime = false;
-                    break;
-                }
-                else {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Alert");
-                    alert.setContentText("There are no upcoming appointments scheduled.\n");
-                    alert.showAndWait();
-                    firstTime = false;
-                    break;
-                }
-            }
-        }
-*/
     }
 
     @Override

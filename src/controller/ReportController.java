@@ -1,8 +1,6 @@
 package controller;
 
 import DAO.DBAppointments;
-import DAO.DBContacts;
-import DAO.DBCustomers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,8 +15,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Appointments;
 import model.Contacts;
+import utilities.AllContactsInterface;
+import utilities.CustomerSumInterface;
+import utilities.JDBC;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.Month;
@@ -124,9 +128,49 @@ public class ReportController implements Initializable {
         typeMonthTotalLabel.setText(String.valueOf(total) + " " + typeToSearch + " appointment(s) in " + monthToSearch + ".");
     }
 
+    CustomerSumInterface customerCount = () -> {
+        String sql = "SELECT COUNT(*) FROM client_schedule.customers;";
+        String totalCustomers = null;
+        try {
+            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                totalCustomers = rs.getString(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return totalCustomers;
+    };
+
+    AllContactsInterface contactList = () -> {
+        ObservableList<Contacts> allContactsList = FXCollections.observableArrayList();
+        try{
+            String sql = "SELECT * FROM client_schedule.contacts;";
+            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                int contactId = rs.getInt("Contact_ID");
+                String contactName = rs.getString("Contact_Name");
+                String contactEmail = rs.getString("Email");
+
+                Contacts c = new Contacts(contactId, contactName, contactEmail);
+                allContactsList.add(c);
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return allContactsList;
+    };
+
+
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        contactComboBox.setItems(DBContacts.getAllContacts());
+//        contactComboBox.setItems(DBContacts.getAllContacts());
+        contactComboBox.setItems(contactList.getAllContacts());
         contactScheduleTableView.setItems(DBAppointments.getAllAppointments());
         appointmentIdCol.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
         appointmentTitleCol.setCellValueFactory(new PropertyValueFactory<>("appointmentTitle"));
@@ -144,7 +188,8 @@ public class ReportController implements Initializable {
         monthComboBox.setItems(months);
         monthComboBox.setValue(LocalDateTime.now().getMonth().name());
         monthComboBox.setVisibleRowCount(4);
-        totalCustomersLabel.setText(DBCustomers.getTotalCustomers());
+//        totalCustomersLabel.setText(DBCustomers.getTotalCustomers());
+        totalCustomersLabel.setText(customerCount.sumOfCustomers());
     }
 
 }
