@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UpdateCustomerController">
+<AnchorPane prefHeight="450.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UpdateCustomerController">
    <children>
-      <VBox layoutX="125.0" layoutY="100.0" prefHeight="300.0" prefWidth="250.0">
+      <VBox layoutX="100.0" layoutY="112.0" prefHeight="200.0" prefWidth="250.0" spacing="2.5">
          <children>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                <children>
@@ -95,7 +95,7 @@
             </HBox>
          </children>
       </VBox>
-      <Label layoutX="175.0" layoutY="43.0" text="Update Customer">
+      <Label layoutX="150.0" layoutY="46.0" text="Update Customer">
          <font>
             <Font size="20.0" />
          </font>

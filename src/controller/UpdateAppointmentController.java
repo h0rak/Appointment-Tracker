@@ -17,6 +17,8 @@ import javafx.stage.Stage;
 import model.Appointments;
 import model.Contacts;
 import model.Customers;
+import model.Users;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
@@ -44,6 +46,9 @@ public class UpdateAppointmentController implements Initializable {
 
     @FXML
     private ComboBox<Contacts> contactComboBox;
+
+    @FXML
+    private ComboBox<Users> userComboBox;
 
     @FXML
     private ComboBox<Customers> customerComboBox;
@@ -82,7 +87,7 @@ public class UpdateAppointmentController implements Initializable {
             Timestamp aStart = Timestamp.valueOf(LocalDateTime.of(datePickerWidget.getValue(),startTimeComboBox.getValue()));
             Timestamp aEnd = Timestamp.valueOf(LocalDateTime.of(datePickerWidget.getValue(),endTimeComboBox.getValue()));
             int aCustomerId = customerComboBox.getSelectionModel().getSelectedItem().getCustomerId();
-            int aUserId = DBUsers.getFakeUserId();
+            int aUserId = userComboBox.getSelectionModel().getSelectedItem().getUserId();
             int aContactId = contactComboBox.getSelectionModel().getSelectedItem().getContactId();
 
             String errorMessage = Appointments.inputChecker(aTitle, aDescription, aLocation, aType, aStart, aEnd, aCustomerId, aUserId, aContactId, "");
@@ -144,6 +149,8 @@ public class UpdateAppointmentController implements Initializable {
         endTimeComboBox.setValue(appointment.getEndTime().toLocalDateTime().toLocalTime());
         customerComboBox.setItems(DBCustomers.getAllCustomers());
         customerComboBox.setValue(DBAppointments.getCustomerByAppointmentId(appointment.getAppointmentId()));
+        userComboBox.setItems(DBUsers.getAllUsers());
+        userComboBox.setValue(DBAppointments.getUserByAppointmentId(appointment.getAppointmentId()));
         contactComboBox.setItems(DBContacts.getAllContacts());
         contactComboBox.setValue(DBAppointments.getContactByAppointmentId(appointment.getAppointmentId()));
     }
@@ -173,6 +180,9 @@ public class UpdateAppointmentController implements Initializable {
 
         customerComboBox.setItems(DBCustomers.getAllCustomers());
         customerComboBox.setVisibleRowCount(5);
+
+        userComboBox.setItems(DBUsers.getAllUsers());
+        userComboBox.setVisibleRowCount(2);
 
         contactComboBox.setItems(DBContacts.getAllContacts());
         contactComboBox.setVisibleRowCount(5);

@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import model.Appointments;
 import model.Contacts;
 import model.Customers;
+import model.Users;
 import utilities.JDBC;
 import java.sql.*;
 
@@ -137,6 +138,40 @@ public abstract class DBAppointments {
             e.printStackTrace();
         }
         return customer;
+    }
+
+    public static Users getUserByAppointmentId(int aId) {
+
+        int uId = 0;
+        Users user = null;
+
+        try {
+            String sql = "SELECT User_ID FROM appointments WHERE Appointment_ID = ?;";
+            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+            ps.setInt(1, aId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                uId = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            String sql2 = "SELECT User_ID, User_Name, Password FROM users WHERE User_ID = ?;";
+            PreparedStatement ps2 = JDBC.getConnection().prepareStatement(sql2);
+            ps2.setInt(1, uId);
+            ResultSet rs2 = ps2.executeQuery();
+            while (rs2.next()) {
+                int userId = rs2.getInt("User_ID");
+                String userName = rs2.getString("User_Name");
+                String userPassword = rs2.getString("Password");
+
+                user = new Users(userId, userName, userPassword);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
     }
 
     public static ObservableList<String> getAllTypes(){

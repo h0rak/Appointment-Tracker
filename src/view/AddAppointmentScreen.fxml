@@ -17,7 +17,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <VBox layoutX="125.0" layoutY="75.0" prefHeight="300.0" prefWidth="250.0" spacing="5.0">
+      <VBox layoutX="125.0" layoutY="75.0" prefHeight="350.0" prefWidth="250.0" spacing="2.5">
          <children>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                <children>
@@ -115,6 +115,16 @@
                      </font>
                   </Label>
                   <ComboBox fx:id="customerComboBox" maxWidth="150.0" prefWidth="150.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="User: ">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="userComboBox" maxWidth="150.0" prefWidth="150.0" />
                </children>
             </HBox>
             <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="374.0" prefHeight="100.0" prefWidth="200.0">

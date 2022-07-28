@@ -12,7 +12,7 @@
 
 <AnchorPane prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UpdateAppointmentController">
    <children>
-      <VBox alignment="TOP_RIGHT" layoutX="125.0" layoutY="100.0" prefHeight="300.0" prefWidth="250.0" spacing="5.0">
+      <VBox alignment="TOP_RIGHT" layoutX="125.0" layoutY="100.0" prefHeight="350.0" prefWidth="250.0" spacing="2.5">
          <children>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                <children>
@@ -110,6 +110,16 @@
                      </font>
                   </Label>
                   <ComboBox fx:id="customerComboBox" maxWidth="150.0" prefWidth="150.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="266.0" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="User: ">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="userComboBox" maxWidth="150.0" prefWidth="150.0" />
                </children>
             </HBox>
             <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="354.0" prefHeight="100.0" prefWidth="200.0">
