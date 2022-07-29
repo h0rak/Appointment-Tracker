@@ -9,12 +9,15 @@ import javafx.stage.Stage;
 import java.util.Objects;
 import java.util.Locale;
 
+/** This is the main class.
+ * The main class contains the main method.
+ */
 public class Main extends Application {
 
-//    TODO + 2 LAMBDA EXPRESSIONS
-//    TODO + JAVADOC
-//    TODO + README.TXT
-
+    /** This is the main method.
+     * The main method is the first method that is called when your run your Java program.
+     * @param args args are an array of Strings passed to the main method
+     */
     public static void main(String[] args) {
         Locale.setDefault(new Locale("fr"));
         JDBC.openConnection();
@@ -22,6 +25,10 @@ public class Main extends Application {
         JDBC.closeConnection();
     }
 
+    /** The start method.
+     * The start method sets the initial screen as the LoginScreen.fxml
+     * @param stage The stage that is loaded and displayed
+     */
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/LoginScreen.fxml")));

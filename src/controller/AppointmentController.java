@@ -1,7 +1,6 @@
 package controller;
 
 import DAO.DBAppointments;
-import com.company.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,6 +22,9 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/** The AppointmentController class.
+ * This class gives functionality to the Appointment Screen.
+ */
 public class AppointmentController implements Initializable {
 
     private static boolean firstTime = true;
@@ -60,11 +62,19 @@ public class AppointmentController implements Initializable {
     @FXML
     private TableColumn<Appointments, Integer> contactIdCol;
 
+    /** The onActionAppointmentScreen method.
+     * This method is purposefully left blank.
+     * @param event the event is the selection of the Appointment Screen radio button
+     */
     @FXML
     void onActionAppointmentScreen(ActionEvent event) {
         return;
     }
 
+    /** The onActionCustomerScreen method.
+     * This method directs the user to the Customer Screen.
+     * @param event the event is the selection of the Customer Screen radio button
+     */
     @FXML
     void onActionCustomerScreen(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/CustomerScreen.fxml")));
@@ -75,6 +85,10 @@ public class AppointmentController implements Initializable {
         stage.show();
     }
 
+    /** The onActionReportScreen method.
+     * This method directs the user to the Report Screen.
+     * @param event the event is the selection of the Report Screen radio button
+     */
     @FXML
     void onActionReportScreen(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/ReportScreen.fxml")));
@@ -85,21 +99,37 @@ public class AppointmentController implements Initializable {
         stage.show();
     }
 
+    /** The onActionFilterAll method.
+     * This method populates all appointments into the appointmentTableView
+     * @param event the event is the selection of the all radio button
+     */
     @FXML
     void onActionFilterAll(ActionEvent event) {
         appointmentTableView.setItems(DBAppointments.getAllAppointments());
     }
 
+    /** The onActionFilterMonth method.
+     * This method populates all appointments of the current month into the appointmentTableView
+     * @param event  the event is the selection of the month radio button
+     */
     @FXML
     void onActionFilterMonth(ActionEvent event) {
         appointmentTableView.setItems(appointmentsThisMonth());
     }
 
+    /** The onActionFilterWeek method.
+     * This method populates all appointments within the next 7 days into the appointmentTableView
+     * @param event  the event is the selection of the week radio button
+     */
     @FXML
     void onActionFilterWeek(ActionEvent event) {
         appointmentTableView.setItems(appointmentsThisWeek());
     }
 
+    /** The onActionAddAppointment method.
+     * This method directs the user to the AddAppointment Screen.
+     * @param actionEvent the actionEvent is the selection of the Add button
+     */
     @FXML
     void onActionAddAppointment(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AddAppointmentScreen.fxml")));
@@ -110,6 +140,10 @@ public class AppointmentController implements Initializable {
         stage.show();
     }
 
+    /** The onActionUpdateAppointment method.
+     * This method directs the user to the UpdateAppointment Screen.
+     * @param actionEvent the actionEvent is the selection of the Update button
+     */
     @FXML
     void onActionUpdateAppointment(ActionEvent actionEvent) throws IOException {
         try {
@@ -133,6 +167,10 @@ public class AppointmentController implements Initializable {
         }
     }
 
+    /** The onActionDeleteAppointment method.
+     * This method deletes a selected appointment from the appointmentTableView
+     * @param event the event is the selection of the delete button
+     */
     @FXML
     void onActionDeleteAppointment(ActionEvent event) {
         Appointments appointmentToDelete = appointmentTableView.getSelectionModel().getSelectedItem();
@@ -161,6 +199,10 @@ public class AppointmentController implements Initializable {
         }
     }
 
+    /** The appointmentsThisMonth method.
+     * This method scans all appointments to make a list of appointments this month.
+     * @return returned is a list of appointments this month
+     */
     private ObservableList<Appointments> appointmentsThisMonth(){
         ObservableList<Appointments> appointmentsThisMonthList = FXCollections.observableArrayList();
         ObservableList<Appointments> allAppointmentsList = DBAppointments.getAllAppointments();
@@ -173,6 +215,10 @@ public class AppointmentController implements Initializable {
         return appointmentsThisMonthList;
     }
 
+    /** The appointmentsThisWeek method.
+     * This method scans all appointments to make a list of appointments in the next 7 days.
+     * @return returned is a list of appointments in the next seven days
+     */
     private ObservableList<Appointments> appointmentsThisWeek(){
             ObservableList<Appointments> appointmentsThisWeekList = FXCollections.observableArrayList();
             ObservableList<Appointments> allAppointmentsList = DBAppointments.getAllAppointments();
@@ -186,6 +232,9 @@ public class AppointmentController implements Initializable {
             return appointmentsThisWeekList;
     }
 
+    /** The appointmentAlert method.
+     * This method alerts the user to possible upcoming appointments upon login.
+     */
     private void appointmentAlert(){
         ObservableList<Appointments> allAppointmentsList = DBAppointments.getAllAppointments();
         ObservableList<Appointments> upcomingAppointmentsList = FXCollections.observableArrayList();
@@ -225,6 +274,11 @@ public class AppointmentController implements Initializable {
         }
     }
 
+    /** The initialize method.
+     * This method sets all the necessary data for the screen.
+     * @param url the url is default in the initialize method
+     * @param resourceBundle  the resourceBundle is default in the initialize method
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         appointmentTableView.setItems(DBAppointments.getAllAppointments());

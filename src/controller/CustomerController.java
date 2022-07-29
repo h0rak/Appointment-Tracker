@@ -2,7 +2,6 @@ package controller;
 
 import DAO.DBAppointments;
 import DAO.DBCustomers;
-import DAO.DBDivisions;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,6 +22,9 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/** The CustomerController class.
+ * This class gives functionality to the Customer Screen.
+ */
 public class CustomerController implements Initializable {
 
     @FXML
@@ -30,9 +32,6 @@ public class CustomerController implements Initializable {
 
     @FXML
     private TableColumn<Customers, String> customerAddressCol;
-
-    @FXML
-    private TableColumn<Customers, String> customerCountryCol;
 
     @FXML
     private TableColumn<Customers, String> customerDivisionCol;
@@ -49,6 +48,10 @@ public class CustomerController implements Initializable {
     @FXML
     private TableColumn<Customers, Integer> customerPostalCodeCol;
 
+    /** The onActionAddCustomer method.
+     * This method directs the user to the Add Customer Screen.
+     * @param actionEvent the event is the selection of the Add button
+     */
     @FXML
     void onActionAddCustomer(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AddCustomerScreen.fxml")));
@@ -59,6 +62,10 @@ public class CustomerController implements Initializable {
         stage.show();
     }
 
+    /** The onActionAppointmentScreen method.
+     * This method directs the user to the Appointment Screen.
+     * @param actionEvent the event is the selection of the Appointment Screen radio button
+     */
     @FXML
     void onActionAppointmentScreen(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AppointmentScreen.fxml")));
@@ -69,6 +76,10 @@ public class CustomerController implements Initializable {
         stage.show();
     }
 
+    /** The onActionReportScreen method.
+     * This method directs the user to the Report Screen.
+     * @param actionEvent the event is the selection of the Report Screen radio button
+     */
     @FXML
     void onActionReportScreen(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/ReportScreen.fxml")));
@@ -79,11 +90,19 @@ public class CustomerController implements Initializable {
         stage.show();
     }
 
+    /** The onActionCustomerScreen method.
+     * This method is purposefully left blank.
+     * @param event the event is the selection of the Customer Screen radio button
+     */
     @FXML
     void onActionCustomerScreen(ActionEvent event) {
         return;
     }
 
+    /** The onActionDeleteCustomer method.
+     * This method deletes a selected Customer from the customerTableView.
+     * @param event the even is the selection of the delete button
+     */
     @FXML
     void onActionDeleteCustomer(ActionEvent event) throws NullPointerException{
         try {
@@ -91,9 +110,7 @@ public class CustomerController implements Initializable {
             ObservableList<Appointments> allAppointmentsList = DBAppointments.getAllAppointments();
             ObservableList<Appointments> customerAppointments = FXCollections.observableArrayList();
             int customerId = customerToDelete.getCustomerId();
-//        int customerId = customerTableView.getSelectionModel().getSelectedItem().getCustomerId();
             String customerName = customerToDelete.getCustomerName();
-//        String customerName = customerTableView.getSelectionModel().getSelectedItem().getCustomerName();
 
             for (Appointments a : allAppointmentsList){
                 if (a.getCustomerId() == customerId){
@@ -131,6 +148,10 @@ public class CustomerController implements Initializable {
         }
     }
 
+    /** THe onActionUpdateCustomer method.
+     * This method sends a selected customer to the UpdateCustomer Screen.
+     * @param actionEvent the event is the selection of the update button
+     */
     @FXML
     void onActionUpdateCustomer(ActionEvent actionEvent) throws IOException {
         try {
@@ -155,6 +176,11 @@ public class CustomerController implements Initializable {
         }
     }
 
+    /** The initialize method.
+     * This method sets all the necessary data for the screen.
+     * @param url the url is default in the initialize method
+     * @param resourceBundle  the resourceBundle is default in the initialize method
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         customerTableView.setItems(DBCustomers.getAllCustomers());

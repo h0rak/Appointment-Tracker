@@ -24,6 +24,9 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/** This is the AddCustomerController class.
+ * This class provides a form for users to input customers to the database.
+ */
 public class AddCustomerController implements Initializable {
     
     @FXML
@@ -44,12 +47,20 @@ public class AddCustomerController implements Initializable {
     @FXML
     private ComboBox<Divisions> divisionComboBox;
 
+    /** The onActionCountryComboBox method.
+     * This method sets the appropriate divisions in the divisionComboBox when a country is selected.
+     * @param event the event is the choosing of a country in the combo box
+     */
     @FXML
     void onActionCountryComboBox(ActionEvent event) {
         Countries selectedCountry = countryComboBox.getSelectionModel().getSelectedItem();
         divisionComboBox.setItems(DBDivisions.getDivisionsByCountryId(selectedCountry.getCountryId()));
     }
 
+    /** The onActionSave method.
+     * This method allows for users to save a customer
+     * @param event the event is the clicking of the save button.
+     */
     @FXML
     void onActionSave(ActionEvent event) {
         try{
@@ -88,6 +99,10 @@ public class AddCustomerController implements Initializable {
         }
     }
 
+    /** The onActionCancel method.
+     * This method presents an alert before discarding the AddCustomer form.
+     * @param actionEvent the actionEvent is the clicking of the cancel button
+     */
     @FXML
     void onActionCancel(ActionEvent actionEvent) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Any unsaved information will be lost. Do you wish to continue?");
@@ -102,6 +117,11 @@ public class AddCustomerController implements Initializable {
         }
     }
 
+    /** The initialize method.
+     * This method sets all the necessary data for the combo boxes and the form to be functional.
+     * @param url the url is default in the initialize method
+     * @param resourceBundle  the resourceBundle is default in the initialize method
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         countryComboBox.setItems(DBCountries.getAllCountries());

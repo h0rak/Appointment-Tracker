@@ -18,7 +18,6 @@ import model.Appointments;
 import model.Contacts;
 import model.Customers;
 import model.Users;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
@@ -27,6 +26,9 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/** This is the AddAppointmentController class.
+ * This class provides a form for users to input appointments to the database.
+ */
 public class AddAppointmentController implements Initializable {
 
     @FXML
@@ -59,6 +61,10 @@ public class AddAppointmentController implements Initializable {
     @FXML
     private DatePicker datePickerWidget;
 
+    /** The onActionCancel method.
+     * This method presents an alert before discarding the AddAppointment form.
+     * @param actionEvent the actionEvent is the clicking of the cancel button
+     */
     @FXML
     void onActionCancel(ActionEvent actionEvent) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Any unsaved information will be lost. Do you wish to continue?");
@@ -73,6 +79,10 @@ public class AddAppointmentController implements Initializable {
         }
     }
 
+    /** The onActionSave method.
+     * This method allows for users to save an appointment.
+     * @param event the event is the clicking of the save button
+     */
     @FXML
     void onActionSave(ActionEvent event) throws NullPointerException {
         try{
@@ -134,6 +144,11 @@ public class AddAppointmentController implements Initializable {
         }
     }
 
+    /** The initialize method.
+     * This method sets all the necessary data for the combo boxes and the form to be functional.
+     * @param url the url is default in the initialize method
+     * @param resourceBundle  the resourceBundle is default in the initialize method
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
