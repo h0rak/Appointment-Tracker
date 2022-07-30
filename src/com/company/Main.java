@@ -19,7 +19,7 @@ public class Main extends Application {
      * @param args args are an array of Strings passed to the main method
      */
     public static void main(String[] args) {
-        Locale.setDefault(new Locale("fr"));
+//        Locale.setDefault(new Locale("fr"));
         JDBC.openConnection();
         launch(args);
         JDBC.closeConnection();
