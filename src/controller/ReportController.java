@@ -29,6 +29,9 @@ import java.time.Month;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+/** The ReportController class.
+ * This class gives functionality to the Report Screen.
+ */
 public class ReportController implements Initializable {
 
     private final ObservableList<String> months = FXCollections.observableArrayList("JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER");
@@ -84,6 +87,10 @@ public class ReportController implements Initializable {
     private ComboBox<Contacts> contactComboBox;
 
 
+    /** The onActionAppointmentScreen method.
+     * This method directs the user to the Appointment Screen.
+     * @param actionEvent the event is the selection of the Appointments radio button
+     */
     @FXML
     void onActionAppointmentScreen(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AppointmentScreen.fxml")));
@@ -94,6 +101,10 @@ public class ReportController implements Initializable {
         stage.show();
     }
 
+    /** The onActionCustomerScreen method.
+     * This method directs the user to the Customer Screen.
+     * @param actionEvent the even is the selection of the Customers radio button
+     */
     @FXML
     void onActionCustomerScreen(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/CustomerScreen.fxml")));
@@ -104,17 +115,29 @@ public class ReportController implements Initializable {
         stage.show();
     }
 
+    /** The onActionFilterContactAppointments method.
+     * This method sets the items for the contactScheduleTableView to be filtered by contact.
+     * @param event the event is the selection of a contact from the contactComboBox
+     */
     @FXML
     void onActionFilterContactAppointments(ActionEvent event) {
         Contacts selectedContact = contactComboBox.getSelectionModel().getSelectedItem();
         contactScheduleTableView.setItems(DBAppointments.getAppointmentsByContactId(selectedContact.getContactId()));
     }
 
+    /** The onActionReportScreen method.
+     * This method is purposefully left blank.
+     * @param event the event is the selection of the Reports radio button
+     */
     @FXML
     void onActionReportScreen(ActionEvent event) {
         return;
     }
 
+    /** The onActionTypeMonthTotal method.
+     * This method produces a sum based off of the filters set by the Month and Type combo boxes and set a label.
+     * @param event the event is the selection of the total button
+     */
     @FXML
     void onActionTypeMonthTotal(ActionEvent event) throws NullPointerException {
         String typeToSearch = typeComboBox.getSelectionModel().getSelectedItem();
@@ -128,6 +151,10 @@ public class ReportController implements Initializable {
         typeMonthTotalLabel.setText(String.valueOf(total) + " " + typeToSearch + " appointment(s) in " + monthToSearch + ".");
     }
 
+    /** The customerCount Lambda Expression.
+     * This expression totals the customers in the database.
+     * @return returned is the total number of customer objects
+     */
     CustomerSumInterface customerCount = () -> {
         String sql = "SELECT COUNT(*) FROM client_schedule.customers;";
         String totalCustomers = null;
@@ -143,6 +170,10 @@ public class ReportController implements Initializable {
         return totalCustomers;
     };
 
+    /** The contactList Lambda Expression.
+     * This expression sets a list of contacts' names as a string.
+     * @return returned is the list of contacts
+     */
     AllContactsInterface contactList = () -> {
         ObservableList<Contacts> allContactsList = FXCollections.observableArrayList();
         try{
@@ -164,9 +195,11 @@ public class ReportController implements Initializable {
         return allContactsList;
     };
 
-
-
-
+    /** The initialize method.
+     * This method sets all the necessary data for the screen.
+     * @param url the url is default in the initialize method
+     * @param resourceBundle  the resourceBundle is default in the initialize method
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 //        contactComboBox.setItems(DBContacts.getAllContacts());

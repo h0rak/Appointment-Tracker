@@ -8,8 +8,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/** The DBCountries class.
+ * This class houses methods that access the countries table of the database.
+ */
 public abstract class DBCountries {
 
+    /** THe getAllCountries method.
+     * This method selects all the countries in the table.
+     * @return returns a list of all countries
+     */
     public static ObservableList<Countries> getAllCountries() {
         ObservableList<Countries> allCountriesList = FXCollections.observableArrayList();
         try{
@@ -30,6 +37,11 @@ public abstract class DBCountries {
         return allCountriesList;
     }
 
+    /** The getCustomerCountryFromDivisionId method.
+     * This method determines the country from a given division ID.
+     * @param customerDivisionId the customer's division ID
+     * @return returns a country
+     */
     public static Countries getCustomerCountryFromDivisionId(int customerDivisionId) {
         Countries c = null;
         int cID = 0;

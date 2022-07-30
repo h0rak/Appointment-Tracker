@@ -3,12 +3,18 @@ package DAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Customers;
-import utilities.CustomerSumInterface;
 import utilities.JDBC;
 import java.sql.*;
 
+/** The DBCustomers class.
+ * This class houses the methods that access the customers table of the database.
+ */
 public abstract class DBCustomers {
 
+    /** The getAllCustomers method.
+     * This method selects all the customers in the table.
+     * @return returns a list of all customers
+     */
     public static ObservableList<Customers> getAllCustomers() {
         ObservableList<Customers> allCustomersList = FXCollections.observableArrayList();
 
@@ -33,6 +39,14 @@ public abstract class DBCustomers {
         return allCustomersList;
     }
 
+    /** The AddCustomer method.
+     * This method makes an insert to the customers table of the database.
+     * @param customerName Customer Name
+     * @param customerAddress Customer Address
+     * @param customerPostalCode Customer Postal Code
+     * @param customerPhone Customer Phone
+     * @param customerDivisionId Customer Division ID
+     */
     public static void AddCustomer(String customerName, String customerAddress, String customerPostalCode, String customerPhone, int customerDivisionId) {
         try {
             String sql = "INSERT INTO customers VALUES(NULL, ?, ?, ?, ?, NULL, NULL, NULL, NULL, ?)"; // will need to be adjusted
@@ -49,6 +63,15 @@ public abstract class DBCustomers {
         }
     }
 
+    /** The UpdateCustomer method.
+     * This method makes an update to the customers table of the database.
+     * @param customerId Customer ID
+     * @param customerName Customer Name
+     * @param customerAddress Customer Address
+     * @param customerPostalCode Customer Postal Code
+     * @param customerPhone Customer Phone
+     * @param customerDivisionId Customer Division ID
+     */
     public static void UpdateCustomer(int customerId, String customerName, String customerAddress, String customerPostalCode, String customerPhone, int customerDivisionId) {
         String sql = "UPDATE customers SET Customer_Name = ?, Address = ?, Postal_Code = ?, Phone = ?, Division_ID = ? WHERE Customer_ID = ?";
         try {
@@ -77,6 +100,11 @@ public abstract class DBCustomers {
         }
     }
 
+    /** The getTotalCustomers method.
+     * This method performs a count function on the customers table of the database.
+     * This method was replaced by a lambda expression per requirement.
+     * @return returns the count of customers to a String
+     */
     public static String getTotalCustomers() { // Created Lambda Expression to replace this method
         String sql = "SELECT COUNT(*) FROM client_schedule.customers;";
         String totalCustomers = null;

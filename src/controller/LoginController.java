@@ -22,6 +22,9 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/** The LoginController class.
+ * This class gives functionality to the Login Screen.
+ */
 public class LoginController implements Initializable {
 
     public TextField usernameInput;
@@ -33,6 +36,9 @@ public class LoginController implements Initializable {
     public Button loginButton;
     private boolean matchExists = false;
 
+    /** The localeLanguageSetter method.
+     * This method is used to translate English to French based on the user's locale.
+     */
     private void localeLanguageSetter() {
         if (Locale.getDefault().getLanguage().equals("fr")){
             ResourceBundle rb = ResourceBundle.getBundle("utilities/RB", Locale.getDefault());
@@ -43,11 +49,19 @@ public class LoginController implements Initializable {
         }
     }
 
+    /** The onActionReset method.
+     * This method clears the username and password fields.
+     * @param actionEvent the event is the selection of the reset button
+     */
     public void onActionReset(ActionEvent actionEvent) {
         usernameInput.clear();
         passwordInput.clear();
     }
 
+    /** THe onActionLogin method.
+     * This method verifies the username and password combination before changing scenes.
+     * @param actionEvent the event is the selection of the login button
+     */
     public void onActionLogin(ActionEvent actionEvent) throws IOException {
         String userName = usernameInput.getText();
         String userPassword = passwordInput.getText();
@@ -118,6 +132,11 @@ public class LoginController implements Initializable {
         }
     }
 
+    /** The initialize method.
+     * This method sets all the necessary data for the screen.
+     * @param url the url is default in the initialize method
+     * @param resourceBundle  the resourceBundle is default in the initialize method
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         localeLanguageSetter();

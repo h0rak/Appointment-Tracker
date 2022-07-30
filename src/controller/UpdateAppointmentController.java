@@ -18,7 +18,6 @@ import model.Appointments;
 import model.Contacts;
 import model.Customers;
 import model.Users;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
@@ -27,6 +26,9 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/** The UpdateAppointmentController class.
+ * This class presents a form that allows the user to update an existing appointment.
+ */
 public class UpdateAppointmentController implements Initializable {
 
     @FXML
@@ -62,6 +64,10 @@ public class UpdateAppointmentController implements Initializable {
     @FXML
     private DatePicker datePickerWidget;
 
+    /** The onActionCancel method.
+     * This method presents an alert before discarding the UpdateAppointment form.
+     * @param actionEvent the event is the selection of the cancel button
+     */
     @FXML
     void onActionCancel(ActionEvent actionEvent) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Any unsaved information will be lost. Do you wish to continue?");
@@ -76,6 +82,10 @@ public class UpdateAppointmentController implements Initializable {
         }
     }
 
+    /** The onActionSave method.
+     * This method allows the user to update an existing appointment.
+     * @param event the event is the selection of the update button
+     */
     @FXML
     void onActionSave(ActionEvent event) {
         try{
@@ -138,6 +148,10 @@ public class UpdateAppointmentController implements Initializable {
         }
     }
 
+    /** The SendAppointment method.
+     * This method allows the user to send an appointment to another screen to update.
+     * @param appointment the appointment param is the selected appointment on the Appointment Screen
+     */
     public void SendAppointment(Appointments appointment) {
         appointmentIdField.setText(String.valueOf(appointment.getAppointmentId()));
         appointmentTitleField.setText(String.valueOf(appointment.getAppointmentTitle()));
@@ -155,6 +169,11 @@ public class UpdateAppointmentController implements Initializable {
         contactComboBox.setValue(DBAppointments.getContactByAppointmentId(appointment.getAppointmentId()));
     }
 
+    /** The initialize method.
+     * This method sets all the necessary data for the screen.
+     * @param url the url is default in the initialize method
+     * @param resourceBundle  the resourceBundle is default in the initialize method
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         LocalTime start = LocalTime.of(8, 0);

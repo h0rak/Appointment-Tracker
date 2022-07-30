@@ -9,8 +9,15 @@ import model.Users;
 import utilities.JDBC;
 import java.sql.*;
 
+/** The DBAppointments class.
+ * This class houses methods that access the appointments table in the database.
+ */
 public abstract class DBAppointments {
 
+    /** THe getAllAppointments method.
+     * This method selects all the appointments in the table.
+     * @return returns a list of all appointments
+     */
     public static ObservableList<Appointments> getAllAppointments() {
         ObservableList<Appointments> allAppointmentsList = FXCollections.observableArrayList();
 
@@ -40,6 +47,11 @@ public abstract class DBAppointments {
         return allAppointmentsList;
     }
 
+    /** THe getAppointmentsByContactId method.
+     * This method gets a list of appointments by contact ID.
+     * @param cID the cID param is the contact ID that sets the appointments in the list
+     * @return returns a list of the selected contact's appointments
+     */
     public static ObservableList<Appointments> getAppointmentsByContactId(int cID) {
         ObservableList<Appointments> contactAppointmentsList = FXCollections.observableArrayList();
 
@@ -69,6 +81,11 @@ public abstract class DBAppointments {
         return contactAppointmentsList;
     }
 
+    /** The getContactByAppointmentId method.
+     * This method gets the contact from an appointment.
+     * @param aId the aId param is the Appointment ID
+     * @return returns a Contact
+     */
     public static Contacts getContactByAppointmentId(int aId) {
 
         int cId = 0;
@@ -103,6 +120,11 @@ public abstract class DBAppointments {
         return contact;
     }
 
+    /** The getCustomerByAppointmentId method.
+     * This method gets a customer from an appointment.
+     * @param aId the aId param is the appointment ID
+     * @return returns the Customer
+     */
     public static Customers getCustomerByAppointmentId(int aId) {
 
         int cId = 0;
@@ -140,6 +162,11 @@ public abstract class DBAppointments {
         return customer;
     }
 
+    /** The getUserByAppointmentId method
+     * This method gets a user from an appointment.
+     * @param aId the aId param is the appointment ID
+     * @return returns the User
+     */
     public static Users getUserByAppointmentId(int aId) {
 
         int uId = 0;
@@ -174,6 +201,10 @@ public abstract class DBAppointments {
         return user;
     }
 
+    /** The getAllTypes method.
+     * This method gets a distinct list of appointment types.
+     * @return returns a distinct list of types
+     */
     public static ObservableList<String> getAllTypes(){
         ObservableList<String> allTypesList = FXCollections.observableArrayList();
 
@@ -193,6 +224,10 @@ public abstract class DBAppointments {
         return allTypesList;
     }
 
+    /** The DeleteAppointment method.
+     * This method deletes a selected appointment.
+     * @param appointmentId the appointmentId param is the ID of the appointment to be deleted
+     */
     public static void DeleteAppointment(int appointmentId){
         String sql = "DELETE FROM appointments WHERE Appointment_ID = ?";
         try{
@@ -205,6 +240,18 @@ public abstract class DBAppointments {
         }
     }
 
+    /** The AddAppointment method.
+     * This method makes an insert to the appointment table of the database.
+     * @param appointmentTitle Appointment Title
+     * @param appointmentDescription Appointment Description
+     * @param appointmentLocation Appointment Location
+     * @param appointmentType Appointment Type
+     * @param startTime Start Time
+     * @param endTime End Time
+     * @param customerId Customer ID
+     * @param userId User ID
+     * @param contactId Contact ID
+     */
     public static void AddAppointment(String appointmentTitle, String appointmentDescription, String appointmentLocation, String appointmentType, Timestamp startTime, Timestamp endTime, int customerId, int userId, int contactId){
         try {
             String sql = "INSERT INTO appointments VALUES(NULL, ?, ?, ?, ?, ?, ?, NULL, NULL, NULL, NULL, ?, ?, ?)";
@@ -226,6 +273,19 @@ public abstract class DBAppointments {
         }
     }
 
+    /** The UpdateAppointment method.
+     * This method makes an update to the appointment table of the database.
+     * @param appointmentId Appointment ID
+     * @param appointmentTitle Appointment Title
+     * @param appointmentDescription Appointment Description
+     * @param appointmentLocation Appointment Location
+     * @param appointmentType Appointment Type
+     * @param startTime Start Time
+     * @param endTime End Time
+     * @param customerId Customer ID
+     * @param userId User ID
+     * @param contactId Contact ID
+     */
     public static void UpdateAppointment(int appointmentId, String appointmentTitle, String appointmentDescription, String appointmentLocation, String appointmentType, Timestamp startTime, Timestamp endTime, int customerId, int userId, int contactId){
         String sql = "UPDATE appointments SET Title = ?, Description = ?, Location = ?, Type = ?, Start = ?, End = ?, Customer_ID = ?, User_ID = ?, Contact_ID = ? WHERE Appointment_ID = ?;";
         try{
@@ -240,12 +300,10 @@ public abstract class DBAppointments {
             ps.setInt(8, userId);
             ps.setInt(9, contactId);
             ps.setInt(10, appointmentId);
-            ps.executeUpdate(); // forgot this. that's why it wasn't updating.
+            ps.executeUpdate();
         }
         catch (NumberFormatException | SQLException e){
             e.printStackTrace();
         }
-
     }
-
 }

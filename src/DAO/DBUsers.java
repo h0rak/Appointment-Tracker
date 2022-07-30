@@ -1,6 +1,5 @@
 package DAO;
 
-import controller.LoginController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Users;
@@ -9,8 +8,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/** The DBUsers class.
+ * This class houses the methods that access the Users table of the database.
+ */
 public abstract class DBUsers {
 
+    /** The getAllUsers method.
+     * This method selects all the Users from the Users table of the database.
+     * @return returns a list of all users
+     */
     public static ObservableList<Users> getAllUsers() {
         ObservableList<Users> allUsersList = FXCollections.observableArrayList();
         try{

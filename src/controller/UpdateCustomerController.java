@@ -24,6 +24,9 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/** The UpdateCustomerController class.
+ * This class presents a form that allows the user to update an existing customer.
+ */
 public class UpdateCustomerController implements Initializable {
 
     @FXML
@@ -47,12 +50,20 @@ public class UpdateCustomerController implements Initializable {
     @FXML
     private ComboBox<Divisions> divisionComboBox;
 
+    /** The onActionCountryComboBox method.
+     * This method sets the appropriate divisions in the divisionComboBox when a country is selected.
+     * @param event the event is the choosing of a country in the combo box
+     */
     @FXML
     void onActionCountryComboBox(ActionEvent event) {
         Countries selectedCountry = countryComboBox.getSelectionModel().getSelectedItem();
         divisionComboBox.setItems(DBDivisions.getDivisionsByCountryId(selectedCountry.getCountryId()));
     }
 
+    /** The onActionCancel method.
+     * This method presents an alert before discarding the UpdateCustomer form.
+     * @param actionEvent the actionEvent is the clicking of the cancel button
+     */
     @FXML
     void onActionCancel(ActionEvent actionEvent) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Any unsaved information will be lost. Do you wish to continue?");
@@ -67,6 +78,10 @@ public class UpdateCustomerController implements Initializable {
         }
     }
 
+    /** The onActionSave method.
+     * This method allows the user to update a customer
+     * @param event the event is the clicking of the update button.
+     */
     @FXML
     void onActionSave(ActionEvent event) {
 
@@ -106,6 +121,10 @@ public class UpdateCustomerController implements Initializable {
         }
     }
 
+    /** The SendCustomer method.
+     * This method allows the user to send a customer to another screen to update.
+     * @param customer the customer param is the selected customer on the Customer Screen
+     */
     public void SendCustomer(Customers customer) {
         customerIdField.setText(String.valueOf(customer.getCustomerId()));
         customerNameField.setText(String.valueOf(customer.getCustomerName()));
@@ -119,6 +138,11 @@ public class UpdateCustomerController implements Initializable {
         divisionComboBox.setValue(DBDivisions.getDivisionNameFromDivisionId(customer.getCustomerDivisionId()));
     }
 
+    /** The initialize method.
+     * This method sets all the necessary data for the screen.
+     * @param url the url is default in the initialize method
+     * @param resourceBundle  the resourceBundle is default in the initialize method
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         countryComboBox.setItems(DBCountries.getAllCountries());
