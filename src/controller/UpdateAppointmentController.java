@@ -110,18 +110,18 @@ public class UpdateAppointmentController implements Initializable {
                 alert.showAndWait();
             }
             else {
-                int existingAppointments = 0;
-                ObservableList<Appointments> customersAppointments = Appointments.getCustomersAppointmentList(aCustomerId);
+                boolean existingAppointments = false;
+                ObservableList<Appointments> customersAppointments = Appointments.getCustomersAppointmentList(aCustomerId, aId);
                 for (Appointments a : customersAppointments) {
                     if (aStart.toLocalDateTime().isBefore(a.getStartTime().toLocalDateTime()) && aEnd.toLocalDateTime().isAfter(a.getStartTime().toLocalDateTime())) {
-                        existingAppointments += 1;
+                        existingAppointments = true;
                     } else if (aStart.toLocalDateTime().isEqual(a.getStartTime().toLocalDateTime())) {
-                        existingAppointments += 1;
+                        existingAppointments = true;
                     } else if (aStart.toLocalDateTime().isAfter(a.getStartTime().toLocalDateTime()) && aStart.toLocalDateTime().isBefore(a.getEndTime().toLocalDateTime())) {
-                        existingAppointments += 1;
+                        existingAppointments = true;
                     }
                 }
-                if (existingAppointments > 0) {
+                if (existingAppointments) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Error");
                     alert.setHeaderText("Appointment not added.");

@@ -81,6 +81,33 @@ public abstract class DBAppointments {
         return contactAppointmentsList;
     }
 
+    public static Appointments getAppointmentByAppointmentId(int aId) {
+        Appointments selectedAppointment = null;
+        try {
+            String sql = "SELECT Appointment_ID, Title, Description, Location, Type, Start, End, Customer_ID, User_ID, Contact_ID FROM client_schedule.appointments WHERE Appointment_ID = ?;";
+            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+            ps.setInt(1, aId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int appointmentId = rs.getInt("Appointment_ID");
+                String appointmentTitle = rs.getString("Title");
+                String appointmentDescription = rs.getString("Description");
+                String appointmentLocation = rs.getString("Location");
+                String appointmentType = rs.getString("Type");
+                Timestamp startTime = rs.getTimestamp("Start");
+                Timestamp endTime = rs.getTimestamp("End");
+                int customerId = rs.getInt("Customer_ID");
+                int userId = rs.getInt("User_ID");
+                int contactId = rs.getInt("Contact_ID");
+
+                selectedAppointment = new Appointments(appointmentId, appointmentTitle, appointmentDescription, appointmentLocation, appointmentType, startTime, endTime, customerId, userId, contactId);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return selectedAppointment;
+    }
+
     /** The getContactByAppointmentId method.
      * This method gets the contact from an appointment.
      * @param aId the aId param is the Appointment ID

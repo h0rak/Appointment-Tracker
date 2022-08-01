@@ -159,24 +159,18 @@ public class Appointments {
         return customersAppointmentList;
     }
 
-/*
-    public boolean customerAvailable(int customerId){
+    public static ObservableList<Appointments> getCustomersAppointmentList(int customerId, int appointmentId){
         ObservableList<Appointments> allAppointmentsList = DBAppointments.getAllAppointments();
         ObservableList<Appointments> customersAppointmentList = FXCollections.observableArrayList();
-        for (Appointments a : allAppointmentsList) {
-            if (a.getAppointmentId() == customerId) {
+
+        for (Appointments a : allAppointmentsList){
+            if (a.getCustomerId() == customerId && a.getAppointmentId() != appointmentId){
                 customersAppointmentList.add(a);
             }
         }
-        for (Appointments a : customersAppointmentList) {
-            Timestamp start = a.getStartTime();
-            Timestamp end = a.getEndTime();
-            AddAppointmentController aac = new AddAppointmentController();
-            Timestamp start1 = aac.start
-
-        }
+        return customersAppointmentList;
     }
-*/
+
 
 
 }
