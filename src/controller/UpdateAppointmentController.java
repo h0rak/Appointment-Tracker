@@ -31,8 +31,6 @@ import java.util.ResourceBundle;
  */
 public class UpdateAppointmentController implements Initializable {
 
-    private final ZoneId localZoneId = ZoneId.systemDefault();
-
     @FXML
     private TextField appointmentDescriptionField;
 
@@ -156,27 +154,31 @@ public class UpdateAppointmentController implements Initializable {
      * @param appointment the appointment param is the selected appointment on the Appointment Screen
      */
     public void SendAppointment(Appointments appointment) {
-        Instant instantStart = appointment.getStartTime().toInstant(); // test
-        LocalTime localTimeOfInstantStart = LocalTime.ofInstant(instantStart, localZoneId); // test
-        Instant instantEnd = appointment.getEndTime().toInstant();
-        LocalTime localTimeOfInstantEnd = LocalTime.ofInstant(instantEnd, localZoneId);
+        ZonedDateTime startUTC = appointment.getStartTime().toLocalDateTime().atZone(ZoneId.of("UTC"));
+        ZonedDateTime startToLocalZDT = startUTC.withZoneSameInstant(ZoneId.systemDefault());
+        LocalTime convertedStart = startToLocalZDT.toLocalTime();
+
+        ZonedDateTime endUTC = appointment.getEndTime().toLocalDateTime().atZone(ZoneId.of("UTC"));
+        ZonedDateTime endToLocalZDT = endUTC.withZoneSameInstant(ZoneId.systemDefault());
+        LocalTime convertedEnd = endToLocalZDT.toLocalTime();
+
+
         appointmentIdField.setText(String.valueOf(appointment.getAppointmentId()));
         appointmentTitleField.setText(String.valueOf(appointment.getAppointmentTitle()));
         appointmentDescriptionField.setText(String.valueOf(appointment.getAppointmentDescription()));
         appointmentLocationField.setText(String.valueOf(appointment.getAppointmentLocation()));
         appointmentTypeField.setText(String.valueOf(appointment.getAppointmentType()));
         datePickerWidget.setValue(appointment.getStartTime().toLocalDateTime().toLocalDate());
-//        startTimeComboBox.setValue(appointment.getStartTime().toLocalDateTime().toLocalTime());
-        startTimeComboBox.setValue(localTimeOfInstantStart); // test
-//        endTimeComboBox.setValue(appointment.getEndTime().toLocalDateTime().toLocalTime());
-        endTimeComboBox.setValue(localTimeOfInstantEnd);
+//        startTimeComboBox.setValue(appointment.getStartTime().toLocalDateTime().toLocalTime()); // ORIGINAL
+//        endTimeComboBox.setValue(appointment.getEndTime().toLocalDateTime().toLocalTime()); // ORIGINAL
+        startTimeComboBox.setValue(convertedStart); // test
+        endTimeComboBox.setValue(convertedEnd); // test
         customerComboBox.setItems(DBCustomers.getAllCustomers());
         customerComboBox.setValue(DBAppointments.getCustomerByAppointmentId(appointment.getAppointmentId()));
         userComboBox.setItems(DBUsers.getAllUsers());
         userComboBox.setValue(DBAppointments.getUserByAppointmentId(appointment.getAppointmentId()));
         contactComboBox.setItems(DBContacts.getAllContacts());
         contactComboBox.setValue(DBAppointments.getContactByAppointmentId(appointment.getAppointmentId()));
-        System.out.println(localZoneId);
     }
 
     /** The initialize method.
