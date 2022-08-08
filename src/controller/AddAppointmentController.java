@@ -164,6 +164,7 @@ public class AddAppointmentController implements Initializable {
         ZonedDateTime endZdtToEastern = endZdt.withZoneSameInstant(ZoneId.systemDefault());
         end = endZdtToEastern.toLocalTime();
 
+
         while(start.isBefore(end.plusMinutes(1))){
             startTimeComboBox.getItems().add(start);
             endTimeComboBox.getItems().add(start);
