@@ -154,6 +154,7 @@ public class UpdateAppointmentController implements Initializable {
      * @param appointment the appointment param is the selected appointment on the Appointment Screen
      */
     public void SendAppointment(Appointments appointment) {
+/*
         ZonedDateTime startUTC = appointment.getStartTime().toLocalDateTime().atZone(ZoneId.of("UTC"));
         ZonedDateTime startToLocalZDT = startUTC.withZoneSameInstant(ZoneId.systemDefault());
         LocalTime convertedStart = startToLocalZDT.toLocalTime();
@@ -161,6 +162,7 @@ public class UpdateAppointmentController implements Initializable {
         ZonedDateTime endUTC = appointment.getEndTime().toLocalDateTime().atZone(ZoneId.of("UTC"));
         ZonedDateTime endToLocalZDT = endUTC.withZoneSameInstant(ZoneId.systemDefault());
         LocalTime convertedEnd = endToLocalZDT.toLocalTime();
+*/
 
 
         appointmentIdField.setText(String.valueOf(appointment.getAppointmentId()));
@@ -169,10 +171,10 @@ public class UpdateAppointmentController implements Initializable {
         appointmentLocationField.setText(String.valueOf(appointment.getAppointmentLocation()));
         appointmentTypeField.setText(String.valueOf(appointment.getAppointmentType()));
         datePickerWidget.setValue(appointment.getStartTime().toLocalDateTime().toLocalDate());
-//        startTimeComboBox.setValue(appointment.getStartTime().toLocalDateTime().toLocalTime()); // ORIGINAL
-//        endTimeComboBox.setValue(appointment.getEndTime().toLocalDateTime().toLocalTime()); // ORIGINAL
-        startTimeComboBox.setValue(convertedStart); // test
-        endTimeComboBox.setValue(convertedEnd); // test
+        startTimeComboBox.setValue(appointment.getStartTime().toLocalDateTime().toLocalTime()); // ORIGINAL
+        endTimeComboBox.setValue(appointment.getEndTime().toLocalDateTime().toLocalTime()); // ORIGINAL
+//        startTimeComboBox.setValue(convertedStart); // test
+//        endTimeComboBox.setValue(convertedEnd); // test
         customerComboBox.setItems(DBCustomers.getAllCustomers());
         customerComboBox.setValue(DBAppointments.getCustomerByAppointmentId(appointment.getAppointmentId()));
         userComboBox.setItems(DBUsers.getAllUsers());

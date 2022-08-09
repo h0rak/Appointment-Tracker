@@ -21,8 +21,8 @@
             <TableColumn fx:id="appointmentDescriptionCol" prefWidth="75.0" text="Description" />
             <TableColumn fx:id="appointmentLocationCol" prefWidth="75.0" text="Location" />
             <TableColumn fx:id="appointmentTypeCol" prefWidth="100.0" text="Type" />
-            <TableColumn fx:id="startTimeCol" prefWidth="125.0" text="Start(UTC)" />
-            <TableColumn fx:id="endTimeCol" prefWidth="125.0" text="End(UTC)" />
+            <TableColumn fx:id="startTimeCol" prefWidth="125.0" text="Start" />
+            <TableColumn fx:id="endTimeCol" prefWidth="125.0" text="End" />
             <TableColumn fx:id="customerIdCol" prefWidth="45.0" text="CustomerID" />
             <TableColumn fx:id="userIdCol" prefWidth="45.0" text="UserID" />
             <TableColumn fx:id="contactIdCol" prefWidth="45.0" text="ContactID" />
