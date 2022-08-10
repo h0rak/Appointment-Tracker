@@ -92,22 +92,11 @@ public class AddAppointmentController implements Initializable {
             String aType = appointmentTypeField.getText();
             Timestamp aStart = Timestamp.valueOf(LocalDateTime.of(datePickerWidget.getValue(),startTimeComboBox.getValue()));
             Timestamp aEnd = Timestamp.valueOf(LocalDateTime.of(datePickerWidget.getValue(),endTimeComboBox.getValue()));
-
-            // below
-            ZonedDateTime aStartToZDT = aStart.toLocalDateTime().atZone(ZoneId.of("UTC"));
-            ZonedDateTime aEndToZDT = aEnd.toLocalDateTime().atZone(ZoneId.of("UTC"));
-
-            Timestamp aStartConverted = Timestamp.valueOf(aStartToZDT.toLocalDateTime());
-            Timestamp aEndConverted = Timestamp.valueOf(aEndToZDT.toLocalDateTime());
-            // above
-
             int aCustomerId = customerComboBox.getSelectionModel().getSelectedItem().getCustomerId();
             int aUserId = userComboBox.getSelectionModel().getSelectedItem().getUserId();
             int aContactId = contactComboBox.getSelectionModel().getSelectedItem().getContactId();
 
-//            String errorMessage = Appointments.inputChecker(aTitle, aDescription, aLocation, aType, aStart, aEnd, aCustomerId, aUserId, aContactId, "");
-            String errorMessage = Appointments.inputChecker(aTitle, aDescription, aLocation, aType, aStartConverted, aEndConverted, aCustomerId, aUserId, aContactId, "");
-
+            String errorMessage = Appointments.inputChecker(aTitle, aDescription, aLocation, aType, aStart, aEnd, aCustomerId, aUserId, aContactId, "");
 
             if (errorMessage.length() > 0){
                 Alert alert = new Alert(Alert.AlertType.WARNING);
