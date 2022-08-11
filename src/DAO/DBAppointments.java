@@ -8,6 +8,8 @@ import model.Customers;
 import model.Users;
 import utilities.JDBC;
 import java.sql.*;
+import java.time.Instant;
+import java.time.LocalDateTime;
 
 /** The DBAppointments class.
  * This class houses methods that access the appointments table in the database.
@@ -31,8 +33,10 @@ public abstract class DBAppointments {
                 String appointmentDescription = rs.getString("Description");
                 String appointmentLocation = rs.getString("Location");
                 String appointmentType = rs.getString("Type");
-                Timestamp startTime = Timestamp.valueOf(rs.getString("Start"));
-                Timestamp endTime = Timestamp.valueOf(rs.getString("End"));
+//                Timestamp startTime = Timestamp.valueOf(rs.getString("Start")); //original
+                Timestamp startTime = rs.getTimestamp("Start");
+//                LocalDateTime startTime = rs.getTimestamp("Start").toLocalDateTime();
+                Timestamp endTime = rs.getTimestamp("End");
                 int customerId = rs.getInt("Customer_ID");
                 int userId = rs.getInt("User_ID");
                 int contactId = rs.getInt("Contact_ID");

@@ -16,7 +16,7 @@ public class Appointments {
     private String appointmentDescription;
     private String appointmentLocation;
     private String appointmentType;
-    private Timestamp startTime;
+    private Timestamp startTime; // localdatetime
     private Timestamp endTime;
     private int customerId;
     private int userId;
