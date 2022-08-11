@@ -153,6 +153,7 @@ public class ReportController implements Initializable {
 
     /** The customerCount Lambda Expression.
      * This expression totals the customers in the database.
+     * The justification of this lambda expression is to satisfy the business requirements.
      * @return returned is the total number of customer objects
      */
     CustomerSumInterface customerCount = () -> {
@@ -172,6 +173,7 @@ public class ReportController implements Initializable {
 
     /** The contactList Lambda Expression.
      * This expression sets a list of contacts' names as a string.
+     * The justification of this lambda expression is to satisfy the business requirements.
      * @return returned is the list of contacts
      */
     AllContactsInterface contactList = () -> {
@@ -210,8 +212,6 @@ public class ReportController implements Initializable {
         appointmentDescriptionCol.setCellValueFactory(new PropertyValueFactory<>("appointmentDescription"));
         appointmentLocationCol.setCellValueFactory(new PropertyValueFactory<>("appointmentLocation"));
         appointmentTypeCol.setCellValueFactory(new PropertyValueFactory<>("appointmentType"));
-//        startTimeCol.setCellValueFactory(new PropertyValueFactory<>("startTimeDisplay")); // original
-//        endTimeCol.setCellValueFactory(new PropertyValueFactory<>("endTimeDisplay")); // original
         startTimeCol.setCellValueFactory(new PropertyValueFactory<>("startTime")); // test
         endTimeCol.setCellValueFactory(new PropertyValueFactory<>("endTime")); // test
         customerIdCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
