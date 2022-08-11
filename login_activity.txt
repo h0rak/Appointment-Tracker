@@ -175,9 +175,17 @@ Login Attempt: SUCCESSFUL, User: admin, Date / Time: 2022-08-09T17:35:20.66271.
 Login Attempt: SUCCESSFUL, User: admin, Date / Time: 2022-08-09T17:36:58.63672.
 Login Attempt: SUCCESSFUL, User: admin, Date / Time: 2022-08-09T18:08:51.760063.
 Login Attempt: SUCCESSFUL, User: admin, Date / Time: 2022-08-09T18:37:05.213171.
+Login Attempt: FAILED, User: admin, Date / Time: 2022-08-10T18:03:58.299733.
+Login Attempt: FAILED, User: admin, Date / Time: 2022-08-10T18:04:10.242366.
+Login Attempt: FAILED, User: admin, Date / Time: 2022-08-10T18:04:15.770645.
+Login Attempt: SUCCESSFUL, User: admin, Date / Time: 2022-08-10T18:06:19.85552.
 Login Attempt: SUCCESSFUL, User: admin, Date / Time: 2022-08-09T18:41:42.6860272.
 Login Attempt: SUCCESSFUL, User: admin, Date / Time: 2022-08-09T18:42:13.0232826.
 Login Attempt: SUCCESSFUL, User: admin, Date / Time: 2022-08-09T21:16:22.0606268.
 Login Attempt: SUCCESSFUL, User: admin, Date / Time: 2022-08-09T21:39:05.8469756.
 Login Attempt: SUCCESSFUL, User: admin, Date / Time: 2022-08-10T18:10:19.3084035.
 Login Attempt: SUCCESSFUL, User: admin, Date / Time: 2022-08-10T18:52:26.2223741.
+Login Attempt: FAILED, User: admin, Date / Time: 2022-08-10T19:37:55.953315.
+Login Attempt: SUCCESSFUL, User: admin, Date / Time: 2022-08-10T19:38:30.559641.
+Login Attempt: SUCCESSFUL, User: admin, Date / Time: 2022-08-10T20:03:30.27495.
+Login Attempt: SUCCESSFUL, User: test, Date / Time: 2022-08-10T20:09:15.899762.

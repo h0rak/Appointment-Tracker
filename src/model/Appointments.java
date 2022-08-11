@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 /** The Appointments class.
  * This class houses the constructor for the Appointments data type as well as the getters and setters.
@@ -16,8 +17,8 @@ public class Appointments {
     private String appointmentDescription;
     private String appointmentLocation;
     private String appointmentType;
-    private Timestamp startTime; // localdatetime
-    private Timestamp endTime;
+    private LocalDateTime startTime; // localdatetime
+    private LocalDateTime endTime;
     private int customerId;
     private int userId;
     private int contactId;
@@ -35,7 +36,7 @@ public class Appointments {
      * @param userId the userId parameter is a foreign key to the users table
      * @param contactId the contactId parameter is a foreign key to the contacts table
      * */
-    public Appointments(int appointmentId, String appointmentTitle, String appointmentDescription, String appointmentLocation, String appointmentType, Timestamp startTime, Timestamp endTime, int customerId, int userId, int contactId) {
+    public Appointments(int appointmentId, String appointmentTitle, String appointmentDescription, String appointmentLocation, String appointmentType, LocalDateTime startTime, LocalDateTime endTime, int customerId, int userId, int contactId) {
         this.appointmentId = appointmentId;
         this.appointmentTitle = appointmentTitle;
         this.appointmentDescription = appointmentDescription;
@@ -121,40 +122,44 @@ public class Appointments {
     /** The getStartTime method.
      * @return returns a startTime
      */
-    public Timestamp getStartTime() { return startTime; }
+    public LocalDateTime getStartTime() { return startTime; }
 
     /** The getStartTimeDisplay method.
      * @return returns a startTime in String form
      */
+/*
     public String getStartTimeDisplay(){
         return startTime.toLocalDateTime().toString();
     }
+*/
 
     /** The setStartTime method.
      * @param startTime the startTime to set
      */
-    public void setStartTime(Timestamp startTime) {
+    public void setStartTime(LocalDateTime startTime) {
         this.startTime = startTime;
     }
 
     /** The getEndTime method.
      * @return returns an endTime
      */
-    public Timestamp getEndTime() {
+    public LocalDateTime getEndTime() {
         return endTime;
     }
 
     /** The getEndTimeDisplay method.
      * @return returns an endTime in String form
      */
+/*
     public String getEndTimeDisplay(){
         return endTime.toLocalDateTime().toString();
     }
+*/
 
     /** The setEndTime method.
      * @param endTime the startTime to set
      */
-    public void setEndTime(Timestamp endTime) {
+    public void setEndTime(LocalDateTime endTime) {
         this.endTime = endTime;
     }
 
@@ -214,7 +219,7 @@ public class Appointments {
      * @param errorMessage the errorMessage is initially blank and appended for each incorrect value
      * @return returns an errorMessage to be used in an alert if needed
      */
-    public static String inputChecker(String appointmentTitle, String appointmentDescription, String appointmentLocation, String appointmentType, Timestamp startTime, Timestamp endTime, int customerId, int userId, int contactId, String errorMessage) {
+    public static String inputChecker(String appointmentTitle, String appointmentDescription, String appointmentLocation, String appointmentType, LocalDateTime startTime, LocalDateTime endTime, int customerId, int userId, int contactId, String errorMessage) {
         if (appointmentTitle.isEmpty()) {
             errorMessage = errorMessage + "\nPlease enter a title.";
         }
@@ -230,9 +235,15 @@ public class Appointments {
         if (startTime.compareTo(endTime) == 0) {
             errorMessage = errorMessage + "\nStart time and end time cannot be the same value.";
         }
+/*
         else if (startTime.toLocalDateTime().isAfter(endTime.toLocalDateTime())) {
             errorMessage = errorMessage + "\nStart time must come before the end time.";
         }
+*/
+        else if (startTime.isAfter(endTime)) {
+            errorMessage = errorMessage + "\nStart time must come before the end time.";
+        }
+
         if (customerId < 1) {
             errorMessage = errorMessage + "\nPlease choose a customer.";
         }

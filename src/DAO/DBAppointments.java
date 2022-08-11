@@ -33,15 +33,13 @@ public abstract class DBAppointments {
                 String appointmentDescription = rs.getString("Description");
                 String appointmentLocation = rs.getString("Location");
                 String appointmentType = rs.getString("Type");
-//                Timestamp startTime = Timestamp.valueOf(rs.getString("Start")); //original
                 Timestamp startTime = rs.getTimestamp("Start");
-//                LocalDateTime startTime = rs.getTimestamp("Start").toLocalDateTime();
                 Timestamp endTime = rs.getTimestamp("End");
                 int customerId = rs.getInt("Customer_ID");
                 int userId = rs.getInt("User_ID");
                 int contactId = rs.getInt("Contact_ID");
 
-                Appointments a = new Appointments(appointmentId, appointmentTitle, appointmentDescription, appointmentLocation, appointmentType, startTime, endTime, customerId, userId, contactId);
+                Appointments a = new Appointments(appointmentId, appointmentTitle, appointmentDescription, appointmentLocation, appointmentType, startTime.toLocalDateTime(), endTime.toLocalDateTime(), customerId, userId, contactId);
                 allAppointmentsList.add(a);
             }
         }
@@ -76,7 +74,7 @@ public abstract class DBAppointments {
                 int userId = rs.getInt("User_ID");
                 int contactId = rs.getInt("Contact_ID");
 
-                Appointments a = new Appointments(appointmentId, appointmentTitle, appointmentDescription, appointmentLocation, appointmentType, startTime, endTime, customerId, userId, contactId);
+                Appointments a = new Appointments(appointmentId, appointmentTitle, appointmentDescription, appointmentLocation, appointmentType, startTime.toLocalDateTime(), endTime.toLocalDateTime(), customerId, userId, contactId);
                 contactAppointmentsList.add(a);
             }
         } catch (SQLException e) {
@@ -104,7 +102,7 @@ public abstract class DBAppointments {
                 int userId = rs.getInt("User_ID");
                 int contactId = rs.getInt("Contact_ID");
 
-                selectedAppointment = new Appointments(appointmentId, appointmentTitle, appointmentDescription, appointmentLocation, appointmentType, startTime, endTime, customerId, userId, contactId);
+                selectedAppointment = new Appointments(appointmentId, appointmentTitle, appointmentDescription, appointmentLocation, appointmentType, startTime.toLocalDateTime(), endTime.toLocalDateTime(), customerId, userId, contactId);
             }
         } catch (SQLException e) {
             e.printStackTrace();

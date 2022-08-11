@@ -94,8 +94,8 @@ public class UpdateAppointmentController implements Initializable {
             String aDescription = appointmentDescriptionField.getText();
             String aLocation = appointmentLocationField.getText();
             String aType = appointmentTypeField.getText();
-            Timestamp aStart = Timestamp.valueOf(LocalDateTime.of(datePickerWidget.getValue(),startTimeComboBox.getValue()));
-            Timestamp aEnd = Timestamp.valueOf(LocalDateTime.of(datePickerWidget.getValue(),endTimeComboBox.getValue()));
+            LocalDateTime aStart = LocalDateTime.of(datePickerWidget.getValue(),startTimeComboBox.getValue());
+            LocalDateTime aEnd = LocalDateTime.of(datePickerWidget.getValue(),endTimeComboBox.getValue());
             int aCustomerId = customerComboBox.getSelectionModel().getSelectedItem().getCustomerId();
             int aUserId = userComboBox.getSelectionModel().getSelectedItem().getUserId();
             int aContactId = contactComboBox.getSelectionModel().getSelectedItem().getContactId();
@@ -113,11 +113,11 @@ public class UpdateAppointmentController implements Initializable {
                 boolean existingAppointments = false;
                 ObservableList<Appointments> customersAppointments = Appointments.getCustomersAppointmentList(aCustomerId, aId);
                 for (Appointments a : customersAppointments) {
-                    if (aStart.toLocalDateTime().isBefore(a.getStartTime().toLocalDateTime()) && aEnd.toLocalDateTime().isAfter(a.getStartTime().toLocalDateTime())) {
+                    if (aStart.isBefore(a.getStartTime()) && aEnd.isAfter(a.getStartTime())) {
                         existingAppointments = true;
-                    } else if (aStart.toLocalDateTime().isEqual(a.getStartTime().toLocalDateTime())) {
+                    } else if (aStart.isEqual(a.getStartTime())) {
                         existingAppointments = true;
-                    } else if (aStart.toLocalDateTime().isAfter(a.getStartTime().toLocalDateTime()) && aStart.toLocalDateTime().isBefore(a.getEndTime().toLocalDateTime())) {
+                    } else if (aStart.isAfter(a.getStartTime()) && aStart.isBefore(a.getEndTime())) {
                         existingAppointments = true;
                     }
                 }
@@ -128,7 +128,7 @@ public class UpdateAppointmentController implements Initializable {
                     alert.setContentText(" Customer has existing appointments in timeslot.");
                     alert.showAndWait();
                 } else {
-                    DBAppointments.UpdateAppointment(aId, aTitle, aDescription, aLocation, aType, aStart, aEnd, aCustomerId, aUserId, aContactId);
+                    DBAppointments.UpdateAppointment(aId, aTitle, aDescription, aLocation, aType, Timestamp.valueOf(aStart), Timestamp.valueOf(aEnd), aCustomerId, aUserId, aContactId);
 
                     Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AppointmentScreen.fxml")));
                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -159,9 +159,9 @@ public class UpdateAppointmentController implements Initializable {
         appointmentDescriptionField.setText(String.valueOf(appointment.getAppointmentDescription()));
         appointmentLocationField.setText(String.valueOf(appointment.getAppointmentLocation()));
         appointmentTypeField.setText(String.valueOf(appointment.getAppointmentType()));
-        datePickerWidget.setValue(appointment.getStartTime().toLocalDateTime().toLocalDate());
-        startTimeComboBox.setValue(appointment.getStartTime().toLocalDateTime().toLocalTime()); // ORIGINAL
-        endTimeComboBox.setValue(appointment.getEndTime().toLocalDateTime().toLocalTime()); // ORIGINAL
+        datePickerWidget.setValue(appointment.getStartTime().toLocalDate());
+        startTimeComboBox.setValue(appointment.getStartTime().toLocalTime()); // ORIGINAL
+        endTimeComboBox.setValue(appointment.getEndTime().toLocalTime()); // ORIGINAL
         customerComboBox.setItems(DBCustomers.getAllCustomers());
         customerComboBox.setValue(DBAppointments.getCustomerByAppointmentId(appointment.getAppointmentId()));
         userComboBox.setItems(DBUsers.getAllUsers());

@@ -208,7 +208,7 @@ public class AppointmentController implements Initializable {
         ObservableList<Appointments> allAppointmentsList = DBAppointments.getAllAppointments();
         LocalDateTime now = LocalDateTime.now();
         for (Appointments a : allAppointmentsList){
-            if (a.getStartTime().toLocalDateTime().getMonth() == LocalDateTime.now().getMonth() && a.getStartTime().toLocalDateTime().getYear() == LocalDateTime.now().getYear()) {
+            if (a.getStartTime().getMonth() == LocalDateTime.now().getMonth() && a.getStartTime().getYear() == LocalDateTime.now().getYear()) {
                 appointmentsThisMonthList.add(a);
             }
         }
@@ -225,7 +225,7 @@ public class AppointmentController implements Initializable {
             LocalDateTime now = LocalDateTime.now();
 
             for (Appointments a : allAppointmentsList){
-                if (a.getStartTime().toLocalDateTime().isAfter(now) && a.getStartTime().toLocalDateTime().isBefore(now.plusDays(7))){
+                if (a.getStartTime().isAfter(now) && a.getStartTime().isBefore(now.plusDays(7))){
                     appointmentsThisWeekList.add(a);
                 }
             }
@@ -240,9 +240,9 @@ public class AppointmentController implements Initializable {
         ObservableList<Appointments> upcomingAppointmentsList = FXCollections.observableArrayList();
         ObservableList<Appointments> currentAppointmentsList = FXCollections.observableArrayList();
         for (Appointments a : allAppointmentsList) {
-            if (LocalDateTime.now().isBefore(a.getStartTime().toLocalDateTime()) && LocalDateTime.now().plusMinutes(15).isAfter(a.getStartTime().toLocalDateTime())) {
+            if (LocalDateTime.now().isBefore(a.getStartTime()) && LocalDateTime.now().plusMinutes(15).isAfter(a.getStartTime())) {
                 upcomingAppointmentsList.add(a);
-            } else if (LocalDateTime.now().isAfter(a.getStartTime().toLocalDateTime()) && LocalDateTime.now().isBefore(a.getEndTime().toLocalDateTime())) {
+            } else if (LocalDateTime.now().isAfter(a.getStartTime()) && LocalDateTime.now().isBefore(a.getEndTime())) {
                 currentAppointmentsList.add(a);
             }
         }
@@ -251,7 +251,7 @@ public class AppointmentController implements Initializable {
             alert.setTitle("Alert");
             for (Appointments a : upcomingAppointmentsList) {
                 alert.setContentText("There's an appointment within the next 15 minutes!\n\n" +
-                        "Appointment ID: " + a.getAppointmentId() + ", Date: " + a.getStartTime().toLocalDateTime().toLocalDate() + ", Time: " + a.getStartTime().toLocalDateTime().toLocalTime() + "-" + a.getEndTime().toLocalDateTime().toLocalTime());
+                        "Appointment ID: " + a.getAppointmentId() + ", Date: " + a.getStartTime().toLocalDate() + ", Time: " + a.getStartTime().toLocalTime() + "-" + a.getEndTime().toLocalTime());
             }
             alert.showAndWait();
             firstTime = false;
@@ -260,7 +260,7 @@ public class AppointmentController implements Initializable {
             alert.setTitle("Alert");
             for (Appointments a : currentAppointmentsList) {
                 alert.setContentText("There's an appointment taking place now.\n\n" +
-                        "Appointment ID: " + a.getAppointmentId() + ", Date: " + a.getStartTime().toLocalDateTime().toLocalDate() + ", Time: " + a.getStartTime().toLocalDateTime().toLocalTime() + "-" + a.getEndTime().toLocalDateTime().toLocalTime());
+                        "Appointment ID: " + a.getAppointmentId() + ", Date: " + a.getStartTime().toLocalDate() + ", Time: " + a.getStartTime().toLocalTime() + "-" + a.getEndTime().toLocalTime());
             }
             alert.showAndWait();
             firstTime = false;
@@ -287,8 +287,10 @@ public class AppointmentController implements Initializable {
         appointmentDescriptionCol.setCellValueFactory(new PropertyValueFactory<>("appointmentDescription"));
         appointmentLocationCol.setCellValueFactory(new PropertyValueFactory<>("appointmentLocation"));
         appointmentTypeCol.setCellValueFactory(new PropertyValueFactory<>("appointmentType"));
-        startTimeCol.setCellValueFactory(new PropertyValueFactory<>("startTimeDisplay")); //TODO
-        endTimeCol.setCellValueFactory(new PropertyValueFactory<>("endTimeDisplay"));
+//        startTimeCol.setCellValueFactory(new PropertyValueFactory<>("startTimeDisplay")); // original
+//        endTimeCol.setCellValueFactory(new PropertyValueFactory<>("endTimeDisplay")); // original
+        startTimeCol.setCellValueFactory(new PropertyValueFactory<>("startTime")); // test
+        endTimeCol.setCellValueFactory(new PropertyValueFactory<>("endTime")); // test
         customerIdCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         userIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
         contactIdCol.setCellValueFactory(new PropertyValueFactory<>("contactId"));

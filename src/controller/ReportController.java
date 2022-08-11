@@ -144,7 +144,7 @@ public class ReportController implements Initializable {
         Month monthToSearch = Month.valueOf(monthComboBox.getSelectionModel().getSelectedItem());
         int total = 0;
         for (Appointments a: DBAppointments.getAllAppointments()){
-            if (a.getAppointmentType().equals(typeToSearch) && a.getStartTime().toLocalDateTime().getMonth().equals(monthToSearch)) {
+            if (a.getAppointmentType().equals(typeToSearch) && a.getStartTime().getMonth().equals(monthToSearch)) {
                 total += 1;
             }
         }
@@ -210,8 +210,10 @@ public class ReportController implements Initializable {
         appointmentDescriptionCol.setCellValueFactory(new PropertyValueFactory<>("appointmentDescription"));
         appointmentLocationCol.setCellValueFactory(new PropertyValueFactory<>("appointmentLocation"));
         appointmentTypeCol.setCellValueFactory(new PropertyValueFactory<>("appointmentType"));
-        startTimeCol.setCellValueFactory(new PropertyValueFactory<>("startTimeDisplay"));
-        endTimeCol.setCellValueFactory(new PropertyValueFactory<>("endTimeDisplay"));
+//        startTimeCol.setCellValueFactory(new PropertyValueFactory<>("startTimeDisplay")); // original
+//        endTimeCol.setCellValueFactory(new PropertyValueFactory<>("endTimeDisplay")); // original
+        startTimeCol.setCellValueFactory(new PropertyValueFactory<>("startTime")); // test
+        endTimeCol.setCellValueFactory(new PropertyValueFactory<>("endTime")); // test
         customerIdCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         userIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
         contactIdCol.setCellValueFactory(new PropertyValueFactory<>("contactId"));

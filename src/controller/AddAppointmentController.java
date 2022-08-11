@@ -90,8 +90,8 @@ public class AddAppointmentController implements Initializable {
             String aDescription = appointmentDescriptionField.getText();
             String aLocation = appointmentLocationField.getText();
             String aType = appointmentTypeField.getText();
-            Timestamp aStart = Timestamp.valueOf(LocalDateTime.of(datePickerWidget.getValue(),startTimeComboBox.getValue()));
-            Timestamp aEnd = Timestamp.valueOf(LocalDateTime.of(datePickerWidget.getValue(),endTimeComboBox.getValue()));
+            LocalDateTime aStart = LocalDateTime.of(datePickerWidget.getValue(),startTimeComboBox.getValue());
+            LocalDateTime aEnd = LocalDateTime.of(datePickerWidget.getValue(),endTimeComboBox.getValue());
             int aCustomerId = customerComboBox.getSelectionModel().getSelectedItem().getCustomerId();
             int aUserId = userComboBox.getSelectionModel().getSelectedItem().getUserId();
             int aContactId = contactComboBox.getSelectionModel().getSelectedItem().getContactId();
@@ -106,25 +106,25 @@ public class AddAppointmentController implements Initializable {
                 alert.showAndWait();
             }
             else {
-                int existingAppointments = 0;
+                boolean existingAppointments = false;
                 ObservableList<Appointments> customersAppointments = Appointments.getCustomersAppointmentList(aCustomerId);
                 for (Appointments a : customersAppointments) {
-                    if (aStart.toLocalDateTime().isBefore(a.getStartTime().toLocalDateTime()) && aEnd.toLocalDateTime().isAfter(a.getStartTime().toLocalDateTime())) {
-                        existingAppointments += 1;
-                    } else if (aStart.toLocalDateTime().isEqual(a.getStartTime().toLocalDateTime())) {
-                        existingAppointments += 1;
-                    } else if (aStart.toLocalDateTime().isAfter(a.getStartTime().toLocalDateTime()) && aStart.toLocalDateTime().isBefore(a.getEndTime().toLocalDateTime())) {
-                        existingAppointments += 1;
+                    if (aStart.isBefore(a.getStartTime()) && aEnd.isAfter(a.getStartTime())) {
+                        existingAppointments = true;
+                    } else if (aStart.isEqual(a.getStartTime())) {
+                        existingAppointments = true;
+                    } else if (aStart.isAfter(a.getStartTime()) && aStart.isBefore(a.getEndTime())) {
+                        existingAppointments = true;
                     }
                 }
-                if (existingAppointments > 0) {
+                if (existingAppointments) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Error");
                     alert.setHeaderText("Appointment not added.");
                     alert.setContentText(" Customer has existing appointments in timeslot.");
                     alert.showAndWait();
                 } else {
-                    DBAppointments.AddAppointment(aTitle, aDescription, aLocation, aType, aStart, aEnd, aCustomerId, aUserId, aContactId);
+                    DBAppointments.AddAppointment(aTitle, aDescription, aLocation, aType, Timestamp.valueOf(aStart), Timestamp.valueOf(aEnd), aCustomerId, aUserId, aContactId);
 
                     Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AppointmentScreen.fxml")));
                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
