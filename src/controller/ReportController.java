@@ -152,8 +152,8 @@ public class ReportController implements Initializable {
     }
 
     /** The customerCount Lambda Expression.
-     * This expression totals the customers in the database.
-     * The justification of this lambda expression is to satisfy the business requirements.
+     * This lambda expression queries the database to get a total count of customers to be displayed
+     * in a label on the ReportController.
      * @return returned is the total number of customer objects
      */
     CustomerSumInterface customerCount = () -> {
@@ -172,9 +172,9 @@ public class ReportController implements Initializable {
     };
 
     /** The contactList Lambda Expression.
-     * This expression sets a list of contacts' names as a string.
-     * The justification of this lambda expression is to satisfy the business requirements.
-     * @return returned is the list of contacts
+     * This lambda expression queries the database and builds a list of all contacts to be populated
+     * into the contacts combo box on the ReportController.
+     * @return returns a list of all contacts
      */
     AllContactsInterface contactList = () -> {
         ObservableList<Contacts> allContactsList = FXCollections.observableArrayList();
